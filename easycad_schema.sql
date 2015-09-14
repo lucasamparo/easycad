@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 12-Set-2015 às 13:15
+-- Generation Time: 14-Set-2015 às 08:49
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `easycad`
 --
-CREATE DATABASE IF NOT EXISTS `easycad` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `easycad`;
 
 -- --------------------------------------------------------
 
@@ -30,11 +28,11 @@ USE `easycad`;
 
 CREATE TABLE IF NOT EXISTS `certificado` (
   `idCertificado` int(11) NOT NULL,
-  `idEntidade` int(11) DEFAULT NULL,
+  `idMatricula` int(11) DEFAULT NULL,
   `codigo` varchar(12) DEFAULT NULL,
   `dataEmissao` date DEFAULT NULL,
   PRIMARY KEY (`idCertificado`),
-  KEY `idEntidade` (`idEntidade`)
+  KEY `certificado_ibfk_1` (`idMatricula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -129,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `matricula` (
 -- Limitadores para a tabela `certificado`
 --
 ALTER TABLE `certificado`
-  ADD CONSTRAINT `certificado_ibfk_1` FOREIGN KEY (`idEntidade`) REFERENCES `entidade` (`idEntidade`);
+  ADD CONSTRAINT `certificado_ibfk_1` FOREIGN KEY (`idMatricula`) REFERENCES `matricula` (`idMatricula`);
 
 --
 -- Limitadores para a tabela `curso`
@@ -141,8 +139,8 @@ ALTER TABLE `curso`
 -- Limitadores para a tabela `matricula`
 --
 ALTER TABLE `matricula`
-  ADD CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`),
-  ADD CONSTRAINT `matricula_ibfk_1` FOREIGN KEY (`idEntidade`) REFERENCES `entidade` (`idEntidade`);
+  ADD CONSTRAINT `matricula_ibfk_1` FOREIGN KEY (`idEntidade`) REFERENCES `entidade` (`idEntidade`),
+  ADD CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

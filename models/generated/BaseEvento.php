@@ -98,5 +98,5 @@ abstract class BaseEvento extends Doctrine_Record
         $this->hasMany('Curso', array(
              'local' => 'idEvento',
              'foreign' => 'idEvento'));
-    }	
+    }
 }

@@ -40,11 +40,11 @@ class Certificado extends BaseCertificado
 		$this->dataEmissao = $dataEmissao;
 		return $this;
 	}
-	public function getEntidade() {
-		return $this->Entidade;
+	public function getMatricula() {
+		return $this->Matricula;
 	}
-	public function setEntidade($Entidade) {
-		$this->Entidade = $Entidade;
+	public function setMatricula($Matricula) {
+		$this->Matricula = $Matricula;
 		return $this;
 	}
 }

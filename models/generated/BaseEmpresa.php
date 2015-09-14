@@ -91,5 +91,5 @@ abstract class BaseEmpresa extends Doctrine_Record
     {
         parent::setUp();
         
-    }	
+    }
 }

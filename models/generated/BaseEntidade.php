@@ -11,7 +11,6 @@
  * @property string $telefone
  * @property string $email
  * @property enum $tipo
- * @property Doctrine_Collection $Certificado
  * @property Doctrine_Collection $Matricula
  * 
  * @package    ##PACKAGE##
@@ -87,12 +86,8 @@ abstract class BaseEntidade extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Certificado', array(
-             'local' => 'idEntidade',
-             'foreign' => 'idEntidade'));
-
         $this->hasMany('Matricula', array(
              'local' => 'idEntidade',
              'foreign' => 'idEntidade'));
-    }	
+    }
 }
