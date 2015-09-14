@@ -1,4 +1,4 @@
-<aside class="ls-sidebar">
+﻿<aside class="ls-sidebar">
 
   <div class="ls-sidebar-inner">
       

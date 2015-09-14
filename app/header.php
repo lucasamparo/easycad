@@ -1,4 +1,4 @@
-<div class="ls-topbar ">
+﻿<div class="ls-topbar ">
 
   <!-- Barra de Notificações -->
   <div class="ls-notification-topbar">
