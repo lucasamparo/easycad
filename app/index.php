@@ -1,3 +1,22 @@
+<?php 
+	require_once('../models/bootstrap.php');
+	session_start();
+	$mensagem = "";
+	
+	if(isset($_POST['login'])){
+		$e = new Empresa();
+		$empresa = $e->retornarEmpresa();
+		if($_POST['login'] == $empresa->getLogin()){
+			if(md5($_POST['senha']) == $empresa->getSenha()){
+				$_SESSION['logado'] = true;
+				header('Location: inicio.php');
+			} else { 
+				$mensagem = "Usu·rio ou Senha Incorreta!"; 
+			}
+		}
+	}
+	
+?>
 <!DOCTYPE html>
 <html class="ls-theme-green">
 <head>
@@ -16,12 +35,12 @@
     <div class="ls-login-container">
       <div class="ls-login-box">
   <h1 class="ls-login-logo"><img title="Logo login" src="images/logo-locaweb.jpg" /></h1>
-  <form role="form" class="ls-form ls-login-form" action="#">
+  <form role="form" class="ls-form ls-login-form" action="index.php" method="post">
     <fieldset>
 
       <label class="ls-label">
-        <b class="ls-label-text ls-hidden-accessible">Usu√°rio</b>
-        <input class="ls-login-bg-user ls-field-lg" type="text" placeholder="Usu√°rio" name="login" required autofocus>
+        <b class="ls-label-text ls-hidden-accessible">Usu·rio</b>
+        <input class="ls-login-bg-user ls-field-lg" type="text" placeholder="Usu·rio" name="login" required autofocus>
       </label>
 
       <label class="ls-label">
@@ -38,7 +57,7 @@
   </form>
 </div>
 
-<div class="ls-login-adv"><img title="Empresa J√∫nior de Engenharia Ambiental" src="images/eambjr.png" width="296" height="127" /></div>
+<div class="ls-login-adv"><img title="Empresa J˙nior de Engenharia Ambiental" src="images/eambjr.png" width="296" height="127" /></div>
 
     </div>
   </div>

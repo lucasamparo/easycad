@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Set-2015 às 08:49
+-- Generation Time: 14-Set-2015 às 09:35
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -27,13 +27,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `certificado` (
-  `idCertificado` int(11) NOT NULL,
+  `idCertificado` int(11) NOT NULL AUTO_INCREMENT,
   `idMatricula` int(11) DEFAULT NULL,
   `codigo` varchar(12) DEFAULT NULL,
   `dataEmissao` date DEFAULT NULL,
   PRIMARY KEY (`idCertificado`),
-  KEY `certificado_ibfk_1` (`idMatricula`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `MatriculaCertificado` (`idMatricula`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `certificado` (
 --
 
 CREATE TABLE IF NOT EXISTS `curso` (
-  `idCurso` int(11) NOT NULL,
+  `idCurso` int(11) NOT NULL AUTO_INCREMENT,
   `idEvento` int(11) DEFAULT NULL,
   `nomeCurso` varchar(255) DEFAULT NULL,
   `conteudo` text,
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `curso` (
   `cargaHoraria` int(11) DEFAULT NULL,
   `dataCurso` date DEFAULT NULL,
   PRIMARY KEY (`idCurso`),
-  KEY `idEvento` (`idEvento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `CursoEvento` (`idEvento`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `curso` (
 --
 
 CREATE TABLE IF NOT EXISTS `empresa` (
-  `idEmpresa` int(11) NOT NULL,
+  `idEmpresa` int(11) NOT NULL AUTO_INCREMENT,
   `nomeFantasia` varchar(255) DEFAULT NULL,
   `razaoSocial` varchar(255) DEFAULT NULL,
   `responsavel` varchar(255) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
   `senha` varchar(32) DEFAULT NULL,
   `cnpj` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idEmpresa`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -77,14 +77,14 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 --
 
 CREATE TABLE IF NOT EXISTS `entidade` (
-  `idEntidade` int(11) NOT NULL,
+  `idEntidade` int(11) NOT NULL AUTO_INCREMENT,
   `nomeEntidade` varchar(255) DEFAULT NULL,
   `cnpj_cpf` varchar(18) DEFAULT NULL,
   `telefone` varchar(11) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `tipo` enum('PF','PJ') DEFAULT NULL,
   PRIMARY KEY (`idEntidade`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `entidade` (
 --
 
 CREATE TABLE IF NOT EXISTS `evento` (
-  `idEvento` int(11) NOT NULL,
+  `idEvento` int(11) NOT NULL AUTO_INCREMENT,
   `nomeEvento` varchar(255) DEFAULT NULL,
   `dataInicio` date DEFAULT NULL,
   `dateFim` date DEFAULT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `valor` double DEFAULT NULL,
   `cargaHoraria` int(11) DEFAULT NULL,
   PRIMARY KEY (`idEvento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -110,14 +110,14 @@ CREATE TABLE IF NOT EXISTS `evento` (
 --
 
 CREATE TABLE IF NOT EXISTS `matricula` (
-  `idMatricula` int(11) NOT NULL,
+  `idMatricula` int(11) NOT NULL AUTO_INCREMENT,
   `idEntidade` int(11) DEFAULT NULL,
   `idCurso` int(11) DEFAULT NULL,
   `dataHoraMatricula` datetime DEFAULT NULL,
   PRIMARY KEY (`idMatricula`),
-  KEY `idEntidade` (`idEntidade`),
-  KEY `idCurso` (`idCurso`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `matriculaEntidade_idx` (`idEntidade`),
+  KEY `matriculaCurso_idx` (`idCurso`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
@@ -127,20 +127,20 @@ CREATE TABLE IF NOT EXISTS `matricula` (
 -- Limitadores para a tabela `certificado`
 --
 ALTER TABLE `certificado`
-  ADD CONSTRAINT `certificado_ibfk_1` FOREIGN KEY (`idMatricula`) REFERENCES `matricula` (`idMatricula`);
+  ADD CONSTRAINT `MatriculaCertificado` FOREIGN KEY (`idMatricula`) REFERENCES `matricula` (`idMatricula`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `curso`
 --
 ALTER TABLE `curso`
-  ADD CONSTRAINT `curso_ibfk_1` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`);
+  ADD CONSTRAINT `CursoEvento` FOREIGN KEY (`idEvento`) REFERENCES `evento` (`idEvento`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `matricula`
 --
 ALTER TABLE `matricula`
-  ADD CONSTRAINT `matricula_ibfk_1` FOREIGN KEY (`idEntidade`) REFERENCES `entidade` (`idEntidade`),
-  ADD CONSTRAINT `matricula_ibfk_2` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`);
+  ADD CONSTRAINT `matriculaCurso` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `matriculaEntidade` FOREIGN KEY (`idEntidade`) REFERENCES `entidade` (`idEntidade`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -18,7 +18,7 @@
             <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
             <ul>
               <li><a href="#">Alterar Senha</a></li>
-              <li><a href="#">Meus Dados</a></li>
+              <li><a href="dadosEmpresa.php">Meus Dados</a></li>
             </ul>
           </li>
         </ul>

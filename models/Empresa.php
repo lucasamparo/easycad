@@ -61,4 +61,37 @@ class Empresa extends BaseEmpresa
 		$this->cnpj = $cnpj;
 		return $this;
 	}
+	
+	public function retornarEmpresa(){
+		try{
+			$e = $this->getTable()->findOneBy('idEmpresa', '1');
+			return $e;
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function alterarEmpresa(){
+		try{
+			$tmp = $this->copy();
+			$e = $this->getTable()->findOneBy('idEmpresa', '1');
+			if($e){
+				if(!is_null($tmp->getNomeFantasia())){
+					$e->setNomeFantasia($tmp->getNomeFantasia());
+				}
+				if(!is_null($tmp->getRazaoSocial())){
+					$e->setRazaoSocial($tmp->getRazaoSocial());
+				}
+				if(!is_null($tmp->getResponsavel())){
+					$e->setResponsavel($tmp->getResponsavel());
+				}
+				if(!is_null($tmp->getCnpj())){
+					$e->setCnpj($tmp->getCnpj());
+				}
+				$e->save();
+			}
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }
