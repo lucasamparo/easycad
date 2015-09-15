@@ -6,16 +6,20 @@
         <ul>
            <li><a href="#" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
            <li>
-            <a href="#" class="ls-ico-cog" title="ConfiguraÃ§Ãµes">Cadastros</a>
+            <a href="#" class="ls-ico-cog" title="Cadastros gerais">Cadastros</a>
             <ul>
-              <li><a href="#">Cadastro de Eventos</a></li>
+              <li><a href="cadEvento.php">Cadastro de Eventos</a></li>
               <li><a href="#">Cadastro de Cursos</a></li>
               <li><a href="#">Cadastro de Participantes</a></li>
             </ul>
           </li>
-           <li><a href="#" class="ls-ico-stats" title="RelatÃ³rios da revenda">Relatório</a></li>
+           <li><a href="#" class="ls-ico-stats" title="Relatórios">Relatório</a>
+           	<ul>
+           		<li><a href="listaEvento.php">Listagem de Eventos</a></li>
+           	</ul>
+           </li>
            <li>
-            <a href="#" class="ls-ico-cog" title="ConfiguraÃ§Ãµes">Configurações</a>
+            <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
             <ul>
               <li><a href="#">Alterar Senha</a></li>
               <li><a href="dadosEmpresa.php">Meus Dados</a></li>

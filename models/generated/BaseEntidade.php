@@ -29,7 +29,7 @@ abstract class BaseEntidade extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => true,
-             'autoincrement' => false,
+             'autoincrement' => true,
              ));
         $this->hasColumn('nomeEntidade', 'string', 255, array(
              'type' => 'string',

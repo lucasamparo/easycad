@@ -29,7 +29,7 @@ abstract class BaseEmpresa extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => true,
-             'autoincrement' => false,
+             'autoincrement' => true,
              ));
         $this->hasColumn('nomeFantasia', 'string', 255, array(
              'type' => 'string',

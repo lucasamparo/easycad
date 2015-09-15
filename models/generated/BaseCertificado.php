@@ -27,7 +27,7 @@ abstract class BaseCertificado extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => true,
-             'autoincrement' => false,
+             'autoincrement' => true,
              ));
         $this->hasColumn('idMatricula', 'integer', 4, array(
              'type' => 'integer',
@@ -64,5 +64,4 @@ abstract class BaseCertificado extends Doctrine_Record
              'local' => 'idMatricula',
              'foreign' => 'idMatricula'));
     }
-	
 }

@@ -33,6 +33,13 @@ class Curso extends BaseCurso
 		$this->nomeCurso = $nomeCurso;
 		return $this;
 	}
+	public function getLocal() {
+		return $this->local;
+	}
+	public function setLocal($local) {
+		$this->local = $local;
+		return $this;
+	}
 	public function getConteudo() {
 		return $this->conteudo;
 	}

@@ -8,6 +8,7 @@
  * @property integer $idCurso
  * @property integer $idEvento
  * @property string $nomeCurso
+ * @property string $local
  * @property string $conteudo
  * @property float $valor
  * @property integer $cargaHoraria
@@ -31,7 +32,7 @@ abstract class BaseCurso extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => true,
-             'autoincrement' => false,
+             'autoincrement' => true,
              ));
         $this->hasColumn('idEvento', 'integer', 4, array(
              'type' => 'integer',
@@ -49,6 +50,15 @@ abstract class BaseCurso extends Doctrine_Record
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('local', 'string', 255, array(
+             'type' => 'string',
+             'length' => 255,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
              'autoincrement' => false,
              ));
         $this->hasColumn('conteudo', 'string', null, array(

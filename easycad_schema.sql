@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Set-2015 às 09:35
+-- Generation Time: 15-Set-2015 às 13:03
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `easycad`
 --
+CREATE DATABASE IF NOT EXISTS `easycad` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `easycad`;
 
 -- --------------------------------------------------------
 
@@ -45,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `curso` (
   `idCurso` int(11) NOT NULL AUTO_INCREMENT,
   `idEvento` int(11) DEFAULT NULL,
   `nomeCurso` varchar(255) DEFAULT NULL,
+  `local` varchar(255) NOT NULL,
   `conteudo` text,
   `valor` double DEFAULT NULL,
   `cargaHoraria` int(11) DEFAULT NULL,

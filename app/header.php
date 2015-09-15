@@ -1,3 +1,9 @@
+<?php 
+	require_once 'gerencia_login.php';
+	
+	$e = new Empresa();
+	$empresa = $e->retornarEmpresa();
+?>
 <div class="ls-topbar ">
 
   <!-- Barra de Notificações -->
@@ -7,8 +13,7 @@
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
       <a href="#" class="ls-ico-user">
         <!-- <img src="images/locastyle/avatar-example.jpg" alt="" /> -->
-        <span class="ls-name">JoÃ£o Kennedy</span>
-        (johnkennedy)
+        <span class="ls-name"><?=$empresa->getLogin()?></span>
       </a>
 
       <nav class="ls-dropdown-nav ls-user-menu">

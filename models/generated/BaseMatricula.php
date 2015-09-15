@@ -9,8 +9,8 @@
  * @property integer $idEntidade
  * @property integer $idCurso
  * @property timestamp $dataHoraMatricula
- * @property Entidade $Entidade
  * @property Curso $Curso
+ * @property Entidade $Entidade
  * @property Doctrine_Collection $Certificado
  * 
  * @package    ##PACKAGE##
@@ -29,7 +29,7 @@ abstract class BaseMatricula extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => true,
-             'autoincrement' => false,
+             'autoincrement' => true,
              ));
         $this->hasColumn('idEntidade', 'integer', 4, array(
              'type' => 'integer',
@@ -62,13 +62,13 @@ abstract class BaseMatricula extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Entidade', array(
-             'local' => 'idEntidade',
-             'foreign' => 'idEntidade'));
-
         $this->hasOne('Curso', array(
              'local' => 'idCurso',
              'foreign' => 'idCurso'));
+
+        $this->hasOne('Entidade', array(
+             'local' => 'idEntidade',
+             'foreign' => 'idEntidade'));
 
         $this->hasMany('Certificado', array(
              'local' => 'idMatricula',

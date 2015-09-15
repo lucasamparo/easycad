@@ -5,9 +5,9 @@
 	$empresa = $e->retornarEmpresa();
 	if(isset($_POST['nome'])){
 		$e = new Empresa();
-		$e->setNomeFantasia($_POST['nome']);
-		$e->setRazaoSocial($_POST['razao']);
-		$e->setResponsavel($_POST['responsavel']);
+		$e->setNomeFantasia(utf8_encode($_POST['nome']));
+		$e->setRazaoSocial(utf8_encode($_POST['razao']));
+		$e->setResponsavel(utf8_encode($_POST['responsavel']));
 		$e->setCnpj($_POST['cnpj']);
 		$e->alterarEmpresa();
 	}
@@ -32,11 +32,11 @@
         <!-- Conteúdo -->
         <form method="post" action="dadosEmpresa.php">
         	<label>Nome Fantasia:</label>
-        	<input type="text" name="nome" value="<?= $empresa->getNomeFantasia()?>"><br>
+        	<input type="text" name="nome" value="<?= utf8_decode($empresa->getNomeFantasia())?>"><br>
         	<label>Razão Social:</label>
-        	<input type="text" name="razao" value="<?= $empresa->getRazaoSocial()?>"><br>
+        	<input type="text" name="razao" value="<?= utf8_encode($empresa->getRazaoSocial())?>"><br>
         	<label>Nome Responsável:</label>
-        	<input type="text" name="responsavel" value="<?= $empresa->getResponsavel()?>"><br>
+        	<input type="text" name="responsavel" value="<?= utf8_encode($empresa->getResponsavel())?>"><br>
         	<label>CNPJ:</label>
         	<input type="text" name="cnpj" value="<?= $empresa->getCNPJ()?>"><br>
         	<label>Login:</label>
