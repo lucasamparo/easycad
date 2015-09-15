@@ -1,9 +1,9 @@
-ï»¿<div class="ls-topbar ">
+<div class="ls-topbar ">
 
-  <!-- Barra de NotificaÃ§Ãµes -->
+  <!-- Barra de Notificações -->
   <div class="ls-notification-topbar">
 
-    <!-- Dropdown com detalhes da conta de usuÃ¡rio -->
+    <!-- Dropdown com detalhes da conta de usuário -->
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
       <a href="#" class="ls-ico-user">
         <!-- <img src="images/locastyle/avatar-example.jpg" alt="" /> -->
@@ -26,7 +26,7 @@
   <!-- Nome do produto/marca com sidebar -->
     <h1 class="ls-brand-name">
       <a href="home" class="ls-ico-earth">
-        <small>Uma descriÃ§Ã£o ou outro nome</small>
+        <small>Uma descrição ou outro nome</small>
         O nome do Produto
       </a>
     </h1>

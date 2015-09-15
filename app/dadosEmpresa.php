@@ -1,4 +1,4 @@
-ï»¿<?php 
+<?php 
 	require_once 'gerencia_login.php';
 	
 	$e = new Empresa();
@@ -29,7 +29,7 @@
     <main class="ls-main ">
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-home">Meus Dados</h1>
-        <!-- ConteÃºdo -->
+        <!-- Conteúdo -->
         <form method="post" action="dadosEmpresa.php">
         	<label>Nome Fantasia:</label>
         	<input type="text" name="nome" value="<?= $empresa->getNomeFantasia()?>"><br>
@@ -44,7 +44,7 @@
         	<input type="submit" value="Salvar">
         </form>
         
-        <!-- Fim ConteÃºdo -->
+        <!-- Fim Conteúdo -->
       </div>
     </main>
 

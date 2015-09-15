@@ -1,4 +1,4 @@
-﻿<aside class="ls-sidebar">
+<aside class="ls-sidebar">
 
   <div class="ls-sidebar-inner">
       
@@ -13,9 +13,9 @@
               <li><a href="#">Cadastro de Participantes</a></li>
             </ul>
           </li>
-           <li><a href="#" class="ls-ico-stats" title="Relatórios da revenda">Relatório</a></li>
+           <li><a href="#" class="ls-ico-stats" title="Relatórios da revenda">Relat�rio</a></li>
            <li>
-            <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
+            <a href="#" class="ls-ico-cog" title="Configurações">Configura��es</a>
             <ul>
               <li><a href="#">Alterar Senha</a></li>
               <li><a href="dadosEmpresa.php">Meus Dados</a></li>

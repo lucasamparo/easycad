@@ -11,7 +11,7 @@
 				$_SESSION['logado'] = true;
 				header('Location: inicio.php');
 			} else { 
-				$mensagem = "Usu·rio ou Senha Incorreta!"; 
+				$mensagem = "Usu√°rio ou Senha Incorreta!"; 
 			}
 		}
 	}
@@ -39,8 +39,8 @@
     <fieldset>
 
       <label class="ls-label">
-        <b class="ls-label-text ls-hidden-accessible">Usu·rio</b>
-        <input class="ls-login-bg-user ls-field-lg" type="text" placeholder="Usu·rio" name="login" required autofocus>
+        <b class="ls-label-text ls-hidden-accessible">Usu√°rio</b>
+        <input class="ls-login-bg-user ls-field-lg" type="text" placeholder="Usu√°rio" name="login" required autofocus>
       </label>
 
       <label class="ls-label">
@@ -57,7 +57,7 @@
   </form>
 </div>
 
-<div class="ls-login-adv"><img title="Empresa J˙nior de Engenharia Ambiental" src="images/eambjr.png" width="296" height="127" /></div>
+<div class="ls-login-adv"><img title="Empresa J√∫nior de Engenharia Ambiental" src="images/eambjr.png" width="296" height="127" /></div>
 
     </div>
   </div>
