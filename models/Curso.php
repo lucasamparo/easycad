@@ -61,11 +61,18 @@ class Curso extends BaseCurso
 		$this->cargaHoraria = $cargaHoraria;
 		return $this;
 	}
-	public function getDataCurso() {
-		return $this->dataCurso;
+	public function getDataInicio() {
+		return $this->dataInicio;
 	}
-	public function setDataCurso($dataCurso) {
-		$this->dataCurso = $dataCurso;
+	public function setDataInicio($dataInicio) {
+		$this->dataInicio = $dataInicio;
+		return $this;
+	}
+	public function getDataFim() {
+		return $this->dataFim;
+	}
+	public function setDataFim($dataFim) {
+		$this->dataFim = $dataFim;
 		return $this;
 	}
 	public function getEvento() {
@@ -81,5 +88,13 @@ class Curso extends BaseCurso
 	public function setMatricula($Matricula) {
 		$this->Matricula = $Matricula;
 		return $this;
+	}
+	
+	public function inserirCurso(){
+		try{
+			$this->save();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
 	}
 }

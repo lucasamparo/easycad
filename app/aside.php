@@ -9,7 +9,7 @@
             <a href="#" class="ls-ico-cog" title="Cadastros gerais">Cadastros</a>
             <ul>
               <li><a href="cadEvento.php">Cadastro de Eventos</a></li>
-              <li><a href="#">Cadastro de Cursos</a></li>
+              <li><a href="cadCurso.php">Cadastro de Cursos</a></li>
               <li><a href="#">Cadastro de Participantes</a></li>
             </ul>
           </li>

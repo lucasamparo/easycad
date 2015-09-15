@@ -12,7 +12,8 @@
  * @property string $conteudo
  * @property float $valor
  * @property integer $cargaHoraria
- * @property date $dataCurso
+ * @property date $dataInicio
+ * @property date $dataFim
  * @property Evento $Evento
  * @property Doctrine_Collection $Matricula
  * 
@@ -86,12 +87,20 @@ abstract class BaseCurso extends Doctrine_Record
              'notnull' => false,
              'autoincrement' => false,
              ));
-        $this->hasColumn('dataCurso', 'date', null, array(
+        $this->hasColumn('dataInicio', 'date', null, array(
              'type' => 'date',
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('dataFim', 'date', null, array(
+             'type' => 'date',
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
              'autoincrement' => false,
              ));
     }
@@ -106,5 +115,5 @@ abstract class BaseCurso extends Doctrine_Record
         $this->hasMany('Matricula', array(
              'local' => 'idCurso',
              'foreign' => 'idCurso'));
-    }
+    }	
 }
