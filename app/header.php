@@ -31,8 +31,8 @@
   <!-- Nome do produto/marca com sidebar -->
     <h1 class="ls-brand-name">
       <a href="home" class="ls-ico-earth">
-        <small>Uma descrição ou outro nome</small>
-        O nome do Produto
+        <small>Gestão de Certificados</small>
+        EasyCad
       </a>
     </h1>
 

@@ -79,7 +79,7 @@
         				echo '<td>'.Util::arrumaData($e->getDataInicio()).'</td>';
         				echo '<td>'.Util::arrumaData($e->getDateFim()).'</td>';
         				if(count($e->getCurso()) > 0){
-        					echo '<td><a href="#">Ver Cursos</a></td>';
+        					echo '<td><a href="listaCurso.php?id='.$e->getIdEvento().'">Ver Cursos</a></td>';
         				} else {
         					echo '<td>Nenhum Curso Cadastrado</td>';
         				}

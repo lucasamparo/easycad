@@ -10,7 +10,7 @@
             <ul>
               <li><a href="cadEvento.php">Cadastro de Eventos</a></li>
               <li><a href="cadCurso.php">Cadastro de Cursos</a></li>
-              <li><a href="#">Cadastro de Participantes</a></li>
+              <li><a href="cadParticipante.php">Cadastro de Participantes</a></li>
             </ul>
           </li>
            <li><a href="#" class="ls-ico-stats" title="Relatórios">Relatório</a>

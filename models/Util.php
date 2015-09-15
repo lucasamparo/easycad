@@ -10,6 +10,9 @@ class Util{
 	}
 	
 	static function arrumaData($data){
+		if($data == null){
+			return null;
+		}
 		$dt = explode("-", $data);
 		return $dt[2]."/".$dt[1]."/".$dt[0];
 	}
