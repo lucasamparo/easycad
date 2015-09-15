@@ -34,7 +34,7 @@
   <div class="ls-login-inner">
     <div class="ls-login-container">
       <div class="ls-login-box">
-  <h1 class="ls-login-logo"><img title="Logo login" src="images/logo-locaweb.jpg" /></h1>
+  <h1 class="ls-login-logo"><img title="Logo EasyCad" src="images/easycad.png" width="260" height="91" /></h1>
   <form role="form" class="ls-form ls-login-form" action="index.php" method="post">
     <fieldset>
 
@@ -52,6 +52,7 @@
       </label>
 
       <input type="submit" value="Entrar" class="ls-btn-primary ls-btn-block ls-btn-lg">
+      <div class="ls-alert-danger text-center"><?= $mensagem;?></div>
 
     </fieldset>
   </form>
