@@ -1,4 +1,4 @@
-<?php 
+ï»¿<?php 
 	require_once 'gerencia_login.php';
 	
 	if(isset($_POST['nome'])){
@@ -62,45 +62,102 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Cadastro de Evento</h1>
-        <form method="post" action="cadCurso.php">
-        	<label>Nome:</label>
-        	<input type="text" name="nome"><br>
-        	<label>Evento:</label>
-        	<select name="evento">
-        		<option value="0">Nenhum Evento</option>
-        		<?php 
-        			$e = new Evento();
-        			$evento = $e->retornarEventos();
-        			foreach($evento as $e){
-        				echo '<option value="'.$e->getIdEvento().'">'.$e->getNomeEvento().'</option>';
-        			}
-        		?>
-        	</select><br>
-        	<label>Local:</label>
-        	<input type="text" name="local"><br>
-        	<label>Conteúdo Programático:</label>
-        	<textarea name="conteudo" rows=10></textarea><br>
-        	<label>Valor:</label>
-        	<input type="number" name="valor" step="0.01" placeholder="R$ 0.00"><br>
-        	<label>Carga Horária:</label>
-        	<input type="number" name="ch" min="1"><br>
-        	<label>Datas:</label>
-        	<input type="radio" name="tipoData" value="U" id="U" checked><label for="U">Única Data</label>
-        	<input type="radio" name="tipoData" value="M" id="M"><label for="M">Múltiplas Datas</label>
-        	<br>
-        	<div id="unica" style="display: inline">
-        		<label>Data do Curso:</label>
-        		<input type="date" name="dataInicioA"><br>
-        	</div>
-        	<div id="multipla" style="display: none">
-        		<label>Data do Início:</label>
-        		<input type="date" name="dataInicioB"><br>
-        		<label>Data do Final:</label>
-        		<input type="date" name="dataFim"><br>
-        	</div>
-        	<input type="submit" value="Cadastrar">
-        </form>
+        <h1 class="ls-title-intro ls-ico-home">Cadastro de Curso</h1>
+        
+
+        <div class="col-lg-12 col-xs-12">
+          <form method="post" class="ls-form ls-form-horizontal row" action="cadCurso.php">
+
+            <label class="ls-label col-lg-12 col-xs-12">
+                <b class="ls-label-text">Nome:</b>
+                <input type="text" name="nome" class="ls-field" placeholder="Nome">
+            </label>
+
+            <label class="ls-label col-lg-6 col-xs-12">
+              <b class="ls-label-text">Evento:</b>
+              <div class="ls-custom-select">
+                <select class="ls-custom" name="evento">
+                    <option value="0">Nenhum Evento</option>
+                      <?php 
+                        $e = new Evento();
+                        $evento = $e->retornarEventos();
+                        foreach($evento as $e){
+                          echo '<option value="'.$e->getIdEvento().'">'.$e->getNomeEvento().'</option>';
+                        }
+                      ?>
+                </select>
+              </div>
+            </label>
+
+            <label class="ls-label col-lg-6 col-xs-12">
+                <b class="ls-label-text">Local:</b>
+                <input type="text" name="local" class="ls-field" placeholder="Local">
+            </label>
+
+            <label class="ls-label col-lg-12 col-xs-12">
+                <b class="ls-label-text">ConteÃºdo ProgramÃ¡tico:</b>
+                <textarea rows="10" name="conteudo" placeholder="DescriÃ§Ã£o..." class="ls-field"></textarea>
+            </label>
+
+            <label class="ls-label col-lg-6 col-xs-12">
+                <b class="ls-label-text">Valor:</b>
+                <input type="number" step="0.01" placeholder="R$ 0.00" name="valor" class="ls-field">
+            </label>
+
+            <label class="ls-label col-lg-6 col-xs-12">
+                <b class="ls-label-text">Carga HorÃ¡ria:</b>
+                <input type="number" placeholder="Valor em Horas" min="1" name="ch" class="ls-field">
+            </label>
+
+            <div class="ls-label col-lg-12 col-xs-12">
+              <strong><p>Datas:</p></strong>
+
+              <label class="ls-label-text">
+                <input type="radio" class="ls-field-radio" name="tipoData" value="U" id="U" checked>
+                Ãšnica Data
+              </label>
+
+              <label class="ls-label-text">
+                <input type="radio" class="ls-field-radio" name="tipoData" value="M" id="M">
+                MÃºltiplas Datas
+              </label>
+
+            </div>
+
+            <div id="unica" style="display: inline">
+              
+              <label class="ls-label col-lg-12 col-xs-12">
+                <b class="ls-label-text">Data do Curso:</b>
+                <input type="date" name="dataInicioA" class="ls-field">
+              </label>
+
+
+            </div>
+
+
+                
+            <div id="multipla" style="display: none">
+
+              <label class="ls-label col-lg-6 col-xs-12">
+                  <b class="ls-label-text">Data InÃ­cio:</b>
+                  <input type="date" name="dataInicioB" class="ls-field">
+              </label>
+
+              <label class="ls-label col-lg-6 col-xs-12">
+                  <b class="ls-label-text">Data Fim:</b>
+                  <input type="date" name="dataFim" class="ls-field">
+              </label> 
+
+
+
+            </div>           
+                            
+            <input type="submit" value= "Cadastrar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">    
+        
+          </form>
+        </div>
+
+
       </div>
     </main>
 

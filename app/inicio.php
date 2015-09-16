@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="ls-theme-green">
   <head>
     <title>EasyCad</title>
@@ -14,10 +14,10 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">P�gina inicial</h1>
+        <h1 class="ls-title-intro ls-ico-home">Página inicial</h1>
         <!-- Conteúdo -->
         
-        <p>Colocar os paranau�s aqui!</p>
+        <p>Colocar os paranauês aqui!</p>
         
         
         <!-- Fim Conteúdo -->

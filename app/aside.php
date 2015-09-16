@@ -1,10 +1,10 @@
-<aside class="ls-sidebar">
+ï»¿<aside class="ls-sidebar">
 
   <div class="ls-sidebar-inner">
       
       <nav class="ls-menu">
         <ul>
-           <li><a href="#" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
+           <li><a href="inicio.php" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
            <li>
             <a href="#" class="ls-ico-cog" title="Cadastros gerais">Cadastros</a>
             <ul>
@@ -13,13 +13,13 @@
               <li><a href="cadParticipante.php">Cadastro de Participantes</a></li>
             </ul>
           </li>
-           <li><a href="#" class="ls-ico-stats" title="Relatórios">Relatório</a>
+           <li><a href="#" class="ls-ico-stats" title="RelatÃ³rios">RelatÃ³rio</a>
            	<ul>
            		<li><a href="listaEvento.php">Listagem de Eventos</a></li>
            	</ul>
            </li>
            <li>
-            <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
+            <a href="#" class="ls-ico-cog" title="ConfiguraÃ§Ãµes">ConfiguraÃ§Ãµes</a>
             <ul>
               <li><a href="#">Alterar Senha</a></li>
               <li><a href="dadosEmpresa.php">Meus Dados</a></li>

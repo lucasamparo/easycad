@@ -1,4 +1,4 @@
-<?php 
+Ôªø<?php 
 	require_once 'gerencia_login.php';
 	
 	$e = new Empresa();
@@ -6,10 +6,10 @@
 ?>
 <div class="ls-topbar ">
 
-  <!-- Barra de NotificaÁıes -->
+  <!-- Barra de Notifica√ß√µes -->
   <div class="ls-notification-topbar">
 
-    <!-- Dropdown com detalhes da conta de usu·rio -->
+    <!-- Dropdown com detalhes da conta de usu√°rio -->
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
       <a href="#" class="ls-ico-user">
         <!-- <img src="images/locastyle/avatar-example.jpg" alt="" /> -->
@@ -31,7 +31,7 @@
   <!-- Nome do produto/marca com sidebar -->
     <h1 class="ls-brand-name">
       <a href="home" class="ls-ico-earth">
-        <small>Gest„o de Certificados</small>
+        <small>Gest√£o de Certificados</small>
         EasyCad
       </a>
     </h1>

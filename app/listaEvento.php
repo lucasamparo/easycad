@@ -1,4 +1,4 @@
-<?php 
+Ôªø<?php 
 	require_once 'gerencia_login.php';
 	
 	if(isset($_GET['e'])){
@@ -63,7 +63,7 @@
         <table>
         	<thead>
         		<th>Nome</th>
-        		<th>InÌcio</th>
+        		<th>In√≠cio</th>
         		<th>Fim</th>
         		<th>Cursos</th>
         		<th>Certificado</th>
@@ -103,11 +103,11 @@
         			<label>Nome do Evento:</label>
 		        	<input type="text" name="nome" id="nome"><br>
 		        	<label>Datas:</label><br>
-		        	<label>InÌcio:</label>
+		        	<label>In√≠cio:</label>
 		        	<input type="date" name="inicio" id="inicio">
 		        	<label>Fim:</label>
 		        	<input type="date" name="fim" id="fim"><br>
-		        	<label>Modalidade de InscriÁ„o:</label>
+		        	<label>Modalidade de Inscri√ß√£o:</label>
 		        	<select name="modalidade" id="modalidade">
 		        		<option value="P">Presencial</option>
 		        		<option value="O">Online</option>
@@ -116,11 +116,11 @@
 		        	</select><br>
 		        	<label>Valor:</label>
 		        	<input type="number" step="0.01" placeholder="R$ 0.00" name="valor" id="valor"><br>
-		        	<label>Carga Hor·ria:</label>
+		        	<label>Carga Hor√°ria:</label>
 		        	<input type="number" min="1" name="ch" id="ch">
 		        	<label>Gera Certificado?</label>
 		        	<input type="radio" name="geraCert" value="S" id="geraS" checked><label for="geraS">Sim</label>
-		        	<input type="radio" name="geraCert" value="N" id="geraN"><label for="geraN">N„o</label>
+		        	<input type="radio" name="geraCert" value="N" id="geraN"><label for="geraN">N√£o</label>
 		        	<input type="submit" value="Cadastrar">
         		</fieldset>	        	
 	        </form>

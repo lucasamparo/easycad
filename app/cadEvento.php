@@ -1,4 +1,4 @@
-<?php 
+Ôªø<?php 
 	require_once 'gerencia_login.php';
 	
 	if(isset($_POST['nome'])){
@@ -30,30 +30,69 @@
     <main class="ls-main ">
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-home">Cadastro de Evento</h1>
-        <form method="post" action="cadEvento.php">
-        	<label>Nome do Evento:</label>
-        	<input type="text" name="nome"><br>
-        	<label>Datas:</label><br>
-        	<label>InÌcio:</label>
-        	<input type="date" name="inicio">
-        	<label>Fim:</label>
-        	<input type="date" name="fim"><br>
-        	<label>Modalidade de InscriÁ„o:</label>
-        	<select name="modalidade">
-        		<option value="P">Presencial</option>
-        		<option value="O">Online</option>
-        		<option value="PO">Presencial + Online</option>
-        		<option value="N">Nenhuma</option>
-        	</select><br>
-        	<label>Valor:</label>
-        	<input type="number" step="0.01" placeholder="R$ 0.00" name="valor"><br>
-        	<label>Carga Hor·ria:</label>
-        	<input type="number" min="1" name="ch">
-        	<label>Gera Certificado?</label>
-        	<input type="radio" name="geraCert" value="S" id="geraS" checked><label for="geraS">Sim</label>
-        	<input type="radio" name="geraCert" value="N" id="geraN"><label for="geraN">N„o</label>
-        	<input type="submit" value="Cadastrar">
-        </form>
+        
+        <div class="col-lg-12 col-xs-12">
+          <form method="post" class="ls-form ls-form-horizontal row" action="cadEvento.php">
+
+            <label class="ls-label col-lg-12 col-xs-12">
+                <b class="ls-label-text">Nome do Evento:</b>
+                <input type="text" name="nome" class="ls-field" placeholder="Nome do Evento">
+            </label>
+            
+            <label class="ls-label col-lg-6 col-xs-12">
+                <b class="ls-label-text">Data In√≠cio:</b>
+                <input type="date" name="inicio" class="ls-field">
+            </label>
+
+            <label class="ls-label col-lg-6 col-xs-12">
+                <b class="ls-label-text">Data Fim:</b>
+                <input type="date" name="fim" class="ls-field">
+            </label>
+
+            <label class="ls-label col-lg-6 col-xs-12">
+              <b class="ls-label-text">Modalidade de Inscri√ß√£o:</b>
+              <div class="ls-custom-select">
+                <select class="ls-custom" name="modalidade">
+                    <option value="P">Presencial</option>
+                    <option value="O">Online</option>
+                    <option value="PO">Presencial + Online</option>
+                    <option value="N">Nenhuma</option>
+                </select>
+              </div>
+            </label>
+
+            <label class="ls-label col-lg-6 col-xs-12">
+                <b class="ls-label-text">Valor:</b>
+                <input type="number" step="0.01" placeholder="R$ 0.00" name="valor" class="ls-field">
+            </label>
+
+            <label class="ls-label col-lg-6 col-xs-12">
+                <b class="ls-label-text">Carga Hor√°ria:</b>
+                <input type="number" placeholder="Valor em Horas" min="1" name="ch" class="ls-field">
+            </label>
+
+
+            <div class="ls-label col-lg-6 col-xs-12">
+              <strong><p>Gera Certificado?</p></strong>
+
+              <label class="ls-label-text">
+                <input type="radio" class="ls-field-radio" name="geraCert" value="S" id="geraS" checked>
+                Sim
+              </label>
+
+              <label class="ls-label-text">
+                <input type="radio" class="ls-field-radio" name="geraCert" value="N" id="geraN">
+                N√£o
+              </label>
+
+            </div>
+              
+                            
+            <input type="submit" value= "Cadastrar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-pull-2">    
+                
+          </form>
+        </div>
+
       </div>
     </main>
 
