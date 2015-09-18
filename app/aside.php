@@ -1,4 +1,24 @@
 ﻿<aside class="ls-sidebar">
+    <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
+        <?php 
+        require_once 'gerencia_login.php';
+    
+        $e = new Empresa();
+        $empresa = $e->retornarEmpresa();
+        ?>
+
+              <a href="#" class="ls-ico-user" style="text-transform:uppercase;">
+                <small><?=$empresa->getLogin()?></small>
+              </a>
+              <nav class="ls-dropdown-nav ls-user-menu">
+                <ul>
+                  <li><a href="#">Alterar Senha</a></li>
+                  <li><a href="dadosEmpresa.php">Meus dados</a></li>
+                  <li><a href="#">Sair</a></li>
+                </ul>
+              </nav>
+            </div>
+
 
   <div class="ls-sidebar-inner">
       

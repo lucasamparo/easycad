@@ -69,6 +69,7 @@
         
         <!-- Fim Conteúdo -->
       </div>
+      <?php require_once('footer.php');?>
     </main>
 
     <?php require_once('assets-footer.php');?>

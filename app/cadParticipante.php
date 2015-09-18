@@ -23,7 +23,9 @@
         	<!-- Colocar com as abas "Pessoa","Empresa" e "Apoio" -->
         	<input type="submit" value="Cadastrar">
         </form>
+        
       </div>
+      <?php require_once('footer.php');?>
     </main>
 
     <?php require_once('assets-footer.php');?>
