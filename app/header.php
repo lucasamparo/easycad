@@ -18,7 +18,7 @@
 
       <nav class="ls-dropdown-nav ls-user-menu">
         <ul>
-          <li><a href="#">Alterar Senha</a></li>
+          <li><a href="alterarSenha.php">Alterar Senha</a></li>
           <li><a href="dadosEmpresa.php">Meus dados</a></li>
           <li><a href="#">Sair</a></li>
          </ul>

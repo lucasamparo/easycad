@@ -11,7 +11,7 @@
 				$_SESSION['logado'] = true;
 				header('Location: inicio.php');
 			} else { 
-				$mensagem = "Usuário ou Senha Incorreta!"; 
+				$mensagem = "Usuário ou Senha inválidos!"; 
 			}
 		}
 	}
@@ -27,8 +27,22 @@
   <meta name="description" content="" />
   <meta name="keywords" content="" />
   <link href="css/locastyle.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/jquery.growl.js" type="text/javascript"></script>
+  <link href="css/jquery.growl.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+
+
+<?php if($mensagem != ""):?>
+  <script>
+    $(document).ready(function() {
+      $.growl.error({message: "<?php echo $mensagem;?>"})
+    });
+  </script>
+<?php endif;?>
+
+
 
 <div class="ls-login-parent">
   <div class="ls-login-inner">
@@ -64,7 +78,6 @@
   </div>
 </div>
 
-<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script src="js/locastyle.js" type="text/javascript"></script>
 
 </body>

@@ -59,7 +59,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Listagem de Eventos</h1>
+        <h1 class="ls-title-intro ls-ico-chart-bar-up">Listagem de Eventos</h1>
         <table>
         	<thead>
         		<th>Nome</th>

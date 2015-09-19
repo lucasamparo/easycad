@@ -18,7 +18,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Cadastro de Evento</h1>
+        <h1 class="ls-title-intro ls-ico-user-add">Cadastro de Participante</h1>
         <form method="post" action="cadParticipante.php">
         	<!-- Colocar com as abas "Pessoa","Empresa" e "Apoio" -->
         	<input type="submit" value="Cadastrar">

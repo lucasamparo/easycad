@@ -12,7 +12,7 @@
               </a>
               <nav class="ls-dropdown-nav ls-user-menu">
                 <ul>
-                  <li><a href="#">Alterar Senha</a></li>
+                  <li><a href="alterarSenha.php">Alterar Senha</a></li>
                   <li><a href="dadosEmpresa.php">Meus dados</a></li>
                   <li><a href="#">Sair</a></li>
                 </ul>
@@ -24,9 +24,9 @@
       
       <nav class="ls-menu">
         <ul>
-           <li><a href="inicio.php" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
+           <li><a href="inicio.php" class="ls-ico-home" title="Página Inicial">Página Inicial</a></li>
            <li>
-            <a href="#" class="ls-ico-cog" title="Cadastros gerais">Cadastros</a>
+            <a href="#" class="ls-ico-plus" title="Cadastros gerais">Cadastros</a>
             <ul>
               <li><a href="cadEvento.php">Cadastro de Eventos</a></li>
               <li><a href="cadCurso.php">Cadastro de Cursos</a></li>
@@ -41,7 +41,7 @@
            <li>
             <a href="#" class="ls-ico-cog" title="Configurações">Configurações</a>
             <ul>
-              <li><a href="#">Alterar Senha</a></li>
+              <li><a href="alterarSenha.php">Alterar Senha</a></li>
               <li><a href="dadosEmpresa.php">Meus Dados</a></li>
             </ul>
           </li>

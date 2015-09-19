@@ -62,7 +62,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Cadastro de Curso</h1>
+        <h1 class="ls-title-intro ls-ico-book">Cadastro de Curso</h1>
         
 
         <div class="col-lg-12 col-xs-12">

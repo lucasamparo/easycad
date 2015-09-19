@@ -35,38 +35,38 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Meus Dados</h1>
+        <h1 class="ls-title-intro ls-ico-user">Meus Dados</h1>
         <!-- Conteúdo -->
-        
-        <div class="col-lg-12 col-xs-12">
-          <form method="post" class="ls-form ls-form-horizontal row" action="dadosEmpresa.php">
-
-            <label class="ls-label col-lg-12 col-xs-12">
-                <b class="ls-label-text">Nome Fantasia:</b>
-                <input type="text" name="nome" value="<?= utf8_encode($empresa->getNomeFantasia())?>" class="ls-field">
-              </label>
-              <label class="ls-label col-lg-6 col-xs-12">
-                <b class="ls-label-text">Razão Social:</b>
-                <input type="text" name="razao" value="<?= utf8_encode($empresa->getRazaoSocial())?>" class="ls-field">
-              </label>
-              <label class="ls-label col-lg-6 col-xs-12">
-                <b class="ls-label-text">Responsável Legal:</b>
-                <input type="text" name="responsavel" value="<?= utf8_encode($empresa->getResponsavel())?>" class="ls-field">
-              </label>
-              <label class="ls-label col-lg-6 col-xs-12">
-                <b class="ls-label-text">CNPJ:</b>
-                <input type="text" name="cnpj" id="cnpj" value="<?= $empresa->getCNPJ()?>" class="ls-field">
-              </label>
-              <label class="ls-label col-lg-6 col-xs-12">
-                <b class="ls-label-text">Login:</b>
-                <input type="text" name="login" value="<?= $empresa->getLogin()?>" readonly class="ls-field">
-              </label>
-                            
-            <input type="submit" value= "Salvar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4" id="sub">    
                 
-          </form>
-        </div>
-        
+          <div class="col-lg-12 col-xs-12">
+            <form method="post" class="ls-form ls-form-horizontal row" action="dadosEmpresa.php">
+
+              <label class="ls-label col-lg-12 col-xs-12">
+                  <b class="ls-label-text">Nome Fantasia:</b>
+                  <input type="text" name="nome" value="<?= utf8_encode($empresa->getNomeFantasia())?>" class="ls-field">
+                </label>
+                <label class="ls-label col-lg-6 col-xs-12">
+                  <b class="ls-label-text">Razão Social:</b>
+                  <input type="text" name="razao" value="<?= utf8_encode($empresa->getRazaoSocial())?>" class="ls-field">
+                </label>
+                <label class="ls-label col-lg-6 col-xs-12">
+                  <b class="ls-label-text">Responsável Legal:</b>
+                  <input type="text" name="responsavel" value="<?= utf8_encode($empresa->getResponsavel())?>" class="ls-field">
+                </label>
+                <label class="ls-label col-lg-6 col-xs-12">
+                  <b class="ls-label-text">CNPJ:</b>
+                  <input type="text" name="cnpj" id="cnpj" value="<?= $empresa->getCNPJ()?>" class="ls-field">
+                </label>
+                <label class="ls-label col-lg-6 col-xs-12">
+                  <b class="ls-label-text">Login:</b>
+                  <input type="text" name="login" value="<?= $empresa->getLogin()?>" readonly class="ls-field" style="background-color:#e3e3e3;">
+                </label>
+                              
+              <input type="submit" value= "Salvar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4" id="sub">    
+                  
+            </form>
+          </div>
+               
         <!-- Fim Conteúdo -->
       </div>
       <?php require_once('footer.php');?>

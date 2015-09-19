@@ -29,7 +29,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Cadastro de Evento</h1>
+        <h1 class="ls-title-intro ls-ico-week">Cadastro de Evento</h1>
         
         <div class="col-lg-12 col-xs-12">
           <form method="post" class="ls-form ls-form-horizontal row" action="cadEvento.php">
