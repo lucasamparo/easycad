@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 15-Set-2015 às 13:03
+-- Generation Time: 20-Set-2015 às 08:01
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -51,10 +51,11 @@ CREATE TABLE IF NOT EXISTS `curso` (
   `conteudo` text,
   `valor` double DEFAULT NULL,
   `cargaHoraria` int(11) DEFAULT NULL,
-  `dataCurso` date DEFAULT NULL,
+  `dataInicio` date DEFAULT NULL,
+  `dataFim` date NOT NULL,
   PRIMARY KEY (`idCurso`),
   KEY `CursoEvento` (`idEvento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 -- --------------------------------------------------------
 
@@ -103,8 +104,9 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `modalidade` enum('P','O','PO','N') DEFAULT NULL,
   `valor` double DEFAULT NULL,
   `cargaHoraria` int(11) DEFAULT NULL,
+  `geraCertificado` enum('S','N') NOT NULL,
   PRIMARY KEY (`idEvento`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
