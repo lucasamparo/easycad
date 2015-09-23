@@ -12,6 +12,7 @@
  * @property string $conteudo
  * @property float $valor
  * @property integer $cargaHoraria
+ * @property enum $liberarCertificado
  * @property date $dataInicio
  * @property date $dataFim
  * @property Evento $Evento
@@ -85,6 +86,20 @@ abstract class BaseCurso extends Doctrine_Record
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('liberarCertificado', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => 'S',
+              1 => 'N',
+             ),
+             'primary' => false,
+             'notnull' => true,
              'autoincrement' => false,
              ));
         $this->hasColumn('dataInicio', 'date', null, array(

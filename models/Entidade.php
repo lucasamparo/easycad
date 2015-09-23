@@ -68,4 +68,36 @@ class Entidade extends BaseEntidade
 		$this->Matricula = $Matricula;
 		return $this;
 	}
+	
+	public function inserirEntidade(){
+		try{
+			$this->save();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function retornarPJ(){
+		try{
+			return $this->getTable()->findBy('tipo', 'PJ');
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function retornarPF(){
+		try{
+			return $this->getTable()->findBy('tipo', 'PF');
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function retornarEntidades(){
+		try{
+			return $this->getTable()->findAll();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }

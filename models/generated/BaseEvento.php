@@ -13,6 +13,7 @@
  * @property float $valor
  * @property integer $cargaHoraria
  * @property enum $geraCertificado
+ * @property enum $liberarCertificado
  * @property Doctrine_Collection $Curso
  * 
  * @package    ##PACKAGE##
@@ -105,6 +106,20 @@ abstract class BaseEvento extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
+        $this->hasColumn('liberarCertificado', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => 'S',
+              1 => 'N',
+             ),
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
     }
 
     public function setUp()
@@ -113,5 +128,5 @@ abstract class BaseEvento extends Doctrine_Record
         $this->hasMany('Curso', array(
              'local' => 'idEvento',
              'foreign' => 'idEvento'));
-    }
+    }	
 }

@@ -94,4 +94,16 @@ class Empresa extends BaseEmpresa
 			echo $e->getMessage();
 		}
 	}
+	
+	public function alterarSenha($novaSenha){
+		try{
+			$sql = "Update empresa set senha = '".md5($novaSenha)."' where idEmpresa = 1";
+			Doctrine_Core::getTable('Empresa')
+						->getConnection()
+						->prepare($sql)
+						->execute();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }

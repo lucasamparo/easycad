@@ -54,4 +54,34 @@ class Matricula extends BaseMatricula
 		$this->Entidade = $Entidade;
 		return $this;
 	}
+	public function getTipo() {
+		return $this->tipo;
+	}
+	public function setTipo($tipo) {
+		$this->tipo = $tipo;
+		return $this;
+	}
+	public function getCertificado() {
+		return $this->Certificado;
+	}
+	public function setCertificado($Certificado) {
+		$this->Certificado = $Certificado;
+		return $this;
+	}
+	
+	public function inserirMatricula(){
+		try{
+			$this->save();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function retornarMatriculasPorTipo($tipo){
+		try{
+			return $this->getTable()->findBy('tipo', $tipo);
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }

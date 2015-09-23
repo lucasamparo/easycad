@@ -33,9 +33,11 @@
               <li><a href="cadParticipante.php">Cadastro de Participantes</a></li>
             </ul>
           </li>
-           <li><a href="#" class="ls-ico-stats" title="Relatórios">Relatório</a>
+           <li><a href="#" class="ls-ico-stats" title="Relatórios">Relatórios</a>
            	<ul>
            		<li><a href="listaEvento.php">Listagem de Eventos</a></li>
+           		<li><a href="listaPJ.php">Listagem de Pessoas Jurídicas</a></li>
+           		<li><a href="listaPF.php">Listagem de Pessoas Físicas</a></li>
            	</ul>
            </li>
            <li>

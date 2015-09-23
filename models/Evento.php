@@ -68,6 +68,13 @@ class Evento extends BaseEvento
 		$this->geraCertificado = $geraCertificado;
 		return $this;
 	}
+	public function getLiberarCertificado() {
+		return $this->liberarCertificado;
+	}
+	public function setLiberarCertificado($liberarCertificado) {
+		$this->liberarCertificado = $liberarCertificado;
+		return $this;
+	}
 	public function getCurso() {
 		return $this->Curso;
 	}

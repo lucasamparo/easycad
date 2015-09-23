@@ -75,6 +75,13 @@ class Curso extends BaseCurso
 		$this->dataFim = $dataFim;
 		return $this;
 	}
+	public function getLiberarCertificado() {
+		return $this->liberarCertificado;
+	}
+	public function setLiberarCertificado($liberarCertificado) {
+		$this->liberarCertificado = $liberarCertificado;
+		return $this;
+	}
 	public function getEvento() {
 		return $this->Evento;
 	}
@@ -93,6 +100,14 @@ class Curso extends BaseCurso
 	public function inserirCurso(){
 		try{
 			$this->save();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function retornarCursoPorId(){
+		try{
+			return $this->getTable()->findOneBy('idCurso', $this->getIdCurso());
 		} catch (Doctrine_Exception $e){
 			echo $e->getMessage();
 		}

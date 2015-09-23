@@ -1,21 +1,39 @@
-<!DOCTYPE html>
+<?php 
+	require_once 'gerencia_login.php';
+?><!DOCTYPE html>
 <html class="ls-theme-green">
   <head>
     <title>EasyCad</title>
 
     <?php require_once('assets.php');?>
-    
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$('#password_field2').focus(function(){
+				$('#password_field2').val("");
+			});
+		});
+    </script>
   </head>
   <body>
 
     <?php require_once('header.php');?>
 
-    <?php require_once('aside.php');?>
+    <?php 
+    	require_once('aside.php');
+    	
+    	if(isset($_POST['senhaAntiga'])){
+    		if(md5($_POST['senhaAntiga']) == $empresa->getSenha()){
+    			$empresa->alterarSenha($_POST['novaSenha']);
+    		} else {
+    			$mensagem = 'Senha Antiga não confere.';
+    		}
+    	}
+    ?>
 
     <main class="ls-main ">
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-cog">Alterar Senha</h1>
-        <!-- ConteÃºdo -->
+        <!-- Conteúdo -->
         
         <!-- <div class="ls-box">
           <div class="col-lg-12 col-xs-12">
@@ -48,22 +66,21 @@
           </div>
         </div> -->
 
+        
         <table class="ls-table ls-table-striped">
-  <tbody>
-    <tr>
-      <td><strong>UsuÃ¡rio: </strong> admin</td>
-    </tr>
-    <tr>
-      <td>
-        <strong>Senha: </strong>
-        <input type="password" maxlength="20" id="password_field2" name="password" class="ls-no-style-input" value="***********" >
-        <a href="#" data-ls-module="modal" class="ls-btn-primary ls-float-right" data-target="#changePassword">Alterar</a>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
+	  		<tbody>
+	    		<tr>
+	     			<td><strong>Usuário: </strong> <?= $empresa->getLogin()?></td>
+    		</tr>
+    		<tr>
+      			<td>
+        			<strong>Senha: </strong>
+        			<input type="password" maxlength="20" id="password_field2" name="senha" class="ls-no-style-input" value="***********" >
+        			<a href="#" data-ls-module="modal" class="ls-btn-primary ls-float-right" data-target="#changePassword">Alterar</a>
+      			</td>
+    		</tr>
+  			</tbody>
+		</table>
 
 
 <div id="changePassword" class="ls-modal fade">
@@ -71,13 +88,13 @@
     <div class="ls-modal-content">
       <div class="ls-modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Ã—</button>
-        <h3 id="title_change_pass">AlteraÃ§Ã£o de senha</h3>
+        <h3 id="title_change_pass">Alteração de senha</h3>
       </div>
       <form action="#" class="ls-form ls-form-horizontal validate" method="post" >
         <div class="ls-modal-body">
           <div class="ls-alert ls-alert-warning" role="alert">
             <p>Ao alterar a senha, <strong>lembre-se</strong> de escolher uma senha <strong>segura</strong>.
-            <strong>Recomenda-se:</strong> Senha entre 8 a 14 caracteres, contendo letras e nÃºmeros.</p>
+            <strong>Recomenda-se:</strong> Senha entre 8 a 14 caracteres, contendo letras e números.</p>
           </div>
 
           <label class="ls-label">
