@@ -84,7 +84,7 @@
         					echo '<td>Nenhum Curso Cadastrado</td>';
         				}
         				if($e->getGeraCertificado() == 'S'){
-        					echo '<td>Tem Certificado</td>';
+        					echo '<td><a href="configuraCertificado.php?id='.$e->getIdEvento().'&t=e">Configurar</a></td>';
         				} else {
         					echo '<td>Sem Certificado</td>';
         				}

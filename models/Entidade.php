@@ -100,4 +100,20 @@ class Entidade extends BaseEntidade
 			echo $e->getMessage();
 		}
 	}
+	
+	public function retornarEntidadePorId(){
+		try{
+			return $this->getTable()->findOneBy('idEntidade', $this->getIdEntidade());
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function retornarEntidadePorCnpjCpf(){
+		try{
+			return $this->getTable()->findOneBy('cnpj_cpf', $this->getCnpjCpf());
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }

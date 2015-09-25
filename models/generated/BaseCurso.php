@@ -12,6 +12,9 @@
  * @property string $conteudo
  * @property float $valor
  * @property integer $cargaHoraria
+ * @property string $corTexto
+ * @property enum $layout
+ * @property enum $verso
  * @property enum $liberarCertificado
  * @property date $dataInicio
  * @property date $dataFim
@@ -86,6 +89,43 @@ abstract class BaseCurso extends Doctrine_Record
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('corTexto', 'string', 7, array(
+             'type' => 'string',
+             'length' => 7,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('layout', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => '1',
+              1 => '2',
+             ),
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('verso', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => 'S',
+              1 => 'N',
+             ),
+             'primary' => false,
+             'notnull' => true,
              'autoincrement' => false,
              ));
         $this->hasColumn('liberarCertificado', 'enum', 1, array(

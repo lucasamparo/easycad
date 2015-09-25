@@ -12,6 +12,10 @@
  * @property enum $modalidade
  * @property float $valor
  * @property integer $cargaHoraria
+ * @property enum $ativo
+ * @property string $corTexto
+ * @property enum $layout
+ * @property enum $verso
  * @property enum $geraCertificado
  * @property enum $liberarCertificado
  * @property Doctrine_Collection $Curso
@@ -92,6 +96,57 @@ abstract class BaseEvento extends Doctrine_Record
              'notnull' => false,
              'autoincrement' => false,
              ));
+        $this->hasColumn('ativo', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => 'S',
+              1 => 'N',
+             ),
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('corTexto', 'string', 7, array(
+             'type' => 'string',
+             'length' => 7,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('layout', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => '1',
+              1 => '2',
+             ),
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('verso', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => 'S',
+              1 => 'N',
+             ),
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
         $this->hasColumn('geraCertificado', 'enum', 1, array(
              'type' => 'enum',
              'length' => 1,
@@ -128,5 +183,5 @@ abstract class BaseEvento extends Doctrine_Record
         $this->hasMany('Curso', array(
              'local' => 'idEvento',
              'foreign' => 'idEvento'));
-    }	
+    }		
 }

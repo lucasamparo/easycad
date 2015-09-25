@@ -75,6 +75,27 @@ class Curso extends BaseCurso
 		$this->dataFim = $dataFim;
 		return $this;
 	}
+	public function getCorTexto() {
+		return $this->corTexto;
+	}
+	public function setCorTexto($corTexto) {
+		$this->corTexto = $corTexto;
+		return $this;
+	}
+	public function getLayout() {
+		return $this->layout;
+	}
+	public function setLayout($layout) {
+		$this->layout = $layout;
+		return $this;
+	}
+	public function getVerso() {
+		return $this->verso;
+	}
+	public function setVerso($verso) {
+		$this->verso = $verso;
+		return $this;
+	}
 	public function getLiberarCertificado() {
 		return $this->liberarCertificado;
 	}
@@ -108,6 +129,27 @@ class Curso extends BaseCurso
 	public function retornarCursoPorId(){
 		try{
 			return $this->getTable()->findOneBy('idCurso', $this->getIdCurso());
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function alterarCurso(){
+		try{
+			$tmp = $this->copy();
+			$c = $this->getTable()->findOneBy('idCurso', $this->getIdCurso());
+			if($c){
+				if(!is_null($tmp->getCorTexto())){
+					$c->setCorTexto($tmp->getCorTexto());
+				}
+				if(!is_null($tmp->getLayout())){
+					$c->setLayout($tmp->getLayout());
+				}
+				if(!is_null($tmp->getVerso())){
+					$c->setVerso($tmp->getVerso());
+				}
+				$c->save();
+			}
 		} catch (Doctrine_Exception $e){
 			echo $e->getMessage();
 		}

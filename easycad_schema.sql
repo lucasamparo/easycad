@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Set-2015 às 08:01
+-- Generation Time: 24-Set-2015 às 22:28
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -51,6 +51,10 @@ CREATE TABLE IF NOT EXISTS `curso` (
   `conteudo` text,
   `valor` double DEFAULT NULL,
   `cargaHoraria` int(11) DEFAULT NULL,
+  `corTexto` varchar(7) NOT NULL,
+  `layout` enum('1','2') NOT NULL,
+  `verso` enum('S','N') NOT NULL,
+  `liberarCertificado` enum('S','N') NOT NULL,
   `dataInicio` date DEFAULT NULL,
   `dataFim` date NOT NULL,
   PRIMARY KEY (`idCurso`),
@@ -87,8 +91,10 @@ CREATE TABLE IF NOT EXISTS `entidade` (
   `telefone` varchar(11) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `tipo` enum('PF','PJ') DEFAULT NULL,
-  PRIMARY KEY (`idEntidade`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`idEntidade`),
+  UNIQUE KEY `cnpj_cpf` (`cnpj_cpf`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -104,7 +110,12 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `modalidade` enum('P','O','PO','N') DEFAULT NULL,
   `valor` double DEFAULT NULL,
   `cargaHoraria` int(11) DEFAULT NULL,
+  `ativo` enum('S','N') NOT NULL,
+  `corTexto` varchar(7) NOT NULL,
+  `layout` enum('1','2') NOT NULL,
+  `verso` enum('S','N') NOT NULL,
   `geraCertificado` enum('S','N') NOT NULL,
+  `liberarCertificado` enum('S','N') NOT NULL,
   PRIMARY KEY (`idEvento`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -118,11 +129,13 @@ CREATE TABLE IF NOT EXISTS `matricula` (
   `idMatricula` int(11) NOT NULL AUTO_INCREMENT,
   `idEntidade` int(11) DEFAULT NULL,
   `idCurso` int(11) DEFAULT NULL,
+  `tipo` enum('P','A','C') NOT NULL,
   `dataHoraMatricula` datetime DEFAULT NULL,
   PRIMARY KEY (`idMatricula`),
+  UNIQUE KEY `idEntidade` (`idEntidade`,`idCurso`),
   KEY `matriculaEntidade_idx` (`idEntidade`),
   KEY `matriculaCurso_idx` (`idCurso`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Constraints for dumped tables

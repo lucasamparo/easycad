@@ -61,6 +61,34 @@ class Evento extends BaseEvento
 		$this->cargaHoraria = $cargaHoraria;
 		return $this;
 	}
+	public function getAtivo() {
+		return $this->ativo;
+	}
+	public function setAtivo($ativo) {
+		$this->ativo = $ativo;
+		return $this;
+	}
+	public function getCorTexto() {
+		return $this->corTexto;
+	}
+	public function setCorTexto($corTexto) {
+		$this->corTexto = $corTexto;
+		return $this;
+	}
+	public function getLayout() {
+		return $this->layout;
+	}
+	public function setLayout($layout) {
+		$this->layout = $layout;
+		return $this;
+	}
+	public function getVerso() {
+		return $this->verso;
+	}
+	public function setVerso($verso) {
+		$this->verso = $verso;
+		return $this;
+	}
 	public function getGeraCertificado() {
 		return $this->geraCertificado;
 	}
@@ -107,6 +135,19 @@ class Evento extends BaseEvento
 		}
 	}
 	
+	public function retornarEventoExterno(){
+		try{
+			$tb = $this->getTable()->createQuery()
+									->where("modalidade like '%O%'")
+									->andWhere("ativo = 'S'")
+									->orderBy('dateFim desc');
+			echo $tb->getSqlQuery();
+			return $tb->execute();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
 	public function alterarEvento(){
 		try{
 			$tmp = $this->copy();
@@ -132,6 +173,15 @@ class Evento extends BaseEvento
 				}
 				if(!is_null($tmp->getGeraCertificado())){
 					$e->setGeraCertificado($tmp->getGeraCertificado());
+				}
+				if(!is_null($tmp->getCorTexto())){
+					$e->setCorTexto($tmp->getCorTexto());
+				}
+				if(!is_null($tmp->getLayout())){
+					$e->setLayout($tmp->getLayout());
+				}
+				if(!is_null($tmp->getVerso())){
+					$e->setVerso($tmp->getVerso());
 				}
 				$e->save();
 			}

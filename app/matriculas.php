@@ -125,6 +125,9 @@
 	        </table>
 	        <a href="addEntidade.php?id=<?= $curso->getIdCurso()?>&f=2">Adicionar Colaboradores</a>
         </div>
+        <div>
+        	<a href="listaCurso.php?id=<?= $curso->getEvento()->getIdEvento()?>">Voltar</a>
+        </div>
         
         
         <!-- Fim Conteúdo -->
