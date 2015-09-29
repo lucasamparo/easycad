@@ -47,4 +47,36 @@ class Certificado extends BaseCertificado
 		$this->Matricula = $Matricula;
 		return $this;
 	}
+	
+	public function inserirCertificado(){
+		try{
+			$this->save();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function excluirCertificado(){
+		try{
+			$c = $this->getTable()->findOneBy('codigo', $this->getCodigo());
+			if($c){
+				$c->delete();
+			}
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function contarCertificadosPorIdCuros($idCurso){
+		try{
+			$tb = Doctrine_Core::getTable('Certificado')->createQuery()
+										->select('COUNT(*)')
+										->from('Certificado c, Matricula m')
+										->where('c.idMatricula = m.idMatricula')
+										->andWhere('m.idCurso = '.$idCurso);
+			return $tb->execute();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }

@@ -45,7 +45,7 @@
        					$data .= " a ".Util::arrumaData($c->getDataFim());
        				}
        				echo '<td>'.$data.'</td>';
-       				echo '<td><a href="#">Certificado</a></td>';
+       				echo '<td><a href="configuraCertificado.php?id='.$c->getIdCurso().'&t=c">Certificado</a></td>';
        				echo '<td><a href="matriculas.php?id='.$c->getIdCurso().'">Matrículas</a></td>';
        			echo '</tr>';
        		}

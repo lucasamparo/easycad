@@ -87,9 +87,11 @@
         	<tbody id="corpoTabela">
         		<?php 
         			foreach($matriculados as $m){
-        				echo '<tr>';
-        					echo '<td>'.$m->getEntidade()->getNomeEntidade().'</td>';
-        				echo '</tr>';
+        				if($_GET['id'] == $m->getIdCurso()){
+        					echo '<tr>';
+        						echo '<td>'.$m->getEntidade()->getNomeEntidade().'</td>';
+        					echo '</tr>';
+        				}        				
         			}
         		?>
         	</tbody>

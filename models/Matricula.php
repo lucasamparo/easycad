@@ -84,4 +84,12 @@ class Matricula extends BaseMatricula
 			echo $e->getMessage();
 		}
 	}
+	
+	public function retornarMatriculaPorIdParticipante(){
+		try{
+			return $this->getTable()->findBy('idEntidade', $this->getIdEntidade());
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }
