@@ -16,6 +16,7 @@
 				$e->setIdEvento($_GET['id']);
 				$evento = $e->retornaEventoPorId();
 				$id = $evento->getIdEvento();
+				$idEvento = $evento->getIdEvento();
 				$titulo = $evento->getNomeEvento();
 				$corTexto = $evento->getCorTexto();
 				$layout = $evento->getLayout();
@@ -34,6 +35,7 @@
 				$c->setIdCurso($_GET['id']);
 				$curso = $c->retornarCursoPorId();
 				$id = $curso->getIdCurso();
+				$idEvento = $curso->getEvento()->getIdEvento();
 				$titulo = $curso->getNomeCurso();
 				$corTexto = $curso->getCorTexto();
 				$layout = $curso->getLayout();
@@ -58,7 +60,7 @@
 					$nome_final = $_GET['t']."_".$id.md5($titulo)."_frente.png";
 					// Depois verifica se é possível mover o arquivo para a pasta escolhida
 					if (move_uploaded_file($_FILES['frente']['tmp_name'], $caminho . $nome_final)) {
-						$caminho_frente = $caminho.$nome_final;
+						$caminho_frente = $nome_final;
 					} else {
 						echo "Não foi possível enviar o arquivo, tente novamente";
 					}
@@ -77,7 +79,7 @@
 					$nome_final = $_GET['t']."_".$id.md5($titulo)."_fundo.png";
 					// Depois verifica se é possível mover o arquivo para a pasta escolhida
 					if (move_uploaded_file($_FILES['fundo']['tmp_name'], $caminho . $nome_final)) {
-						$caminho_fundo = $caminho.$nome_final;
+						$caminho_fundo = $nome_final;
 					} else {
 						echo "Não foi possível enviar o arquivo, tente novamente";
 					}
@@ -152,6 +154,7 @@
         	?>
         	<input type="submit" value="Salvar Configurações">
         </form>
+        <a href="listaCurso.php?id=<?= $idEvento?>">Voltar</a>
       </div>
       <?php require_once('footer.php');?>
     </main>

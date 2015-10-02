@@ -19,11 +19,11 @@ class Certificado extends BaseCertificado
 		$this->idCertificado = $idCertificado;
 		return $this;
 	}
-	public function getIdEntidade() {
-		return $this->idEntidade;
+	public function getIdMatricula() {
+		return $this->idMatricula;
 	}
-	public function setIdEntidade($idEntidade) {
-		$this->idEntidade = $idEntidade;
+	public function setIdMatricula($idMatricula) {
+		$this->idMatricula = $idMatricula;
 		return $this;
 	}
 	public function getCodigo() {
@@ -58,7 +58,7 @@ class Certificado extends BaseCertificado
 	
 	public function excluirCertificado(){
 		try{
-			$c = $this->getTable()->findOneBy('codigo', $this->getCodigo());
+			$c = $this->getTable()->findOneBy('idMatricula', $this->getIdMatricula());
 			if($c){
 				$c->delete();
 			}
@@ -67,14 +67,24 @@ class Certificado extends BaseCertificado
 		}
 	}
 	
-	public function contarCertificadosPorIdCuros($idCurso){
+	public function contarCertificadosPorIdCurso($idCurso){
 		try{
 			$tb = Doctrine_Core::getTable('Certificado')->createQuery()
 										->select('COUNT(*)')
 										->from('Certificado c, Matricula m')
 										->where('c.idMatricula = m.idMatricula')
 										->andWhere('m.idCurso = '.$idCurso);
-			return $tb->execute();
+			//echo $tb->getSqlQuery();
+			$r = $tb->execute();
+			return $r;
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}	
+
+	public function retornarCertificadoPorValidador(){
+		try{
+			return $this->getTable()->findOneBy('codigo', $this->getCodigo());
 		} catch (Doctrine_Exception $e){
 			echo $e->getMessage();
 		}

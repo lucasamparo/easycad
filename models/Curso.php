@@ -154,4 +154,20 @@ class Curso extends BaseCurso
 			echo $e->getMessage();
 		}
 	}
+	
+	public function retornarAlunosOrdenados(){
+		try{
+			$tb = Doctrine_Core::getTable('Entidade')->createQuery()
+									->select('e.nomeEntidade, e.cnpj_cpf')
+									->from('Entidade e, Matricula m')
+									->where('e.idEntidade = m.idEntidade')
+									->andWhere('m.idCurso = '.$this->getIdCurso())
+									->orderBy('e.nomeEntidade');
+			//echo $tb->getSqlQuery();
+			$r = $tb->execute();
+			return $r;									
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }

@@ -32,7 +32,8 @@
        		<th>Nome</th>
        		<th>Data</th>
        		<th>Certificado</th>
-       		<th>Matrículas</th>	
+       		<th>Matrículas</th>
+       		<th>Lista de Presença</th>	
        	</thead>
        	<tbody>
        	<?php 
@@ -47,6 +48,7 @@
        				echo '<td>'.$data.'</td>';
        				echo '<td><a href="configuraCertificado.php?id='.$c->getIdCurso().'&t=c">Certificado</a></td>';
        				echo '<td><a href="matriculas.php?id='.$c->getIdCurso().'">Matrículas</a></td>';
+       				echo '<td><a href="listaPresenca.php?id='.$c->getIdCurso().'" target="_blank">Ver Lista</a></td>';
        			echo '</tr>';
        		}
        	?>

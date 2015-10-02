@@ -17,72 +17,97 @@
 			Util::alert('Falha na configuração do certificado do curso '.$m->getCurso()->getNomeCurso());
 			return null;
 		}
+		if($m->getCurso()->getDataFim() == '0000-00-00'){
+			//trabalha com data simples
+			//Inserindo data
+			$pdf -> SetFont('Arial','',20);
+			$d = $m->getCurso()->getDataInicio();
+			$data = explode("-",$d);
+			$pdf->Text(220, 171, $data[2]." de ".Util::retornaMes(intval($data[1]))." de ".$data[0]);
+		} else {
+			//trabalha com data dupla
+			$pdf -> SetFont('Arial','',20);
+			$d = $m->getCurso()->getDataInicio();
+			$data1 = explode("-",$d);
+			$d = $m->getCurso()->getDataFim();
+			$data2 = explode("-",$d);
+			$txt = $data1[2]." de ".Util::retornaMes(intval($data1[1]))." de ".$data1[0]." até ".$data2[2]." de ".Util::retornaMes(intval($data2[1]))." de ".$data2[0];
+			$pdf->Text(130, 171, $txt);
+		}
 		//Carregando o layout
 		if($m->getCurso()->getLayout() == '1'){
 			//Trabalha com o layout1
-			if($m->getCurso()->getDataFim() == '0000-00-00'){
-				//trabalha com data simples
-				//Inserindo data
-				$pdf -> SetFont('Arial','',20);
-				$d = $m->getCurso()->getDataInicio();
-				$data = explode("-",$d);
-				/*$pdf->Text(193, 171, $data[2]);
-				$pdf->Text(215, 171, Util::retornaMes(intval($data[1])));
-				$pdf->Text(270, 171, substr($data[0],2,2));*/
-				$pdf->Text(193, 171, $data[2]." de ".Util::retornaMes(intval($data[1]))." de ".$data[0]);
-			} else {
-				//trabalha com data dupla
-			}
-			//Inserindo Nome do Evento
-			$evento = $m->getCurso()->getEvento()->getNomeEvento();
-			//Util::alert($evento);
+			//Inserindo Nome do Curso
+			$evento = utf8_decode($m->getCurso()->getNomeCurso()." - ".$m->getCurso()->getCargaHoraria()." horas");
 			$pdf->SetFont('Arial','B',40);
 			$pdf->SetXY(0, 40);
 			$pdf->Cell(0,0,$evento,0,1,'C');
 			
 			//Inserindo nome do Participante
-			$nome = $m->getEntidade()->getNomeEntidade();
+			$nome = utf8_decode($m->getEntidade()->getNomeEntidade());
 			$pdf->SetFont('Arial','B',25);
 			$pdf->SetXY(0, 65);
 			$pdf->Cell(0,0,$nome,0,1,'C');
-			
-			//Inserindo codificação
-			$c = new Certificado();
-			$count = $c->contarCertificadosPorIdCuros($m->getCurso()->getIdCurso());
-			switch(strlen($count[0])){
-				case 1:
-					$ct = "000".$count[0];
-					break;
-				case 2:
-					$ct = "00".$count[0];
-					break;
-				case 3:
-					$ct = "0".$count[0];
-					break;
-				case 4:
-					$ct = $count[0];
-					break;
-			}
-			$cod = date('Y').$m->getCurso()->getIdCurso()."-".$ct;
-			$pdf -> SetFont('Arial','',8);
-			$pdf->Text(200, 20, $cod);
-			
-			$pdf -> SetFont('Arial','',8);
-			$pdf -> Text(235,196,'Gerado eletronicamente por EasyCad');
 		} else {
-			//Trabalha com o layout2
-			if($m->getCurso()->getDataFim() == '0000-00-00'){
-				//trabalha com data simples
-			} else {
-				//trabalha com data dupla
-			}
+			//Inserindo Nome do Participante
+			$nome = utf8_decode($m->getEntidade()->getNomeEntidade());
+			$pdf->SetFont('Arial','B',40);
+			$pdf->SetXY(0, 40);
+			$pdf->Cell(0,0,$nome,0,1,'C');
+			
+			//Inserindo nome do Curso
+			$evento = utf8_decode($m->getCurso()->getNomeCurso()." - ".$m->getCurso()->getCargaHoraria()." horas");
+			$pdf->SetFont('Arial','B',25);
+			$pdf->SetXY(0, 65);
+			$pdf->Cell(0,0,$evento,0,1,'C');
 		}
+		//Inserindo codificação
+		$c = new Certificado();
+		$count = $c->contarCertificadosPorIdCurso($m->getCurso()->getIdCurso());
+		//print_r($count->toArray());
+		switch(strlen($count[0])){
+			case 1:
+				$ct = "000".($count[0]->COUNT);
+				break;
+			case 2:
+				$ct = "00".($count[0]->COUNT);
+				break;
+			case 3:
+				$ct = "0".($count[0]->COUNT);
+				break;
+			case 4:
+				$ct = intVal($count[0]->COUNT);
+				break;
+		}
+		switch(strlen($m->getCurso()->getIdCurso())){
+			case 1:
+				$idc = "00".$m->getCurso()->getIdCurso();
+				break;
+			case 2:
+				$idc = "0".$m->getCurso()->getIdCurso();
+				break;
+			case 3:
+				$idc = $m->getCurso()->getIdCurso();
+				break;
+		}
+		$cod = date('Y')."-".$idc.$ct;
+		$pdf -> SetFont('Arial','',10);
+		$pdf->Text(255, 16, $cod);
 		
-		
-		
+		$pdf -> SetFont('Arial','',8);
+		$pdf -> Text(245,205,'Gerado eletronicamente por EasyCad');
+				
 		$url = "cert/".$m->getCurso()->getIdCurso()."_".$m->getEntidade()->getIdEntidade().".pdf";
-		$pdf->Output();
-		//$pdf->Output($url);
+		//$pdf->Output();
+		$pdf->Output($url);
+		$c1 = new Certificado();
+		$c1->setIdMatricula($m->getIdMatricula());
+		$c1->excluirCertificado();
+		$c = new Certificado();
+		$c->setIdMatricula($m->getIdMatricula());
+		$c->setCodigo($cod);
+		$c->setDataEmissao(date('Y-m-d'));
+		$c->inserirCertificado();
 		return $url;
 	}
 	
@@ -106,10 +131,8 @@
 		foreach($mat as $m){
 			if($m->getCurso()->getLiberarCertificado() == 'S'){
 				$r = constroiPdf($m);
-				//echo $m->getCurso()->getNomeCurso().' -> <a href="'.$r.'" target="_blank">Certificado</a>';
+				echo $m->getCurso()->getNomeCurso().' -> <a href="'.$r.'" target="_blank">Certificado</a><br>';
 			}			
 		}
-		
-		//Início do PDF
 	}
 ?>

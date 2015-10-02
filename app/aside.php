@@ -38,6 +38,7 @@
            		<li><a href="listaEvento.php">Listagem de Eventos</a></li>
            		<li><a href="listaPJ.php">Listagem de Pessoas Jurídicas</a></li>
            		<li><a href="listaPF.php">Listagem de Pessoas Físicas</a></li>
+           		<li><a href="validaCert.php">Validar Certificados</a></li>
            	</ul>
            </li>
            <li>
