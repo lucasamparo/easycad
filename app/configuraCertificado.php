@@ -1,4 +1,4 @@
-<?php 
+ï»¿<?php 
 	require_once 'gerencia_login.php';
 	
 	if(isset($_GET['id'])){
@@ -54,15 +54,15 @@
 					
 				// Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
 				if ($_FILES['frente']['error'] != 0) {
-					die("Não foi possível fazer o upload.");
-					exit; // Para a execução do script
+					die("NÃ£o foi possÃ­vel fazer o upload.");
+					exit; // Para a execuÃ§Ã£o do script
 				} else {
 					$nome_final = $_GET['t']."_".$id.md5($titulo)."_frente.png";
-					// Depois verifica se é possível mover o arquivo para a pasta escolhida
+					// Depois verifica se Ã© possÃ­vel mover o arquivo para a pasta escolhida
 					if (move_uploaded_file($_FILES['frente']['tmp_name'], $caminho . $nome_final)) {
 						$caminho_frente = $nome_final;
 					} else {
-						echo "Não foi possível enviar o arquivo, tente novamente";
+						echo "NÃ£o foi possÃ­vel enviar o arquivo, tente novamente";
 					}
 						
 				}
@@ -73,15 +73,15 @@
 			
 				// Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
 				if ($_FILES['fundo']['error'] != 0) {
-					die("Não foi possível fazer o upload.");
-					exit; // Para a execução do script
+					die("NÃ£o foi possÃ­vel fazer o upload.");
+					exit; // Para a execuÃ§Ã£o do script
 				} else {
 					$nome_final = $_GET['t']."_".$id.md5($titulo)."_fundo.png";
-					// Depois verifica se é possível mover o arquivo para a pasta escolhida
+					// Depois verifica se Ã© possÃ­vel mover o arquivo para a pasta escolhida
 					if (move_uploaded_file($_FILES['fundo']['tmp_name'], $caminho . $nome_final)) {
 						$caminho_fundo = $nome_final;
 					} else {
-						echo "Não foi possível enviar o arquivo, tente novamente";
+						echo "NÃ£o foi possÃ­vel enviar o arquivo, tente novamente";
 					}
 						
 				}
@@ -131,7 +131,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Configuração de Certificado</h1>
+        <h1 class="ls-title-intro ls-ico-home">ConfiguraÃ§Ã£o de Certificado</h1>
         <h4>Certificado: <?= $titulo?></h4>
         <form enctype="multipart/form-data" method="post" action="configuraCertificado.php?id=<?= $_GET['id']?>&t=<?= $_GET['t']?>">
         	<label>Cor do Texto</label>
@@ -141,7 +141,7 @@
         	<input type="radio" name="layout" value="2" id="l2" <?php if($layout == '2') echo 'checked'?>><label for="l2">Modelo 2</label><br>
         	<label>Possui verso?</label>
         	<input type="radio" name="verso" value="S" id="versoS" <?php if($verso == 'S') echo 'checked'?>><label for="versoS">Sim</label>
-        	<input type="radio" name="verso" value="N" id="versoN" <?php if($verso == 'N') echo 'checked'?>><label for="versoN">Não</label><br>
+        	<input type="radio" name="verso" value="N" id="versoN" <?php if($verso == 'N') echo 'checked'?>><label for="versoN">NÃ£o</label><br>
         	<label>Frente do Certificado (PNG):</label>
         	<input type="file" name="frente" id="frente">
         	<a href="imgCert/<?= $caminho_frente?>" target="_blank">Ver Atual</a><br>
@@ -152,7 +152,7 @@
         			echo '<a href="imgCert/'.$caminho_fundo.'" target="_blank">Ver Atual</a><br>';
         		}
         	?>
-        	<input type="submit" value="Salvar Configurações">
+        	<input type="submit" value="Salvar ConfiguraÃ§Ãµes">
         </form>
         <a href="listaCurso.php?id=<?= $idEvento?>">Voltar</a>
       </div>

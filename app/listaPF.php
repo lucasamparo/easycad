@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html class="ls-theme-green">
   <head>
     <title>EasyCad</title>
@@ -14,8 +14,8 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Listagem de Pessoas Físicas</h1>
-        <!-- Conteúdo -->
+        <h1 class="ls-title-intro ls-ico-home">Listagem de Pessoa FÃ­sica</h1>
+        <!-- ConteÃºdo -->
         <table>
         	<thead>
         		<th>Nome da PF</th>
@@ -38,7 +38,7 @@
         </table>
         
         
-        <!-- Fim Conteúdo -->
+        <!-- Fim ConteÃºdo -->
       </div>
       <?php require_once('footer.php');?>
     </main>

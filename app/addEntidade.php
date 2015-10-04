@@ -1,4 +1,4 @@
-<?php 
+ï»¿<?php 
 	require_once('gerencia_login.php');
 	
 	if(isset($_GET['id'])){
@@ -77,7 +77,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <!-- Conteúdo -->
+        <!-- ConteÃºdo -->
         <input type="hidden" name="funcao" value="<?= $funcao?>" id="funcao">
         <h4><?= $titulo?></h4>
         <table>
@@ -130,7 +130,7 @@
         	<br>
         	<a href="matriculas.php?id=<?= $_GET['id']?>">Voltar</a>
         </div>
-        <!-- Fim Conteúdo -->
+        <!-- Fim ConteÃºdo -->
       </div>
       <?php require_once('footer.php');?>
     </main>

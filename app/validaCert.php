@@ -1,4 +1,4 @@
-<?php 
+ï»¿<?php 
 	require_once 'gerencia_Login.php';
 	
 	if(isset($_POST['cod'])){
@@ -23,9 +23,9 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Validação de Certificado</h1>
+        <h1 class="ls-title-intro ls-ico-home">ValidaÃ§Ã£o de Certificado</h1>
         <form method="post" action="validaCert.php">
-        	<label>Código do Certificado:</label>
+        	<label>CÃ³digo do Certificado:</label>
         	<input type="text" name="cod">
         	<input type="submit">
         </form>

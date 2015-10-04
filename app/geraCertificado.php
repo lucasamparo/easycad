@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 	require_once('../models/bootstrap.php');
 	require_once('../libs/fpdf/fpdf.php');
 	
@@ -14,7 +14,7 @@
 		if(file_exists($imgFrente)){
 			$pdf->Image($imgFrente,null,null,297,210);
 		} else {
-			Util::alert('Falha na configuração do certificado do curso '.$m->getCurso()->getNomeCurso());
+			Util::alert('Falha na configuraÃ§Ã£o do certificado do curso '.$m->getCurso()->getNomeCurso());
 			return null;
 		}
 		if($m->getCurso()->getDataFim() == '0000-00-00'){
@@ -31,7 +31,7 @@
 			$data1 = explode("-",$d);
 			$d = $m->getCurso()->getDataFim();
 			$data2 = explode("-",$d);
-			$txt = $data1[2]." de ".Util::retornaMes(intval($data1[1]))." de ".$data1[0]." até ".$data2[2]." de ".Util::retornaMes(intval($data2[1]))." de ".$data2[0];
+			$txt = $data1[2]." de ".Util::retornaMes(intval($data1[1]))." de ".$data1[0]." atÃ© ".$data2[2]." de ".Util::retornaMes(intval($data2[1]))." de ".$data2[0];
 			$pdf->Text(130, 171, $txt);
 		}
 		//Carregando o layout
@@ -61,7 +61,7 @@
 			$pdf->SetXY(0, 65);
 			$pdf->Cell(0,0,$evento,0,1,'C');
 		}
-		//Inserindo codificação
+		//Inserindo codificaÃ§Ã£o
 		$c = new Certificado();
 		$count = $c->contarCertificadosPorIdCurso($m->getCurso()->getIdCurso());
 		//print_r($count->toArray());

@@ -1,4 +1,4 @@
-<?php 
+ï»¿<?php 
 	require_once 'gerencia_login.php';
 	
 	if(isset($_POST['idEntidade'])){
@@ -79,9 +79,9 @@
 			<input type="submit" value="Inscrever">
 		</form>
 		<div id="msgErro" style="display: none">
-			<h3>Você ainda não tem cadastro.</h3>
-			<p>Utilize o formulário de cadastro antes de se Inscrever nos minicursos</p>
-			<a href="inscricaoExterna.php">Formulário de cadastro</a>
+			<h3>VocÃª ainda nÃ£o tem cadastro.</h3>
+			<p>Utilize o formulÃ¡rio de cadastro antes de se inscrever nos minicursos</p>
+			<a href="inscricaoExterna.php">FormulÃ¡rio de Cadastro</a>
 		</div>
 	</body>
 </html>

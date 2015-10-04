@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 require_once('gerencia_login.php');
 require_once('../libs/fpdf/fpdf.php');
 
@@ -14,10 +14,10 @@ if(isset($_GET['id'])){
 	$pdf->AddPage();
 	$pdf->SetMargins(10, 10, 10);
 	$pdf->SetFont('Arial','B',20);
-	$pdf->Cell(190,10,"Lista de Presença - ".utf8_decode($curso->getNomeCurso()),"B",1,"C");
+	$pdf->Cell(190,10,"Lista de PresenÃ§a- ".utf8_decode($curso->getNomeCurso()),"B",1,"C");
 	$pdf->Ln();
 	
-	//cabeçalho
+	//cabeÃ§aho
 	$pdf->SetFont('Arial','B',12);
 	$pdf->Cell(60,8,"Aluno","B",0,"L");
 	$pdf->Cell(30,8,"CPF","LB",0,"L");
