@@ -5,7 +5,7 @@
 		if($_GET['e'] == 1){
 			$e = new Evento();
 			$e->setIdEvento($_POST['idEvento']);
-			$e->setNomeEvento($_POST['nome']);
+			$e->setNomeEvento(utf8_decode($_POST['nome']));
 			$e->setDataInicio($_POST['inicio']);
 			$e->setDateFim($_POST['fim']);
 			$e->setModalidade($_POST['modalidade']);
@@ -23,9 +23,12 @@
     <title>EasyCad</title>
 
     <?php require_once('assets.php');?>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+
     <script type="text/javascript">
 		function carregarEdicao(id){
-			$('#edEvento').css('display','inline');
+			// $('#edEvento').css('display','inline');
 			var req = $.ajax({
 			    url:    "wsEvento.php",
 			    type:   "get",
@@ -49,6 +52,33 @@
 			    }
 			});
 		}
+
+
+		$(document).ready(function() {
+
+			$('#tb1').dataTable({
+				// "bJQueryUI": true,
+				// "sPaginationType": "full_numbers",
+				// "sDom": '<"H"Tlfr>t<"F"ip>',
+				"oLanguage": {
+					"sLengthMenu": "Registros/Página _MENU_",
+					"sZeroRecords": "Nenhum registro encontrado",
+					"sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+					"sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+					"sInfoFiltered": "(filtrado de _MAX_ registros)",
+					"sSearch": "Pesquisar: ",
+					"oPaginate": {
+						// "sFirst": " Primeiro ",
+						"sPrevious": " Anterior ",
+						"sNext": " Próximo ",
+						// "sLast": " Último "
+					}
+				},
+				"aaSorting": [[0, 'desc']],
+				"aoColumnDefs": [ {"sType": "num-html", "aTargets": [0]} ]
+			});
+
+		});
     </script>
   </head>
   <body>
@@ -60,7 +90,8 @@
     <main class="ls-main ">
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-chart-bar-up">Listagem de Eventos</h1>
-        <table>
+
+        <table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0" id="tb1">
         	<thead>
         		<th>Nome</th>
         		<th>Início</th>
@@ -75,56 +106,102 @@
         		$evento = $e->retornarEventos();
         		foreach($evento as $e){
         			echo '<tr>';
-        				echo '<td>'.$e->getNomeEvento().'</td>';
+        				echo '<td>'.utf8_encode($e->getNomeEvento()).'</td>';
         				echo '<td>'.Util::arrumaData($e->getDataInicio()).'</td>';
         				echo '<td>'.Util::arrumaData($e->getDateFim()).'</td>';
         				if(count($e->getCurso()) > 0){
-        					echo '<td><a href="listaCurso.php?id='.$e->getIdEvento().'">Ver Cursos</a></td>';
+        					echo '<td><a href="listaCurso.php?id='.$e->getIdEvento().'" class="ls-ico-folder-open ls-btn" title="Ver Cursos"></a></td>';
         				} else {
         					echo '<td>Nenhum Curso Cadastrado</td>';
         				}
         				if($e->getGeraCertificado() == 'S'){
-        					echo '<td><a href="configuraCertificado.php?id='.$e->getIdEvento().'&t=e">Configurar</a></td>';
+        					echo '<td><a href="configuraCertificado.php?id='.$e->getIdEvento().'&t=e" class="ls-ico-cog ls-btn" title="Configurar"></a></td>';
         				} else {
         					echo '<td>Sem Certificado</td>';
         				}
-        				echo '<td><a href="#" onclick="carregarEdicao('."'".$e->getIdEvento()."'".')">Editar</a></td>';      				       				
+        				echo '<td><a href="#" data-ls-module="modal" data-target="#edEvento" class="ls-ico-edit-admin ls-btn" title="Editar" onclick="carregarEdicao('."'".$e->getIdEvento()."'".')"></a></td>';      				       				
         			echo '</tr>';
         		}
         	?>        	
         	</tbody>
         </table>
-        <hr>
-        <div id="edEvento" style="display: none">
-        	<form method="post" action="listaEvento.php?e=1">
-        		<fieldset>
-        			<legend>Editar Evento</legend>
-        			<input type="hidden" name="idEvento" id="idEvento">
-        			<label>Nome do Evento:</label>
-		        	<input type="text" name="nome" id="nome"><br>
-		        	<label>Datas:</label><br>
-		        	<label>Início:</label>
-		        	<input type="date" name="inicio" id="inicio">
-		        	<label>Fim:</label>
-		        	<input type="date" name="fim" id="fim"><br>
-		        	<label>Modalidade de Inscrição:</label>
-		        	<select name="modalidade" id="modalidade">
-		        		<option value="P">Presencial</option>
-		        		<option value="O">Online</option>
-		        		<option value="PO">Presencial + Online</option>
-		        		<option value="N">Nenhuma</option>
-		        	</select><br>
-		        	<label>Valor:</label>
-		        	<input type="number" step="0.01" placeholder="R$ 0.00" name="valor" id="valor"><br>
-		        	<label>Carga Horária:</label>
-		        	<input type="number" min="1" name="ch" id="ch">
-		        	<label>Gera Certificado?</label>
-		        	<input type="radio" name="geraCert" value="S" id="geraS" checked><label for="geraS">Sim</label>
-		        	<input type="radio" name="geraCert" value="N" id="geraN"><label for="geraN">Não</label>
-		        	<input type="submit" value="Cadastrar">
-        		</fieldset>	        	
-	        </form>
-        </div>
+
+
+		<div class="ls-modal" id="edEvento">
+          <div class="ls-modal-box">
+            <div class="ls-modal-header">
+              <button data-dismiss="modal">&times;</button>
+              <h4 class="ls-modal-title">Editar Evento</h4>
+            </div>
+            <div class="ls-modal-body" id="myModalBody">
+            
+                <form method="post" action="listaEvento.php?e=1">
+                    <br>
+
+                    <input type="hidden" name="idEvento" id="idEvento">
+
+        			<label for="nomeGrupo" class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">Nome do Evento:</b>
+                        <input type="text" name="nome" id="nome" placeholder="Nome do Evento" class="ls-field" required>
+                    </label>
+
+                    <label class="ls-label col-lg-12 col-xs-12">
+		                <b class="ls-label-text">Data Início:</b>
+		                <input type="date" name="inicio" id="inicio" class="ls-field">
+		            </label>
+
+		            <label class="ls-label col-lg-12 col-xs-12">
+		                <b class="ls-label-text">Data Fim:</b>
+		                <input type="date" name="fim" id="fim" class="ls-field">
+		            </label>
+
+		            <label class="ls-label col-lg-12 col-xs-12">
+		              <b class="ls-label-text">Modalidade de Inscrição:</b>
+		              <div class="ls-custom-select">
+		                <select class="ls-custom" name="modalidade">
+		                    <option value="P">Presencial</option>
+		                    <option value="O">Online</option>
+		                    <option value="PO">Presencial + Online</option>
+		                    <option value="N">Nenhuma</option>
+		                </select>
+		              </div>
+		            </label>
+        			
+        			<label class="ls-label col-lg-12 col-xs-12">
+		                <b class="ls-label-text">Valor:</b>
+		                <input type="number" step="0.01" placeholder="R$ 0,00" name="valor" id="valor" class="ls-field">
+		            </label>
+
+		            <label class="ls-label col-lg-12 col-xs-12">
+		                <b class="ls-label-text">Carga Horária:</b>
+		                <input type="number" placeholder="Valor em Horas" min="1" name="ch" id="ch" class="ls-field">
+		            </label>
+  
+		            <div class="ls-label col-lg-12 col-xs-12">
+		              <strong><p>Gera Certificado?</p></strong>
+
+		              <label class="ls-label-text">
+		                <input type="radio" class="ls-field-radio" name="geraCert" value="S" id="geraS" checked>
+		                Sim
+		              </label>
+
+		              <label class="ls-label-text">
+		                <input type="radio" class="ls-field-radio" name="geraCert" value="N" id="geraN">
+		                Não
+		              </label>
+
+		            </div>               
+
+                </div>
+                <div class="ls-modal-footer">
+                  <a href="#" class="ls-btn ls-float-right" data-dismiss="modal">Cancelar</a>
+                  <button type="submit" class="ls-btn-primary">Salvar</button>
+                </div>
+
+            </form>
+
+          </div>
+        </div><!-- /.modal -->
         
       </div>
       <?php require_once('footer.php');?>

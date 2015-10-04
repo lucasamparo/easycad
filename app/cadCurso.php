@@ -101,7 +101,7 @@
 
             <label class="ls-label col-lg-6 col-xs-12">
                 <b class="ls-label-text">Valor:</b>
-                <input type="number" step="0.01" placeholder="R$ 0.00" name="valor" class="ls-field">
+                <input type="number" step="0.01" placeholder="R$ 0,00" name="valor" class="ls-field">
             </label>
 
             <label class="ls-label col-lg-6 col-xs-12">
