@@ -1,9 +1,15 @@
-<?php 
+ï»¿<?php 
 	require_once 'gerencia_login.php';
-?><!DOCTYPE html>
+	$mensagem = "";
+
+?>
+<!DOCTYPE html>
 <html class="ls-theme-green">
   <head>
     <title>EasyCad</title>
+
+    <script src="js/jquery.growl.js" type="text/javascript"></script>
+  	<link href="css/jquery.growl.css" rel="stylesheet" type="text/css" />
 
     <?php require_once('assets.php');?>
     <script type="text/javascript">
@@ -20,20 +26,29 @@
 
     <?php 
     	require_once('aside.php');
+
     	
     	if(isset($_POST['senhaAntiga'])){
     		if(md5($_POST['senhaAntiga']) == $empresa->getSenha()){
     			$empresa->alterarSenha($_POST['novaSenha']);
     		} else {
-    			$mensagem = 'Senha Antiga não confere.';
+    			$mensagem = 'Senha antiga nÃ£o confere.';
     		}
     	}
     ?>
 
+    <?php if($mensagem != ""):?>
+	  <script>
+	    $(document).ready(function() {
+	      $.growl.error({message: "<?php echo $mensagem;?>"})
+	    });
+	  </script>
+	<?php endif;?>
+
     <main class="ls-main ">
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-cog">Alterar Senha</h1>
-        <!-- Conteúdo -->
+        <!-- ConteÃºdo -->
         
         <!-- <div class="ls-box">
           <div class="col-lg-12 col-xs-12">
@@ -70,7 +85,7 @@
         <table class="ls-table ls-table-striped">
 	  		<tbody>
 	    		<tr>
-	     			<td><strong>Usuário: </strong> <?= $empresa->getLogin()?></td>
+	     			<td><strong>UsuÃ¡rio: </strong> <?= $empresa->getLogin()?></td>
     		</tr>
     		<tr>
       			<td>
@@ -88,13 +103,13 @@
     <div class="ls-modal-content">
       <div class="ls-modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Ã—</button>
-        <h3 id="title_change_pass">Alteração de senha</h3>
+        <h3 id="title_change_pass">AlteraÃ§Ã£o de senha</h3>
       </div>
       <form action="#" class="ls-form ls-form-horizontal validate" method="post" >
         <div class="ls-modal-body">
           <div class="ls-alert ls-alert-warning" role="alert">
             <p>Ao alterar a senha, <strong>lembre-se</strong> de escolher uma senha <strong>segura</strong>.
-            <strong>Recomenda-se:</strong> Senha entre 8 a 14 caracteres, contendo letras e números.</p>
+            <strong>Recomenda-se:</strong> Senha entre 8 a 14 caracteres, contendo letras e nÃºmeros.</p>
           </div>
 
           <label class="ls-label">

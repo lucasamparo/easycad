@@ -38,37 +38,71 @@
     <main class="ls-main ">
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-user-add">Cadastro de Participante</h1>
-        <form method="post" action="cadParticipante.php">
-        	<!-- Abas => Pessoa Física e Pessoa Jurídica. Vou "pré-separar" por div. -->
-        	<div id="pFisica">
-        		<fieldset>
-        			<legend>Pessoa Física</legend>
-	        		<label>Nome:</label>
-	        		<input type="text" name="nome_pf"><br>
-	        		<label>CPF:</label>
-	        		<input type="text" name="cpf"><br>
-	        		<label>Telefone:</label>
-	        		<input type="text" name="telefone_pf"><br>
-	        		<label>e-Mail:</label>
-	        		<input type="text" name="email_pf"><br>
-        		</fieldset>
-        		
-        	</div>        	
-        	<div id="pJuridica">
-        		<fieldset>
-        			<legend>Pessoa Jurídica</legend>
-	        		<label>Nome:</label>
-	        		<input type="text" name="nome_pj"><br>
-	        		<label>CNPJ:</label>
-	        		<input type="text" name="cnpj"><br>
-	        		<label>Telefone:</label>
-	        		<input type="text" name="telefone_pj"><br>
-	        		<label>e-Mail:</label>
-	        		<input type="text" name="email_pj"><br>
-        		</fieldset>
-        	</div>
-        	<input type="submit" value="Cadastrar">
-        </form>
+
+        <ul class="ls-tabs-nav">
+		  <li class="ls-active"><a data-ls-module="tabs" href="#pFisica">Pessoa Física</a></li>
+		  <li><a data-ls-module="tabs" href="#pJuridica">Pessoa Jurídica</a></li>
+		</ul>
+
+        <div class="col-lg-12 col-xs-12">
+        	<form method="post" class="ls-form ls-form-horizontal row" action="cadParticipante.php"> 
+				
+				<div class="ls-tabs-container">
+				  <div id="pFisica" class="ls-tab-content ls-active">
+					
+						<legend style="color:#1AB551; width:100%; font-size:20px; margin-bottom:20px;" class="ls-txt-center">Pessoa Física</legend>
+
+						<label class="ls-label col-lg-6 col-xs-12">
+			                <b class="ls-label-text">Nome:</b>
+			                <input type="text" name="nome_pf" class="ls-field" placeholder="Nome">
+			            </label>
+
+			            <label class="ls-label col-lg-6 col-xs-12">
+			                <b class="ls-label-text">CPF:</b>
+			                <input type="text" name="cpf" class="ls-field" placeholder="CPF">
+			            </label>
+
+			            <label class="ls-label col-lg-6 col-xs-12">
+			                <b class="ls-label-text">Telefone:</b>
+			                <input type="text" name="telefone_pf" class="ls-field" placeholder="Apenas números">
+			            </label>
+
+			            <label class="ls-label col-lg-6 col-xs-12">
+			                <b class="ls-label-text">E-mail:</b>
+			                <input type="email" name="email_pf" class="ls-field" placeholder="email@exemplo.com">
+			            </label>
+
+				  </div>
+				  <div id="pJuridica" class="ls-tab-content">
+
+				   		<legend style="color:#1AB551; width:100%; font-size:20px; margin-bottom:20px;" class="ls-txt-center">Pessoa Jurídica</legend>
+
+				   		<label class="ls-label col-lg-6 col-xs-12">
+			                <b class="ls-label-text">Nome:</b>
+			                <input type="text" name="nome_pj" class="ls-field" placeholder="Nome">
+			            </label>
+
+			            <label class="ls-label col-lg-6 col-xs-12">
+			                <b class="ls-label-text">CNPJ:</b>
+			                <input type="text" name="cnpj" class="ls-field" placeholder="CNPJ">
+			            </label>
+
+			            <label class="ls-label col-lg-6 col-xs-12">
+			                <b class="ls-label-text">Telefone:</b>
+			                <input type="text" name="telefone_pj" class="ls-field" placeholder="Apenas números">
+			            </label>
+
+			            <label class="ls-label col-lg-6 col-xs-12">
+			                <b class="ls-label-text">E-mail:</b>
+			                <input type="email" name="email_pj" class="ls-field" placeholder="email@exemplo.com">
+			            </label>
+
+				  </div>
+				</div>
+
+	        	<input type="submit" value= "Cadastrar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">
+        	</form>
+        </div>
         
       </div>
       <?php require_once('footer.php');?>
