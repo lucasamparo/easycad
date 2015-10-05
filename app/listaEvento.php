@@ -29,6 +29,9 @@
     <script type="text/javascript">
 		function carregarEdicao(id){
 			// $('#edEvento').css('display','inline');
+
+			// alert(id);
+
 			var req = $.ajax({
 			    url:    "wsEvento.php",
 			    type:   "get",

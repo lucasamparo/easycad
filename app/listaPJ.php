@@ -4,6 +4,38 @@
     <title>EasyCad</title>
 
     <?php require_once('assets.php');?>
+
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      $('#tb1').dataTable({
+        // "bJQueryUI": true,
+        // "sPaginationType": "full_numbers",
+        // "sDom": '<"H"Tlfr>t<"F"ip>',
+        "oLanguage": {
+          "sLengthMenu": "Registros/Página _MENU_",
+          "sZeroRecords": "Nenhum registro encontrado",
+          "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+          "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+          "sInfoFiltered": "(filtrado de _MAX_ registros)",
+          "sSearch": "Pesquisar: ",
+          "oPaginate": {
+            // "sFirst": " Primeiro ",
+            "sPrevious": " Anterior ",
+            "sNext": " Próximo ",
+            // "sLast": " Último "
+          }
+        },
+        "aaSorting": [[0, 'desc']],
+        "aoColumnDefs": [ {"sType": "num-html", "aTargets": [0]} ]
+      });
+
+    });
+    </script>
   
   </head>
   <body>
@@ -16,9 +48,9 @@
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-home">Listagem de Pessoa Jurídica</h1>
         <!-- Conteúdo -->
-        <table>
+        <table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0" id="tb1">
         	<thead>
-        		<th>Nome da PJ</th>
+        		<th>Nome da Pessoa Jurídica</th>
         		<th>CNPJ</th>
         		<th>Contagem de Eventos</th>
         	</thead>

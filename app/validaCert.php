@@ -24,11 +24,18 @@
     <main class="ls-main ">
       <div class="container-fluid">
         <h1 class="ls-title-intro ls-ico-home">Validação de Certificado</h1>
-        <form method="post" action="validaCert.php">
-        	<label>Código do Certificado:</label>
-        	<input type="text" name="cod">
-        	<input type="submit">
-        </form>
+        
+        <div class="col-lg-12 col-xs-12">
+          <form method="post" class="ls-form ls-form-horizontal row" action="validaCert.php">
+
+            <label class="ls-label col-lg-12 col-xs-12">
+                <b class="ls-label-text">Código do Certificado:</b>
+                <input type="text" name="cod" class="ls-field" placeholder="Código do Certificado">
+            </label>
+
+        	  <input type="submit" value= "Validar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">
+          </form>
+        </div>
         
         <?php 
         	if(isset($cert)){

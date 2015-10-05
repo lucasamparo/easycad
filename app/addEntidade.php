@@ -60,6 +60,63 @@
     <title>EasyCad</title>
 
     <?php require_once('assets.php');?>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      $('#tb1').dataTable({
+        // "bJQueryUI": true,
+        // "sPaginationType": "full_numbers",
+        // "sDom": '<"H"Tlfr>t<"F"ip>',
+        "oLanguage": {
+          "sLengthMenu": "Registros/Página _MENU_",
+          "sZeroRecords": "Nenhum registro encontrado",
+          "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+          "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+          "sInfoFiltered": "(filtrado de _MAX_ registros)",
+          "sSearch": "Pesquisar: ",
+          "oPaginate": {
+            // "sFirst": " Primeiro ",
+            "sPrevious": " Anterior ",
+            "sNext": " Próximo ",
+            // "sLast": " Último "
+          }
+        },
+        "aaSorting": [[0, 'desc']],
+        "aoColumnDefs": [ {"sType": "num-html", "aTargets": [0]} ]
+      });
+
+      $('#tb2').dataTable({
+        // "bJQueryUI": true,
+        // "sPaginationType": "full_numbers",
+        // "sDom": '<"H"Tlfr>t<"F"ip>',
+        "oLanguage": {
+          "sLengthMenu": "Registros/Página _MENU_",
+          "sZeroRecords": "Nenhum registro encontrado",
+          "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+          "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+          "sInfoFiltered": "(filtrado de _MAX_ registros)",
+          "sSearch": "Pesquisar: ",
+          "oPaginate": {
+            // "sFirst": " Primeiro ",
+            "sPrevious": " Anterior ",
+            "sNext": " Próximo ",
+            // "sLast": " Último "
+          }
+        },
+        "aaSorting": [[0, 'desc']],
+        "aoColumnDefs": [ {"sType": "num-html", "aTargets": [0]} ]
+      });
+
+    });
+    </script>
+
+
+
+
   	<script type="text/javascript">
 		
 		
@@ -77,10 +134,13 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
+
+        <h1 class="ls-title-intro ls-ico-home"><?= $titulo?></h1>
+
         <!-- Conteúdo -->
         <input type="hidden" name="funcao" value="<?= $funcao?>" id="funcao">
-        <h4><?= $titulo?></h4>
-        <table>
+        
+        <table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0" id="tb1">
         	<thead>
         		<th>Nome</th>
         	</thead>
@@ -96,17 +156,19 @@
         		?>
         	</tbody>
         </table>
+
         <form method="post" action="addEntidade.php?id=<?= $_GET['id']?>&f=<?= $_GET['f']?>">
         	<div id="form"></div>
-        	<input type="submit" value="Inserir">
+        	<input type="submit" value="Salvar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4" style="margin-bottom:50px;">
         </form>
+
         <hr>
         <div id="lista">
-        	<table>
+        	<table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0" id="tb2">
         		<thead>
         			<th>Nome</th>
         			<th>CPF/CNPJ</th>
-        			<th>Adicionar</th>
+        			<th>Selecionar</th>
         		</thead>
         		<tbody>
         		<?php 
@@ -120,7 +182,7 @@
         				echo '<tr>';
         					echo '<td>'.$e->getNomeEntidade().'</td>';
         					echo '<td>'.$e->getCnpjCpf().'</td>';
-        					echo '<td><a href="#" onclick="'."addParticipante('".$e->getIdEntidade()."','".$e->getNomeEntidade()."')".'">Adicionar</a></td>';
+        					echo '<td><a href="#" onclick="'."addParticipante('".$e->getIdEntidade()."','".$e->getNomeEntidade()."')".'" class="ls-ico-plus ls-btn" title="Adicionar"></a></td>';
         				echo '</tr>';
         			}
         		?>
@@ -128,7 +190,7 @@
         	</table>
         	
         	<br>
-        	<a href="matriculas.php?id=<?= $_GET['id']?>">Voltar</a>
+        	<a href="matriculas.php?id=<?= $_GET['id']?>" class="ls-ico-circle-left ls-btn ls-btn-lg ls-text-uppercase col-lg-3 col-xs-11">Voltar</a>
         </div>
         <!-- Fim Conteúdo -->
       </div>

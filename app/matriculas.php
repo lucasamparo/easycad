@@ -100,7 +100,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Matrículas - Curso: "<?= utf8_encode($curso->getNomeCurso())?>"</h1>
+        <h1 class="ls-title-intro ls-ico-home">Matrículas - Curso: "<?= $curso->getNomeCurso()?>"</h1>
         <!-- Conteúdo -->
 
         <ul class="ls-tabs-nav">
