@@ -63,5 +63,5 @@ abstract class BaseCertificado extends Doctrine_Record
         $this->hasOne('Matricula', array(
              'local' => 'idMatricula',
              'foreign' => 'idMatricula'));
-    }	
+    }
 }

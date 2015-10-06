@@ -103,6 +103,13 @@ class Curso extends BaseCurso
 		$this->liberarCertificado = $liberarCertificado;
 		return $this;
 	}
+	public function getAtivo() {
+		return $this->ativo;
+	}
+	public function setAtivo($ativo) {
+		$this->ativo = $ativo;
+		return $this;
+	}
 	public function getEvento() {
 		return $this->Evento;
 	}
@@ -139,6 +146,25 @@ class Curso extends BaseCurso
 			$tmp = $this->copy();
 			$c = $this->getTable()->findOneBy('idCurso', $this->getIdCurso());
 			if($c){
+				if(!is_null($tmp->getNomeCurso())){
+					$c->setNomeCurso($tmp->getNomeCurso());
+				}
+				if(!is_null($tmp->getLocal())){
+					$c->setLocal($tmp->getLocal());
+				}
+				if(!is_null($tmp->getConteudo())){
+					$c->setConteudo($tmp->getConteudo());
+				}
+				if(!is_null($tmp->getValor())){
+					$c->setValor($tmp->getValor());
+				}
+				if(!is_null($tmp->getCargaHoraria())){
+					$c->setCargaHoraria($tmp->getCargaHoraria());
+				}
+				if(!is_null($tmp->getDataInicio())){
+					$c->setDataInicio($tmp->getDataInicio());
+				}
+				$c->setDataFim($tmp->getDataFim());
 				if(!is_null($tmp->getCorTexto())){
 					$c->setCorTexto($tmp->getCorTexto());
 				}
@@ -147,6 +173,9 @@ class Curso extends BaseCurso
 				}
 				if(!is_null($tmp->getVerso())){
 					$c->setVerso($tmp->getVerso());
+				}
+				if(!is_null($tmp->getAtivo())){
+					$c->setAtivo($tmp->getAtivo());
 				}
 				$c->save();
 			}
@@ -166,6 +195,36 @@ class Curso extends BaseCurso
 			//echo $tb->getSqlQuery();
 			$r = $tb->execute();
 			return $r;									
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function alterarAtivo(){
+		try{
+			$tmp = $this->copy();
+			$c = $this->getTable()->findOneBy('idCurso', $this->getIdCurso());
+			if($c){
+				if(!is_null($tmp->getAtivo())){
+					$c->setAtivo($tmp->getAtivo());
+				}
+				$c->save();
+			}			
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function alterarLiberacao(){
+		try{
+			$tmp = $this->copy();
+			$c = $this->getTable()->findOneBy('idCurso', $this->getIdCurso());
+			if($c){
+				if(!is_null($tmp->getLiberarCertificado())){
+					$c->setLiberarCertificado($tmp->getLiberarCertificado());
+				}
+				$c->save();
+			}
 		} catch (Doctrine_Exception $e){
 			echo $e->getMessage();
 		}

@@ -16,6 +16,7 @@
  * @property enum $layout
  * @property enum $verso
  * @property enum $liberarCertificado
+ * @property enum $ativo
  * @property date $dataInicio
  * @property date $dataFim
  * @property Evento $Evento
@@ -142,6 +143,20 @@ abstract class BaseCurso extends Doctrine_Record
              'notnull' => true,
              'autoincrement' => false,
              ));
+        $this->hasColumn('ativo', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => 'S',
+              1 => 'N',
+             ),
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
         $this->hasColumn('dataInicio', 'date', null, array(
              'type' => 'date',
              'fixed' => false,
@@ -155,7 +170,7 @@ abstract class BaseCurso extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
+             'notnull' => false,
              'autoincrement' => false,
              ));
     }
