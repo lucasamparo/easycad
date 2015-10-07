@@ -17,4 +17,5 @@ $array['ch'] = $curso->getCargaHoraria();
 $array['dataInicio'] = $curso->getDataInicio();
 $array['dataFim'] = $curso->getDataFim();
 
+ob_end_clean();
 echo json_encode($array);

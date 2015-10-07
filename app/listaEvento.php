@@ -47,11 +47,15 @@
 				    $('#modalidade').val(data.modalidade);
 				    $('#valor').val(data.valor);
 				    $('#ch').val(data.ch);
-				    if(data.geraCert == 'S'){
+				    /*if(data.geraCert == 'S'){
 						$('#geraS').attr('checked','');
 				    } else {
 				    	$('#geraN').attr('checked','');
-				    }       
+				    } */      
+			    },
+		        error: function(XMLHttpRequest, textStatus, errorThrown){
+		        	console.log(XMLHttpRequest.responseText);
+		        	alert(textStatus+" -> "+errorThrown);
 			    }
 			});
 		}
@@ -100,7 +104,7 @@
         		<th>Início</th>
         		<th>Fim</th>
         		<th>Cursos</th>
-        		<th>Certificado</th>
+        		<!-- <th>Certificado</th> -->
         		<th>Editar</th>
         	</thead>
         	<tbody>
@@ -117,11 +121,11 @@
         				} else {
         					echo '<td>Nenhum Curso Cadastrado</td>';
         				}
-        				if($e->getGeraCertificado() == 'S'){
+        				/*if($e->getGeraCertificado() == 'S'){
         					echo '<td><a href="configuraCertificado.php?id='.$e->getIdEvento().'&t=e" class="ls-ico-cog ls-btn" title="Configurar"></a></td>';
         				} else {
         					echo '<td>Sem Certificado</td>';
-        				}
+        				}*/
         				echo '<td><a href="#" data-ls-module="modal" data-target="#edEvento" class="ls-ico-edit-admin ls-btn" title="Editar" onclick="carregarEdicao('."'".$e->getIdEvento()."'".')"></a></td>';      				       				
         			echo '</tr>';
         		}
@@ -180,20 +184,20 @@
 		                <input type="number" placeholder="Valor em Horas" min="1" name="ch" id="ch" class="ls-field">
 		            </label>
   
-		            <div class="ls-label col-lg-12 col-xs-12">
+		          <!-- <div class="ls-label col-lg-12 col-xs-12">
 		              <strong><p>Gera Certificado?</p></strong>
 
 		              <label class="ls-label-text">
 		                <input type="radio" class="ls-field-radio" name="geraCert" value="S" id="geraS" checked>
 		                Sim
-		              </label>
+		              </label> 
 
 		              <label class="ls-label-text">
 		                <input type="radio" class="ls-field-radio" name="geraCert" value="N" id="geraN">
 		                Não
 		              </label>
 
-		            </div>               
+		            </div>     -->          
 
                 </div>
                 <div class="ls-modal-footer">

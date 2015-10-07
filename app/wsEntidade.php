@@ -16,4 +16,5 @@ if(isset($_GET['c'])){
 $array['nome'] = utf8_encode($ent->getNomeEntidade());
 $array['id'] = $ent->getIdEntidade();
 
+ob_end_clean();
 echo json_encode($array);

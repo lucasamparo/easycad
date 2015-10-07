@@ -71,7 +71,9 @@
 					$e = new Evento();
 					$ev = $e->retornarEventoExterno();
 					foreach($ev as $e){
-						echo '<option value="'.$e->getIdEvento().'">'.$e->getNomeEvento().'</option>';
+						if($e->getAtivo() == 'S'){
+							echo '<option value="'.$e->getIdEvento().'">'.$e->getNomeEvento().'</option>';
+						}						
 					}
 				?>
 			</select><br>

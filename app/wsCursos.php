@@ -14,4 +14,5 @@ foreach($evento->getCurso() as $c){
 	$i++;
 }
 
+ob_end_clean();
 echo json_encode($array);

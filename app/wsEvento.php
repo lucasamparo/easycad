@@ -15,6 +15,7 @@
 	$a['ch'] = $evento->getCargaHoraria();
 	$a['geraCert'] = $evento->getGeraCertificado();
 	
-	//$array[] = $a;
+	ob_end_clean();
+	$json = json_encode($a);
 	
-	echo json_encode($a);
+	echo $json;

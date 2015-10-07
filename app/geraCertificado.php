@@ -17,7 +17,7 @@
 			Util::alert('Falha na configuração do certificado do curso '.$m->getCurso()->getNomeCurso());
 			return null;
 		}
-		if($m->getCurso()->getDataFim() == '0000-00-00'){
+		if(is_null($m->getCurso()->getDataFim())){
 			//trabalha com data simples
 			//Inserindo data
 			$pdf -> SetFont('Arial','',20);
@@ -31,7 +31,7 @@
 			$data1 = explode("-",$d);
 			$d = $m->getCurso()->getDataFim();
 			$data2 = explode("-",$d);
-			$txt = $data1[2]." de ".Util::retornaMes(intval($data1[1]))." de ".$data1[0]." até ".$data2[2]." de ".Util::retornaMes(intval($data2[1]))." de ".$data2[0];
+			$txt = $data1[2]." de ".Util::retornaMes(intval($data1[1]))." de ".$data1[0].utf8_decode(" até ").$data2[2]." de ".Util::retornaMes(intval($data2[1]))." de ".$data2[0];
 			$pdf->Text(130, 171, $txt);
 		}
 		//Carregando o layout
