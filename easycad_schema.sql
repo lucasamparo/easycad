@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 24-Set-2015 às 22:28
+-- Generation Time: 08-Out-2015 às 14:55
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -34,8 +34,9 @@ CREATE TABLE IF NOT EXISTS `certificado` (
   `codigo` varchar(12) DEFAULT NULL,
   `dataEmissao` date DEFAULT NULL,
   PRIMARY KEY (`idCertificado`),
+  UNIQUE KEY `codigo` (`codigo`),
   KEY `MatriculaCertificado` (`idMatricula`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
 
 -- --------------------------------------------------------
 
@@ -55,11 +56,12 @@ CREATE TABLE IF NOT EXISTS `curso` (
   `layout` enum('1','2') NOT NULL,
   `verso` enum('S','N') NOT NULL,
   `liberarCertificado` enum('S','N') NOT NULL,
+  `ativo` enum('S','N') NOT NULL,
   `dataInicio` date DEFAULT NULL,
-  `dataFim` date NOT NULL,
+  `dataFim` date DEFAULT NULL,
   PRIMARY KEY (`idCurso`),
   KEY `CursoEvento` (`idEvento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -94,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `entidade` (
   PRIMARY KEY (`idEntidade`),
   UNIQUE KEY `cnpj_cpf` (`cnpj_cpf`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -117,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `evento` (
   `geraCertificado` enum('S','N') NOT NULL,
   `liberarCertificado` enum('S','N') NOT NULL,
   PRIMARY KEY (`idEvento`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -135,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `matricula` (
   UNIQUE KEY `idEntidade` (`idEntidade`,`idCurso`),
   KEY `matriculaEntidade_idx` (`idEntidade`),
   KEY `matriculaCurso_idx` (`idCurso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Constraints for dumped tables
