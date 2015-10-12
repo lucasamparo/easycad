@@ -8,7 +8,12 @@
 		$pdf = new FPDF('L','mm','A4');
 		$pdf->Open();
 		$pdf->SetMargins(0, 0, 0);
-		$pdf->SetTextColor($m->getCurso()->getCorTexto());
+		$cor = $m->getCurso()->getCorTexto();
+		$cor = str_replace("#","",$cor);
+		$r = hexdec($cor[0].$cor[1]);
+		$g = hexdec($cor[2].$cor[3]);
+		$b = hexdec($cor[4].$cor[5]);
+		$pdf->SetTextColor($r,$g,$b);
 		//Colocando o fundo
 		$imgFrente = "imgCert/c_".$m->getCurso()->getIdCurso().md5($m->getCurso()->getNomeCurso())."_frente.png";
 		if(file_exists($imgFrente)){

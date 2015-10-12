@@ -5,6 +5,9 @@
 		$c = new Certificado();
 		$c->setCodigo($_POST['cod']);
 		$cert = $c->retornarCertificadoPorValidador();
+		if(!$cert){
+			$mensagem = "Código de Certificado Inválido!";
+		}
 	}
 ?>
 <!DOCTYPE html>
@@ -39,10 +42,13 @@
         
         <?php 
         	if(isset($cert)){
-        		echo '<div>';
-        			//echo '<label>'.$cert->getMatricula()->getEntidade()->getNomeEntidade().'<label>';
-        			echo '<p>Certificado emitido para '.$cert->getMatricula()->getEntidade()->getNomeEntidade().', no dia .'.Util::arrumaData($cert->getDataEmissao()).'</p>';
-        		echo '</div>';
+        		if(!$cert){
+        			echo $mensagem;
+        		} else {
+        			echo '<div>';
+        				echo '<p>Certificado emitido para <b>'.$cert->getMatricula()->getEntidade()->getNomeEntidade().'</b>, no dia <b>'.Util::arrumaData($cert->getDataEmissao()).'</b></p>';
+        			echo '</div>';
+        		}
         	}
         ?>
       </div>

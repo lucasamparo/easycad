@@ -84,9 +84,11 @@
 					//alert(data.dataFim);
 					if(data.dataFim != null){
 						$('#m').attr('checked','');
+						$('#warpFim').css('display','inline');
 						$('#dataFim').val(data.dataFim);
 					} else {
 						$('#u').attr('checked','');
+						$('#warpFim').css('display','none');
 						$('#dataFim').val(null);
 					}
 					$('#dataInicio').val(data.dataInicio);
@@ -98,6 +100,14 @@
     <script type="text/javascript">
 
     $(document).ready(function() {
+
+        $('#u').click(function(){
+			$('#warpFim').css('display','none');
+        });
+
+        $('#m').click(function(){
+        	$('#warpFim').css('display','inline');
+        });
 
       $('#tb1').dataTable({
         // "bJQueryUI": true,
@@ -194,8 +204,10 @@
        			<input type="radio" name="datas" value="m" id="m"><label for="m">Múltiplas Datas</label><br>
        			<label>Data de Início do Curso:</label>
        			<input type="date" name="dataInicio" id="dataInicio"><br>
-       			<label>Data de Término do Curso:</label>
-       			<input type="date" name="dataFim" id="dataFim"><br>
+       			<div id="warpFim">
+       				<label>Data de Término do Curso:</label>
+       				<input type="date" name="dataFim" id="dataFim"><br>
+       			</div>       			
        			<input type="hidden" name="idCurso" id="idCurso">
        			<input type="submit" value="Salvar">
        		</form>

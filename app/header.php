@@ -20,7 +20,7 @@
         <ul>
           <li><a href="alterarSenha.php">Alterar Senha</a></li>
           <li><a href="dadosEmpresa.php">Meus dados</a></li>
-          <li><a href="#">Sair</a></li>
+          <li><a href="logout.php">Sair</a></li>
          </ul>
       </nav>
     </div>
