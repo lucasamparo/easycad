@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 08-Out-2015 às 14:55
+-- Generation Time: 13-Out-2015 às 09:11
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `certificado` (
   PRIMARY KEY (`idCertificado`),
   UNIQUE KEY `codigo` (`codigo`),
   KEY `MatriculaCertificado` (`idMatricula`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
 
 -- --------------------------------------------------------
 
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `entidade` (
   `idEntidade` int(11) NOT NULL AUTO_INCREMENT,
   `nomeEntidade` varchar(255) DEFAULT NULL,
   `cnpj_cpf` varchar(18) DEFAULT NULL,
-  `telefone` varchar(11) DEFAULT NULL,
+  `telefone` varchar(18) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `tipo` enum('PF','PJ') DEFAULT NULL,
   PRIMARY KEY (`idEntidade`),
@@ -131,6 +131,7 @@ CREATE TABLE IF NOT EXISTS `matricula` (
   `idMatricula` int(11) NOT NULL AUTO_INCREMENT,
   `idEntidade` int(11) DEFAULT NULL,
   `idCurso` int(11) DEFAULT NULL,
+  `presenca` enum('P','A') NOT NULL,
   `tipo` enum('P','A','C') NOT NULL,
   `dataHoraMatricula` datetime DEFAULT NULL,
   PRIMARY KEY (`idMatricula`),
