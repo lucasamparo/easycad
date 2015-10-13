@@ -169,7 +169,7 @@
          				echo '<td>'.$data.'</td>';
          				echo '<td><a href="configuraCertificado.php?id='.$c->getIdCurso().'&t=c" class="ls-ico-cog ls-btn" title="Configurar"></a></td>';
          				echo '<td><a href="matriculas.php?id='.$c->getIdCurso().'" class="ls-ico-pencil ls-btn" title="Matrículas"></a></td>';
-         				echo '<td><a href="listaPresenca.php?id='.$c->getIdCurso().'" target="_blank" class="ls-ico-text ls-btn" title="Ver Lista"></a></td>';
+         				echo '<td><a href="listaPresenca.php?id='.$c->getIdCurso().'" target="_blank" class="ls-ico-text ls-btn" title="Ver Lista"></a><br><a href="lancaPresenca.php?id='.$c->getIdCurso().'">Lançar</a></td>';
          				echo '<td><a href="#" onclick="carregarEdicao('."'".$c->getIdCurso()."'".')">Editar</a></td>';
          				if($c->getAtivo() == 'S'){
          					echo '<td>Ativo (<a href="listaCurso.php?id='.$_GET['id'].'&c='.$c->getIdCurso().'">Desativar</a>)</td>';

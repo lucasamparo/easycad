@@ -33,6 +33,13 @@ class Matricula extends BaseMatricula
 		$this->idCurso = $idCurso;
 		return $this;
 	}
+	public function getPresenca() {
+		return $this->presenca;
+	}
+	public function setPresenca($presenca) {
+		$this->presenca = $presenca;
+		return $this;
+	}
 	public function getDataHoraMatricula() {
 		return $this->dataHoraMatricula;
 	}
@@ -88,6 +95,29 @@ class Matricula extends BaseMatricula
 	public function retornarMatriculaPorIdParticipante(){
 		try{
 			return $this->getTable()->findBy('idEntidade', $this->getIdEntidade());
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function retornarMatriculaPorIdCurso(){
+		try{
+			return $this->getTable()->findBy('idCurso', $this->getIdCurso());
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function atualizarMatricula(){
+		try{
+			$tmp = $this->copy();
+			$m = $this->getTable()->findOneBy('idMatricula', $this->getIdMatricula());
+			if($m){
+				if(!is_null($tmp->getPresenca())){
+					$m->setPresenca($tmp->getPresenca());
+				}
+				$m->save();
+			}
 		} catch (Doctrine_Exception $e){
 			echo $e->getMessage();
 		}

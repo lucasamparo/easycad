@@ -185,5 +185,5 @@ abstract class BaseCurso extends Doctrine_Record
         $this->hasMany('Matricula', array(
              'local' => 'idCurso',
              'foreign' => 'idCurso'));
-    }	
+    }
 }

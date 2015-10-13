@@ -49,9 +49,9 @@ abstract class BaseEntidade extends Doctrine_Record
              'notnull' => false,
              'autoincrement' => false,
              ));
-        $this->hasColumn('telefone', 'string', 11, array(
+        $this->hasColumn('telefone', 'string', 18, array(
              'type' => 'string',
-             'length' => 11,
+             'length' => 18,
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,

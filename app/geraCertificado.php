@@ -119,7 +119,7 @@
 	if(!isset($_POST['cpf'])){
 		echo '<form method="post" action="geraCertificado.php">';
 			echo '<label>CPF:</label>';
-			echo '<input type="text" name="cpf">';
+			echo '<input type="text" name="cpf" required>';
 			echo '<input type="submit" value="Gerar Certificado">';
 		echo '</form>';
 	} else {
@@ -135,8 +135,10 @@
 		//print_r($mat->toArray());
 		foreach($mat as $m){
 			if($m->getCurso()->getLiberarCertificado() == 'S'){
-				$r = constroiPdf($m);
-				echo $m->getCurso()->getNomeCurso().' -> <a href="'.$r.'" target="_blank">Certificado</a><br>';
+				if($m->getPresenca() == 'P'){
+					$r = constroiPdf($m);
+					echo $m->getCurso()->getNomeCurso().' -> <a href="'.$r.'" target="_blank">Certificado</a><br>';
+				}				
 			}			
 		}
 	}

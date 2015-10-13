@@ -8,6 +8,7 @@
  * @property integer $idMatricula
  * @property integer $idEntidade
  * @property integer $idCurso
+ * @property enum $presenca
  * @property enum $tipo
  * @property timestamp $dataHoraMatricula
  * @property Curso $Curso
@@ -50,6 +51,20 @@ abstract class BaseMatricula extends Doctrine_Record
              'notnull' => false,
              'autoincrement' => false,
              ));
+        $this->hasColumn('presenca', 'enum', 1, array(
+             'type' => 'enum',
+             'length' => 1,
+             'fixed' => false,
+             'unsigned' => false,
+             'values' => 
+             array(
+              0 => 'P',
+              1 => 'A',
+             ),
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
         $this->hasColumn('tipo', 'enum', 1, array(
              'type' => 'enum',
              'length' => 1,
@@ -89,5 +104,5 @@ abstract class BaseMatricula extends Doctrine_Record
         $this->hasMany('Certificado', array(
              'local' => 'idMatricula',
              'foreign' => 'idMatricula'));
-    }
+    }	
 }
