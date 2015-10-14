@@ -92,6 +92,12 @@
 
 	        <input type="submit" value="Lançar Presença" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">
         </form>
+
+        <div class="ls-label col-lg-12 col-xs-12"></div>
+
+        <div>
+        	<a href="listaCurso.php?id=<?= $curso->getEvento()->getIdEvento()?>" class="ls-ico-circle-left ls-btn ls-btn-lg ls-text-uppercase col-lg-3 col-xs-11">Voltar</a>
+        </div>
 		
       </div>
       <?php require_once('footer.php');?>
