@@ -43,7 +43,7 @@
 		if($m->getCurso()->getLayout() == '1'){
 			//Trabalha com o layout1
 			//Inserindo Nome do Curso
-			$evento = utf8_decode($m->getCurso()->getNomeCurso()." - ".$m->getCurso()->getCargaHoraria()." horas");
+			$evento = utf8_decode($m->getCurso()->getNomeCurso()." - ".$m->getCurso()->getCargaHoraria()." h");
 			$pdf->SetFont('Arial','B',40);
 			$pdf->SetXY(0, 40);
 			$pdf->Cell(0,0,$evento,0,1,'C');
@@ -61,7 +61,7 @@
 			$pdf->Cell(0,0,$nome,0,1,'C');
 			
 			//Inserindo nome do Curso
-			$evento = utf8_decode($m->getCurso()->getNomeCurso()." - ".$m->getCurso()->getCargaHoraria()." horas");
+			$evento = utf8_decode($m->getCurso()->getNomeCurso()." - ".$m->getCurso()->getCargaHoraria()." h");
 			$pdf->SetFont('Arial','B',25);
 			$pdf->SetXY(0, 65);
 			$pdf->Cell(0,0,$evento,0,1,'C');
@@ -115,13 +115,37 @@
 		$c->inserirCertificado();
 		return $url;
 	}
+
+	echo '	<link href="css/locastyle.css" rel="stylesheet" type="text/css">
+			<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+			
+			<script type="text/javascript" language="JScript">
+		      	$(document).ready(function (){
+		        			
+					$("#cpf").mask("999.999.999-99");
+				});
+		    </script>
+
+		    <script src="js/locastyle.js" type="text/javascript"></script>';
+
+	echo'<div class="col-lg-12 col-xs-12 ls-txt-center">
+			<img src="images/easycad.png" width="150" height="60" style="margin-right:20px;">
+			<img src="images/eambjr.png" width="150" height="60" style="margin-left:20px;">
+		</div>';
 	
 	if(!isset($_POST['cpf'])){
-		echo '<form method="post" action="geraCertificado.php">';
-			echo '<label>CPF:</label>';
-			echo '<input type="text" name="cpf" required>';
-			echo '<input type="submit" value="Gerar Certificado">';
+		echo'<div class="col-lg-12 col-xs-12">';
+		echo '<form method="post" class="ls-form ls-form-horizontal row" action="geraCertificado.php">';
+
+		echo '<label class="ls-label col-lg-12 col-xs-12">
+                <b class="ls-label-text">CPF:</b>
+                <input type="text" name="cpf" id="cpf" class="ls-field" placeholder="CPF" required>
+            </label>';
+
+			echo '
+			<input type="submit" value="Gerar Certificado" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">';
 		echo '</form>';
+		echo '</div>';
 	} else {
 		//Carregando dados para o certificado
 		//Precisa layout, cor da fonte, imagem de fundo, nome do curso, nome do aluno
@@ -137,7 +161,10 @@
 			if($m->getCurso()->getLiberarCertificado() == 'S'){
 				if($m->getPresenca() == 'P'){
 					$r = constroiPdf($m);
-					echo $m->getCurso()->getNomeCurso().' -> <a href="'.$r.'" target="_blank">Certificado</a><br>';
+
+					echo '<div class="ls-txt-center">';
+						echo '<p>'.$m->getCurso()->getNomeCurso().' | <a href="'.$r.'" target="_blank">Certificado</a><br></p>';
+					echo '</div>';
 				}				
 			}			
 		}

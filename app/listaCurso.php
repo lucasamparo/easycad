@@ -172,14 +172,14 @@
          				echo '<td><a href="listaPresenca.php?id='.$c->getIdCurso().'" target="_blank" class="ls-ico-eye ls-btn" title="Ver Lista"></a> | <a href="lancaPresenca.php?id='.$c->getIdCurso().'">Lançar</a></td>';
          				echo '<td><a href="#" onclick="carregarEdicao('."'".$c->getIdCurso()."'".')" data-ls-module="modal" data-target="#edCurso" class="ls-ico-edit-admin ls-btn" title="Editar"></a></td>';
          				if($c->getAtivo() == 'S'){
-         					echo '<td>Ativo (<a href="listaCurso.php?id='.$_GET['id'].'&c='.$c->getIdCurso().'">Desativar</a>)</td>';
+         					echo '<td><img src="images/verde.png"> | Ativo (<a href="listaCurso.php?id='.$_GET['id'].'&c='.$c->getIdCurso().'">Desativar</a>)</td>';
          				} else {
-         					echo '<td>Inativo (<a href="listaCurso.php?id='.$_GET['id'].'&c='.$c->getIdCurso().'">Reativar</a>)</td>';
+         					echo '<td><img src="images/vermelho.png"> | Inativo (<a href="listaCurso.php?id='.$_GET['id'].'&c='.$c->getIdCurso().'">Reativar</a>)</td>';
          				}
          				if($c->getLiberarCertificado() == 'S'){
-         					echo '<td>Liberado (<a href="listaCurso.php?id='.$_GET['id'].'&d='.$c->getIdCurso().'">Bloquear</a>)</td>';
+         					echo '<td><img src="images/verde.png"> | Liberado (<a href="listaCurso.php?id='.$_GET['id'].'&d='.$c->getIdCurso().'">Bloquear</a>)</td>';
          				} else {
-         					echo '<td>Retido (<a href="listaCurso.php?id='.$_GET['id'].'&d='.$c->getIdCurso().'">Liberar</a>)</td>';
+         					echo '<td><img src="images/vermelho.png"> | Retido (<a href="listaCurso.php?id='.$_GET['id'].'&d='.$c->getIdCurso().'">Liberar</a>)</td>';
          				}
          			echo '</tr>';
          		}

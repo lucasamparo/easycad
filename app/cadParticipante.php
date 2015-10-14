@@ -32,7 +32,7 @@
 
     <?php require_once('assets.php');?>
 
-    <script language="JScript">
+    <script type="text/javascript" language="JScript">
       $(document).ready(function (){
         	
         	$("#cnpj").mask("99.999.999/9999-99");
