@@ -144,7 +144,7 @@
     <main class="ls-main ">
       <div class="container-fluid">
 
-        <h1 class="ls-title-intro ls-ico-home">Configuração do Certificado</h1>
+        <h1 class="ls-title-intro ls-ico-cog">Configuração do Certificado</h1>
 
         <legend style="color:#1AB551; width:100%; font-size:20px; margin-bottom:20px;" class="ls-txt-center">Certificado: <?= utf8_encode($titulo)?></legend>
 
@@ -208,6 +208,11 @@
 			            echo '</label>';
 	        		}
 	        	?>
+
+
+	        	<label class="ls-label col-lg-12 col-xs-12">
+	              
+	            </label>
 
 	        	<input type="submit" value= "Salvar Configurações" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4" style="margin-bottom:50px;">
         	</form>

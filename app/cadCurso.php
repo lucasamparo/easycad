@@ -1,5 +1,7 @@
 ﻿<?php 
 	require_once 'gerencia_login.php';
+
+  $mensagem = "";
 	
 	if(isset($_POST['nome'])){
 		$c = new Curso();
@@ -33,6 +35,8 @@
 			$c->setDataFim($_POST['dataFim']);
 		}
 		$c->inserirCurso();
+
+    $mensagem = "Curso cadastrado com sucesso!";
 	}	
 ?>
 <!DOCTYPE html>
@@ -56,6 +60,14 @@
   </head>
   <body>
 
+  <?php if($mensagem != ""):?>
+    <script>
+      $(document).ready(function() {
+        $.growl.notice({message: "<?php echo $mensagem;?>"})
+      });
+    </script>
+  <?php endif;?>
+
     <?php require_once('header.php');?>
 
     <?php require_once('aside.php');?>
@@ -70,13 +82,13 @@
 
             <label class="ls-label col-lg-12 col-xs-12">
                 <b class="ls-label-text">Nome:</b>
-                <input type="text" name="nome" class="ls-field" placeholder="Nome">
+                <input type="text" name="nome" class="ls-field" placeholder="Nome" required>
             </label>
 
             <label class="ls-label col-lg-6 col-xs-12">
               <b class="ls-label-text">Evento:</b>
               <div class="ls-custom-select">
-                <select class="ls-custom" name="evento">
+                <select class="ls-custom" name="evento" required>
                     <option value="0">Nenhum Evento</option>
                       <?php 
                         $e = new Evento();
@@ -91,22 +103,22 @@
 
             <label class="ls-label col-lg-6 col-xs-12">
                 <b class="ls-label-text">Local:</b>
-                <input type="text" name="local" class="ls-field" placeholder="Local">
+                <input type="text" name="local" class="ls-field" placeholder="Local" required>
             </label>
 
             <label class="ls-label col-lg-12 col-xs-12">
-                <b class="ls-label-text">Conteúdo Programático:</b>
-                <textarea rows="10" name="conteudo" placeholder="Descrição..." class="ls-field"></textarea>
+                <b class="ls-label-text">Conteúdo Programático: (Separar o conteúdo com ponto e vírgula " ; ")</b>
+                <textarea rows="10" name="conteudo" placeholder="Descrição..." class="ls-field" required></textarea>
             </label>
 
             <label class="ls-label col-lg-6 col-xs-12">
                 <b class="ls-label-text">Valor:</b>
-                <input type="number" step="0.01" placeholder="R$ 0,00" name="valor" class="ls-field">
+                <input type="number" step="0.01" placeholder="R$ 0,00" name="valor" class="ls-field" required>
             </label>
 
             <label class="ls-label col-lg-6 col-xs-12">
                 <b class="ls-label-text">Carga Horária:</b>
-                <input type="number" placeholder="Valor em Horas" min="1" name="ch" class="ls-field">
+                <input type="number" placeholder="Valor em Horas" min="1" name="ch" class="ls-field" required>
             </label>
 
             <div class="ls-label col-lg-12 col-xs-12">

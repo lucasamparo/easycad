@@ -1,5 +1,7 @@
 ﻿<?php 
 	require_once 'gerencia_login.php';
+
+	$mensagem = "";
 	
 	if(isset($_GET['e'])){
 		if($_GET['e'] == 1){
@@ -14,7 +16,11 @@
 			$e->setGeraCertificado($_POST['geraCert']);
 			$e->alterarEvento();
 			header('Location: listaEvento.php');
+
+			
 		}
+
+		
 	}
 ?>
 <!DOCTYPE html>
@@ -23,6 +29,7 @@
     <title>EasyCad</title>
 
     <?php require_once('assets.php');?>
+    
     <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
 
@@ -90,13 +97,21 @@
   </head>
   <body>
 
+  <?php if($mensagem != ""):?>
+    <script>
+      $(document).ready(function() {
+        $.growl.notice({message: "<?php echo $mensagem;?>"})
+      });
+    </script>
+  <?php endif;?>
+
     <?php require_once('header.php');?>
 
     <?php require_once('aside.php');?>
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-chart-bar-up">Listagem de Eventos</h1>
+        <h1 class="ls-title-intro ls-ico-calendar">Listagem de Eventos</h1>
 
         <table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0" id="tb1">
         	<thead>
@@ -154,18 +169,18 @@
 
                     <label class="ls-label col-lg-12 col-xs-12">
 		                <b class="ls-label-text">Data Início:</b>
-		                <input type="date" name="inicio" id="inicio" class="ls-field">
+		                <input type="date" name="inicio" id="inicio" class="ls-field" required>
 		            </label>
 
 		            <label class="ls-label col-lg-12 col-xs-12">
 		                <b class="ls-label-text">Data Fim:</b>
-		                <input type="date" name="fim" id="fim" class="ls-field">
+		                <input type="date" name="fim" id="fim" class="ls-field" required>
 		            </label>
 
 		            <label class="ls-label col-lg-12 col-xs-12">
 		              <b class="ls-label-text">Modalidade de Inscrição:</b>
 		              <div class="ls-custom-select">
-		                <select class="ls-custom" name="modalidade">
+		                <select class="ls-custom" name="modalidade" required>
 		                    <option value="P">Presencial</option>
 		                    <option value="O">Online</option>
 		                    <option value="PO">Presencial + Online</option>
@@ -181,7 +196,7 @@
 
 		            <label class="ls-label col-lg-12 col-xs-12">
 		                <b class="ls-label-text">Carga Horária:</b>
-		                <input type="number" placeholder="Valor em Horas" min="1" name="ch" id="ch" class="ls-field">
+		                <input type="number" placeholder="Valor em Horas" min="0" name="ch" id="ch" class="ls-field">
 		            </label>
   
 		          <!-- <div class="ls-label col-lg-12 col-xs-12">

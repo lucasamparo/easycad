@@ -66,7 +66,7 @@
       </label>
 
       <input type="submit" value="Entrar" class="ls-btn-primary ls-btn-block ls-btn-lg">
-      <div class="ls-alert-danger text-center"><?= $mensagem;?></div>
+      <!-- <div class="ls-alert-danger text-center"><?= $mensagem;?></div> -->
 
     </fieldset>
   </form>

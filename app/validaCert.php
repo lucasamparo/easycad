@@ -26,7 +26,7 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Validação de Certificado</h1>
+        <h1 class="ls-title-intro ls-ico-ftp">Validação de Certificado</h1>
         
         <div class="col-lg-12 col-xs-12">
           <form method="post" class="ls-form ls-form-horizontal row" action="validaCert.php">
@@ -43,10 +43,15 @@
         <?php 
         	if(isset($cert)){
         		if(!$cert){
-        			echo $mensagem;
+
+              echo '<div class="col-lg-12 col-xs-12 ls-txt-center" style="margin-top:80px; background-color:#c0392b;">';
+                echo '<p style="color:#FFFFFF; font-size:20px; padding:10px;">'.$mensagem.'</p>';
+              echo '</div>';
+
+        			
         		} else {
-        			echo '<div>';
-        				echo '<p>Certificado emitido para <b>'.$cert->getMatricula()->getEntidade()->getNomeEntidade().'</b>, no dia <b>'.Util::arrumaData($cert->getDataEmissao()).'</b></p>';
+        			echo '<div class="col-lg-12 col-xs-12 ls-txt-center" style="margin-top:80px; background-color:#1AB551;">';
+        				echo '<p style="color:#FFFFFF; font-size:20px; padding:10px;">Certificado emitido para <b>'.$cert->getMatricula()->getEntidade()->getNomeEntidade().'</b>, no dia <b>'.Util::arrumaData($cert->getDataEmissao()).'</b></p>';
         			echo '</div>';
         		}
         	}

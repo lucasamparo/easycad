@@ -4,3 +4,5 @@
 <meta name="description" content="">
 <link href="css/locastyle.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.growl.js" type="text/javascript"></script>
+<link href="css/jquery.growl.css" rel="stylesheet" type="text/css" />

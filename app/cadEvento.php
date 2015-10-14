@@ -1,5 +1,7 @@
 ﻿<?php 
 	require_once 'gerencia_login.php';
+
+  $mensagem = "";
 	
 	if(isset($_POST['nome'])){
 		$e = new Evento();
@@ -11,6 +13,8 @@
 		$e->setCargaHoraria($_POST['ch']);
 		$e->setGeraCertificado($_POST['geraCert']);
 		$e->inserirEvento();
+
+    $mensagem = "Evento cadastrado com sucesso!";
 	}	
 ?>
 <!DOCTYPE html>
@@ -22,6 +26,14 @@
     
   </head>
   <body>
+
+  <?php if($mensagem != ""):?>
+    <script>
+      $(document).ready(function() {
+        $.growl.notice({message: "<?php echo $mensagem;?>"})
+      });
+    </script>
+  <?php endif;?>
 
     <?php require_once('header.php');?>
 
@@ -36,23 +48,23 @@
 
             <label class="ls-label col-lg-12 col-xs-12">
                 <b class="ls-label-text">Nome do Evento:</b>
-                <input type="text" name="nome" class="ls-field" placeholder="Nome do Evento">
+                <input type="text" name="nome" class="ls-field" placeholder="Nome do Evento" required>
             </label>
             
             <label class="ls-label col-lg-6 col-xs-12">
                 <b class="ls-label-text">Data Início:</b>
-                <input type="date" name="inicio" class="ls-field">
+                <input type="date" name="inicio" class="ls-field" required>
             </label>
 
             <label class="ls-label col-lg-6 col-xs-12">
                 <b class="ls-label-text">Data Fim:</b>
-                <input type="date" name="fim" class="ls-field">
+                <input type="date" name="fim" class="ls-field" required>
             </label>
 
             <label class="ls-label col-lg-6 col-xs-12">
               <b class="ls-label-text">Modalidade de Inscrição:</b>
               <div class="ls-custom-select">
-                <select class="ls-custom" name="modalidade">
+                <select class="ls-custom" name="modalidade" required>
                     <option value="P">Presencial</option>
                     <option value="O">Online</option>
                     <option value="PO">Presencial + Online</option>
@@ -68,7 +80,7 @@
 
             <label class="ls-label col-lg-6 col-xs-12">
                 <b class="ls-label-text">Carga Horária:</b>
-                <input type="number" placeholder="Valor em Horas" min="1" name="ch" class="ls-field">
+                <input type="number" placeholder="Valor em Horas" min="0" name="ch" class="ls-field">
             </label>
 
 

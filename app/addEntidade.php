@@ -135,7 +135,7 @@
     <main class="ls-main ">
       <div class="container-fluid">
 
-        <h1 class="ls-title-intro ls-ico-home"><?= $titulo?></h1>
+        <h1 class="ls-title-intro ls-ico-user-add"><?= $titulo?></h1>
 
         <!-- Conteúdo -->
         <input type="hidden" name="funcao" value="<?= $funcao?>" id="funcao">

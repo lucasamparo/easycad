@@ -1,6 +1,7 @@
 ﻿<?php 
 	require_once 'gerencia_login.php';
 	$mensagem = "";
+  $val = 0;
 
 ?>
 <!DOCTYPE html>
@@ -8,10 +9,8 @@
   <head>
     <title>EasyCad</title>
 
-    <script src="js/jquery.growl.js" type="text/javascript"></script>
-  	<link href="css/jquery.growl.css" rel="stylesheet" type="text/css" />
-
     <?php require_once('assets.php');?>
+
     <script type="text/javascript">
 		$(document).ready(function(){
 			$('#password_field2').focus(function(){
@@ -27,17 +26,30 @@
     <?php 
     	require_once('aside.php');
 
+
     	
     	if(isset($_POST['senhaAntiga'])){
     		if(md5($_POST['senhaAntiga']) == $empresa->getSenha()){
     			$empresa->alterarSenha($_POST['novaSenha']);
+
+          $mensagem = 'Senha atualizada com sucesso!';
+          $val = 1;
     		} else {
     			$mensagem = 'Senha antiga não confere.';
+          $val = 2;
     		}
     	}
     ?>
 
-    <?php if($mensagem != ""):?>
+    <?php if(($mensagem != "") && ($val == 1)):?>
+    <script>
+      $(document).ready(function() {
+        $.growl.notice({message: "<?php echo $mensagem;?>"})
+      });
+    </script>
+  <?php endif;?>
+
+    <?php if(($mensagem != "") && ($val == 2)):?>
 	  <script>
 	    $(document).ready(function() {
 	      $.growl.error({message: "<?php echo $mensagem;?>"})

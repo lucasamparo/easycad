@@ -1,5 +1,7 @@
 ﻿<?php 
 	require_once 'gerencia_login.php';
+
+	$mensagem = "";
 	
 	if(isset($_POST['nome_pf']) || isset($_POST['nome_pj'])){
 		$e = new Entidade();
@@ -19,6 +21,8 @@
 			$e->setTipo('PJ');
 		}
 		$e->inserirEntidade();
+
+		$mensagem = "Participante cadastrado com sucesso!";
 	}
 ?>
 <!DOCTYPE html>
@@ -27,9 +31,50 @@
     <title>EasyCad</title>
 
     <?php require_once('assets.php');?>
+
+    <script language="JScript">
+      $(document).ready(function (){
+        	
+        	$("#cnpj").mask("99.999.999/9999-99");
+		
+			$("#cpf").mask("999.999.999-99");
+
+
+			$('#telefone_pj').focus(function(){
+				$("#telefone_pj").unmask();
+			});
+			$('#telefone_pj').blur(function(){
+				if($('#telefone_pj').val().length == 11){
+					$("#telefone_pj").mask("(99) 99999-9999");
+				} else {
+					$("#telefone_pj").mask("(99) 9999-9999");
+				}
+			});
+
+			$('#telefone_pf').focus(function(){
+				$("#telefone_pf").unmask();
+			});
+			$('#telefone_pf').blur(function(){
+				if($('#telefone_pf').val().length == 11){
+					$("#telefone_pf").mask("(99) 99999-9999");
+				} else {
+					$("#telefone_pf").mask("(99) 9999-9999");
+				}
+			});
+      });
+
+    </script>
     
   </head>
   <body>
+
+  <?php if($mensagem != ""):?>
+    <script>
+      $(document).ready(function() {
+        $.growl.notice({message: "<?php echo $mensagem;?>"})
+      });
+    </script>
+  <?php endif;?>
 
     <?php require_once('header.php');?>
 
@@ -59,12 +104,12 @@
 
 			            <label class="ls-label col-lg-6 col-xs-12">
 			                <b class="ls-label-text">CPF:</b>
-			                <input type="text" name="cpf" class="ls-field" placeholder="CPF">
+			                <input type="text" name="cpf" id="cpf" class="ls-field" placeholder="CPF">
 			            </label>
 
 			            <label class="ls-label col-lg-6 col-xs-12">
 			                <b class="ls-label-text">Telefone:</b>
-			                <input type="text" name="telefone_pf" class="ls-field" placeholder="Apenas números">
+			                <input type="text" name="telefone_pf" id="telefone_pf" class="ls-field" placeholder="Apenas números">
 			            </label>
 
 			            <label class="ls-label col-lg-6 col-xs-12">
@@ -84,12 +129,12 @@
 
 			            <label class="ls-label col-lg-6 col-xs-12">
 			                <b class="ls-label-text">CNPJ:</b>
-			                <input type="text" name="cnpj" class="ls-field" placeholder="CNPJ">
+			                <input type="text" name="cnpj" id="cnpj" class="ls-field" placeholder="CNPJ">
 			            </label>
 
 			            <label class="ls-label col-lg-6 col-xs-12">
 			                <b class="ls-label-text">Telefone:</b>
-			                <input type="text" name="telefone_pj" class="ls-field" placeholder="Apenas números">
+			                <input type="text" name="telefone_pj" id="telefone_pj" class="ls-field" placeholder="Apenas números">
 			            </label>
 
 			            <label class="ls-label col-lg-6 col-xs-12">

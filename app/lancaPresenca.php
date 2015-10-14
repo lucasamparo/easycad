@@ -1,5 +1,7 @@
-<?php 
+Ôªø<?php 
 	require_once('gerencia_login.php');
+
+	$mensagem = "";
 	
 	if(isset($_GET['id'])){
 		$c = new Curso();
@@ -22,7 +24,10 @@
 				}
 			}
 			$presenca = $curso->getMatricula();
+
+			$mensagem = "Lista de presen√ßa salva com sucesso!";
 		}
+		
 	} else {
 		header('Location: listaEvento.php');
 	}
@@ -33,9 +38,19 @@
     <title>EasyCad</title>
 
     <?php require_once('assets.php');?>
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
   
   </head>
   <body>
+
+  <?php if($mensagem != ""):?>
+    <script>
+      $(document).ready(function() {
+        $.growl.notice({message: "<?php echo $mensagem;?>"})
+      });
+    </script>
+  <?php endif;?>
 
     <?php require_once('header.php');?>
 
@@ -43,16 +58,15 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">LanÁamento de PresenÁa - Curso "<?= $curso->getNomeCurso()?>"</h1>
+        <h1 class="ls-title-intro ls-ico-list2">Lan√ßamento de Presen√ßa - Curso "<?= $curso->getNomeCurso()?>"</h1>
         <hr>
-        <!-- Conte˙do -->
-        
+                
         <form method="post">
         	<input type="hidden" name="valida" value="1">
-	        <table>
+	        <table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0">
 	        	<thead>
 	        		<th>Nome do Aluno</th>
-	        		<th>PresenÁa</th>
+	        		<th>Presen√ßa</th>
 	        	</thead>
 	        	<tbody>
 	        		<?php 
@@ -75,9 +89,10 @@
 	        		?>
 	        	</tbody>
 	        </table>
-	        <input type="submit" value="LanÁar PresenÁa">
+
+	        <input type="submit" value="Lan√ßar Presen√ßa" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">
         </form>
-        <!-- Fim Conte˙do -->
+		
       </div>
       <?php require_once('footer.php');?>
     </main>

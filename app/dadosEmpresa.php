@@ -1,5 +1,7 @@
 ﻿<?php 
 	require_once 'gerencia_login.php';
+
+  $mensagem = "";
 	
 	$e = new Empresa();
 	$empresa = $e->retornarEmpresa();
@@ -10,6 +12,8 @@
 		$e->setResponsavel(utf8_decode($_POST['responsavel']));
 		$e->setCnpj($_POST['cnpj']);
 		$e->alterarEmpresa();
+
+    $mensagem = "Dados atualizados com sucesso!";
 	}
 ?>
 <!DOCTYPE html>
@@ -29,13 +33,21 @@
   </head>
   <body>
 
+  <?php if($mensagem != ""):?>
+    <script>
+      $(document).ready(function() {
+        $.growl.notice({message: "<?php echo $mensagem;?>"})
+      });
+    </script>
+  <?php endif;?>
+
     <?php require_once('header.php');?>
 
     <?php require_once('aside.php');?>
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-user">Meus Dados</h1>
+        <h1 class="ls-title-intro ls-ico-globe">Meus Dados</h1>
         <!-- Conteúdo -->
                 
           <div class="col-lg-12 col-xs-12">
