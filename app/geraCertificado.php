@@ -153,20 +153,31 @@
 		$u = new Entidade();
 		$u->setCnpjCpf($_POST['cpf']);
 		$ent = $u->retornarEntidadePorCnpjCpf();
-		//print_r($ent->toArray());
-		$m->setIdEntidade($ent->getIdEntidade());
-		$mat = $m->retornarMatriculaPorIdParticipante();
-		//print_r($mat->toArray());
-		foreach($mat as $m){
-			if($m->getCurso()->getLiberarCertificado() == 'S'){
-				if($m->getPresenca() == 'P'){
-					$r = constroiPdf($m);
-
-					echo '<div class="ls-txt-center">';
-						echo '<p>'.$m->getCurso()->getNomeCurso().' | <a href="'.$r.'" target="_blank">Certificado</a><br></p>';
-					echo '</div>';
-				}				
-			}			
-		}
+		if($ent){
+			//print_r($ent->toArray());
+			$m->setIdEntidade($ent->getIdEntidade());
+			$mat = $m->retornarMatriculaPorIdParticipante();
+			if(count($mat) > 0){
+				//print_r($mat->toArray());
+				foreach($mat as $m){
+					if($m->getCurso()->getLiberarCertificado() == 'S'){
+						if($m->getPresenca() == 'P'){
+							$r = constroiPdf($m);								
+							echo '<div class="ls-txt-center">';
+								echo '<p>'.$m->getCurso()->getNomeCurso().' | <a href="'.$r.'" target="_blank">Certificado</a><br></p>';
+							echo '</div>';
+						}
+					}
+				}
+			} else {
+				echo '<div class="ls-txt-center">';
+					echo '<p>Nenhuma Matrícula efetuada para esse participante!</p>';
+				echo '</div>';
+			}
+		} else {
+			echo '<div class="ls-txt-center">';
+					echo '<p>Participante Não Cadastrado!!</p>';
+				echo '</div>';
+		}		
 	}
 ?>

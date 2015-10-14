@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 13-Out-2015 às 09:11
+-- Generation Time: 14-Out-2015 às 10:41
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `certificado` (
   PRIMARY KEY (`idCertificado`),
   UNIQUE KEY `codigo` (`codigo`),
   KEY `MatriculaCertificado` (`idMatricula`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 -- --------------------------------------------------------
 
