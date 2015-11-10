@@ -1,4 +1,4 @@
-<?php 
+Ôªø<?php 
 	require_once 'gerencia_login.php';
 	
 	if(isset($_GET['id'])){
@@ -38,22 +38,57 @@
   <head>
     <title>EasyCad</title>
     <?php require_once('assets.php');?>
+
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+
     <script type="text/javascript">
-		$(document).ready(function(){
-			$('#addFuncao').click(function(){
-				$('#novaFuncao').css('display','inline');
-			});
-		});
+		// $(document).ready(function(){
+		// 	$('#addFuncao').click(function(){
+		// 		// $('#novaFuncao').css('display','inline');
+		// 	});
+		// });
 
 		function carregaEdicao(id,funcao,admissao,demissao){
-			$('#edFuncao').css('display','inline');
+			// $('#edFuncao').css('display','inline');
 
 			$('#id').val(id);
 			$('#funcao').val(funcao);
 			$('#admissao').val(admissao);
 			$('#demissao').val(demissao);
 		}
-    </script>  
+    </script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      $('#tb1').dataTable({
+        // "bJQueryUI": true,
+        // "sPaginationType": "full_numbers",
+        // "sDom": '<"H"Tlfr>t<"F"ip>',
+        "oLanguage": {
+          "sLengthMenu": "Registros/P√°gina _MENU_",
+          "sZeroRecords": "Nenhum registro encontrado",
+          "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+          "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+          "sInfoFiltered": "(filtrado de _MAX_ registros)",
+          "sSearch": "Pesquisar: ",
+          "oPaginate": {
+            // "sFirst": " Primeiro ",
+            "sPrevious": " Anterior ",
+            "sNext": " Pr√≥ximo ",
+            // "sLast": " √öltmo "
+          }
+        },
+        "aaSorting": [[0, 'desc']],
+        "aoColumnDefs": [ {"sType": "num-html", "aTargets": [0]} ]
+      });
+
+    });
+    </script>
+
+
   </head>
   <body>
 
@@ -63,14 +98,14 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">FunÁıes Exercidas - <?= $membro->getNomeMembro()?></h1>
-        <!-- Conte˙do -->
+        <h1 class="ls-title-intro ls-ico-folder-open">Fun√ß√µes Exercidas - <?= $membro->getNomeMembro()?></h1>
+        <!-- Conte√∫do -->
         
         <div id="membros">
-        	<table>
+        	<table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0" id="tb1">
         		<thead>
-        			<th>FunÁıes</th>
-	        		<th>Admiss„o</th>
+        			<th>Fun√ß√µes</th>
+	        		<th>Admiss√£o</th>
 	        		<th>Concluir Ciclo</th>
 	        		<th>Editar</th>
         		</thead>
@@ -82,44 +117,103 @@
 								echo '<td>'.$v->getFuncao().'</td>';
 								echo '<td>'.Util::arrumaData($v->getDataAdmissao()).'</td>';
 								if(is_null($v->getDataDemissao())){
-									echo '<td><a href="?id='.$_GET['id'].'&c='.$v->getIdVinculo().'">Concluir FunÁ„o</a></td>';
+									echo '<td><a href="?id='.$_GET['id'].'&c='.$v->getIdVinculo().'" class="ls-ico-radio-unchecked ls-btn" title="Concluir Fun√ß√£o"></a></td>';
 								} else {
 									echo '<td>'.Util::arrumaData($v->getDataDemissao()).'</td>';
 								}
-								echo '<td><a href="#" onclick="carregaEdicao('."'".$v->getIdVinculo()."','".$v->getFuncao()."','".$v->getDataAdmissao()."','".$v->getDataDemissao()."'".')">Editar</a></td>';
+								echo '<td><a href="#" onclick="carregaEdicao('."'".$v->getIdVinculo()."','".$v->getFuncao()."','".$v->getDataAdmissao()."','".$v->getDataDemissao()."'".')" data-ls-module="modal" data-target="#edFuncao" class="ls-ico-edit-admin ls-btn" title="Editar"></a></td>';
 	        				echo '</tr>';		
         				}        			
         			?>
         		</tbody>        		
         	</table>
         </div>   
-        <a href="#" id="addFuncao">Nova FunÁ„o</a>
-        <a href="membrosEmpresa.php">Voltar</a>
-        
-        <div id="novaFuncao" style="display: none;">
-        	<form method="post">
-        		<label>FunÁ„o:</label>
-        		<input type="text" name="funcao"><br>
-        		<label>Data de Admiss„o:</label>
-        		<input type="date" name="admissao"><br>
-        		<input type="submit" value="Salvar">
-        	</form>
+
+        <div class="col-lg-12 col-xs-12">  
+            <br><br><br><br>
+            
+        	<a href="membrosEmpresa.php" class="ls-ico-circle-left ls-btn ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-2">Voltar</a>
+        	<a href="#" id="addFuncao" data-ls-module="modal" data-target="#novaFuncao" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-2">Nova Fun√ß√£o</a>
         </div>
+
+        <div class="ls-modal" id="novaFuncao">
+          <div class="ls-modal-box">
+            <div class="ls-modal-header">
+              <button data-dismiss="modal">&times;</button>
+              <h4 class="ls-modal-title">Nova Fun√ß√£o</h4>
+            </div>
+            <div class="ls-modal-body" id="myModalBody">
+            
+                <form method="post" action="">
+                    <br>
+
+                    <label for="nomeGrupo" class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">Fun√ß√£o:</b>
+                        <input type="text" name="funcao" placeholder="Fun√ß√£o" class="ls-field" required>
+                    </label>
+                    
+                    <label class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">Data de Admiss√£o:</b>
+                        <input type="date" name="admissao" class="ls-field" required>
+                    </label>
+
+                             
+
+                </div>
+                <div class="ls-modal-footer">
+                  <a href="#" class="ls-btn ls-float-right" data-dismiss="modal">Cancelar</a>
+                  <button type="submit" class="ls-btn-primary">Salvar</button>
+                </div>
+
+            </form>
+
+          </div>
+        </div><!-- /.modal -->
+
+        <div class="ls-modal" id="edFuncao">
+          <div class="ls-modal-box">
+            <div class="ls-modal-header">
+              <button data-dismiss="modal">&times;</button>
+              <h4 class="ls-modal-title">Editar Membro</h4>
+            </div>
+            <div class="ls-modal-body" id="myModalBody">
+            
+                <form method="post" action="">
+                    <br>
+
+                    <input type="hidden" name="id" id="id">
+
+                    <label for="nomeGrupo" class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">Fun√ß√£o:</b>
+                        <input type="text" name="funcao2" id="funcao" placeholder="Fun√ß√£o" class="ls-field" required>
+                    </label>
+                    
+                    <label class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">Data de Admiss√£o:</b>
+                        <input type="date" name="admissao2" id="admissao" class="ls-field" required>
+                    </label>
+
+                    <label class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">Data de Demiss√£o:</b>
+                        <input type="date" name="demissao2" id="demissao" class="ls-field" required>
+                    </label>
+
+                             
+
+                </div>
+                <div class="ls-modal-footer">
+                  <a href="#" class="ls-btn ls-float-right" data-dismiss="modal">Cancelar</a>
+                  <button type="submit" class="ls-btn-primary">Salvar</button>
+                </div>
+
+            </form>
+
+          </div>
+        </div><!-- /.modal -->
         
-        <div id="edFuncao" style="display: none;">
-        	<form method="post">
-        		<input type="hidden" name="id" id="id"><br>
-        		<label>FunÁ„o:</label>
-        		<input type="text" name="funcao2" id="funcao"><br>
-        		<label>Data de Admiss„o:</label>
-        		<input type="date" name="admissao2" id="admissao"><br>
-        		<label>Data de Demiss„o:</label>
-        		<input type="date" name="demissao2" id="demissao"><br>
-        		<input type="submit" value="Salvar">
-        	</form>
-        </div>
         
-        <!-- Fim Conte˙do -->
+        
+        <!-- Fim Conte√∫do -->
       </div>
       <?php require_once('footer.php');?>
     </main>

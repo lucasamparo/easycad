@@ -56,12 +56,24 @@
 
     <?php require_once('assets.php');?>
     
-    <script language="JScript">
+    <script type="text/javascript" language="JScript">
       $(document).ready(function (){
         $("#cnpj").mask("99.999.999/9999-99");
       });
 
     </script>
+
+    <style type="text/css">
+      .contorno{
+        /*border:1px dotted #CCC;*/
+        padding: 30px;
+      }
+      .link{
+        text-decoration: underline;
+        color: #1AB551;
+        text-transform: uppercase;
+      }
+    </style>
 
   </head>
   <body>

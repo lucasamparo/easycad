@@ -1,4 +1,4 @@
-<?php 
+ï»¿<?php 
 	require_once 'gerencia_login.php';
 	
 	if(isset($_POST['funcao'])){
@@ -27,15 +27,52 @@
 <!DOCTYPE html>
 <html class="ls-theme-green">
   <head>
+
     <title>EasyCad</title>
+
     <?php require_once('assets.php');?>
+
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+
     <script type="text/javascript">
-		$(document).ready(function(){
-			$('#addMembro').click(function(){
-				$('#novoMembro').css('display','inline');
-			});
-		});
-    </script>  
+		// $(document).ready(function(){
+		// 	$('#addMembro').click(function(){
+		// 		$('#novoMembro').css('display','inline');
+		// 	});
+		// });
+    </script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      $('#tb1').dataTable({
+        // "bJQueryUI": true,
+        // "sPaginationType": "full_numbers",
+        // "sDom": '<"H"Tlfr>t<"F"ip>',
+        "oLanguage": {
+          "sLengthMenu": "Registros/PÃ¡gina _MENU_",
+          "sZeroRecords": "Nenhum registro encontrado",
+          "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+          "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+          "sInfoFiltered": "(filtrado de _MAX_ registros)",
+          "sSearch": "Pesquisar: ",
+          "oPaginate": {
+            // "sFirst": " Primeiro ",
+            "sPrevious": " Anterior ",
+            "sNext": " PrÃ³ximo ",
+            // "sLast": " Ãšltmo "
+          }
+        },
+        "aaSorting": [[0, 'desc']],
+        "aoColumnDefs": [ {"sType": "num-html", "aTargets": [0]} ]
+      });
+
+    });
+    </script>
+
+
   </head>
   <body>
 
@@ -45,14 +82,15 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Membros da Empresa</h1>
-        <!-- Conteúdo -->
+        <h1 class="ls-title-intro ls-ico-users">Membros da Empresa</h1>
+        <!-- ConteÃºdo -->
         
+
         <div id="membros">
-        	<table>
+        	<table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0" id="tb1">
         		<thead>
         			<th>Membro</th>
-        			<th>Funções</th>
+        			<th>FunÃ§Ãµes</th>
 	        		<th>Concluir Ciclo</th>
         		</thead>
         		<tbody>
@@ -60,30 +98,63 @@
         				foreach($membros as $m){
         					echo '<tr>';
 								echo '<td>'.$m->getNomeMembro().'</td>';
-								echo '<td><a href="funcoes.php?id='.$m->getCodMembro().'">Ver Funções</a></td>';
-								echo '<td><a href="?id='.$m->getCodMembro().'&c=1">Concluir</a></td>';
+								echo '<td><a href="funcoes.php?id='.$m->getCodMembro().'" class="ls-ico-eye ls-btn" title="Ver FunÃ§Ãµes"></a></td>';
+								echo '<td><a href="?id='.$m->getCodMembro().'&c=1" class="ls-ico-radio-unchecked ls-btn" title="Concluir"></a></td>';
 	        				echo '</tr>';		
         				}        			
         			?>
         		</tbody>        		
         	</table>
-        	<a href="#" id="addMembro">Novo Membro</a>
-        	<a href="histMembros.php">Histórico de Membros</a>
-        </div>   
-        
-        <div id="novoMembro" style="display: none;">
-        	<form method="post" action="membrosEmpresa.php">
-        		<label>Nome:</label>
-        		<input type="text" name="nome"><br>
-        		<label>Função:</label>
-        		<input type="text" name="funcao"><br>
-        		<label>Admissão:</label>
-        		<input type="date" name="admissao"><br>
-        		<input type="submit" value="Salvar">
-        	</form>
+        	
+            <div class="col-lg-12 col-xs-12">  
+                <br><br><br><br>
+                <a href="#" id="addMembro" data-ls-module="modal" data-target="#novoMembro" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-2">Novo Membro</a>
+            	<a href="histMembros.php" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-2">HistÃ³rico de Membros</a>
+            </div>
         </div>
-        
-        <!-- Fim Conteúdo -->
+
+
+        <div class="ls-modal" id="novoMembro">
+          <div class="ls-modal-box">
+            <div class="ls-modal-header">
+              <button data-dismiss="modal">&times;</button>
+              <h4 class="ls-modal-title">Novo Membro</h4>
+            </div>
+            <div class="ls-modal-body" id="myModalBody">
+            
+                <form method="post" action="membrosEmpresa.php">
+                    <br>
+
+
+                    <label for="nomeGrupo" class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">Nome:</b>
+                        <input type="text" name="nome" id="nome" placeholder="Nome" class="ls-field" required>
+                    </label>
+
+                    <label for="nomeGrupo" class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">FunÃ§Ã£o:</b>
+                        <input type="text" name="funcao" id="funcao" placeholder="FunÃ§Ã£o" class="ls-field" required>
+                    </label>
+                    
+                    <label class="ls-label col-lg-12 col-xs-12">
+                        <b class="ls-label-text">Data de AdmissÃ£o:</b>
+                        <input type="date" name="admissao" id="admissao" class="ls-field" required>
+                    </label>
+
+                             
+
+                </div>
+                <div class="ls-modal-footer">
+                  <a href="#" class="ls-btn ls-float-right" data-dismiss="modal">Cancelar</a>
+                  <button type="submit" class="ls-btn-primary">Salvar</button>
+                </div>
+
+            </form>
+
+          </div>
+        </div><!-- /.modal -->   
+                
+        <!-- Fim ConteÃºdo -->
       </div>
       <?php require_once('footer.php');?>
     </main>

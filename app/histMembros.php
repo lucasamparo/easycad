@@ -1,4 +1,4 @@
-<?php 
+ï»¿<?php 
 	require_once 'gerencia_login.php';
 	
 	if(isset($_POST['nome'])){
@@ -18,8 +18,14 @@
 <!DOCTYPE html>
 <html class="ls-theme-green">
   <head>
+
     <title>EasyCad</title>
+
     <?php require_once('assets.php');?>
+
+    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.min.css">
+
     <script type="text/javascript">
 		$(document).ready(function(){
 			$('#addMembro').click(function(){
@@ -35,7 +41,37 @@
 			$('#admissao').val(admissao);
 			$('#demissao').val(demissao);
 		}
-    </script>  
+    </script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+
+      $('#tb1').dataTable({
+        // "bJQueryUI": true,
+        // "sPaginationType": "full_numbers",
+        // "sDom": '<"H"Tlfr>t<"F"ip>',
+        "oLanguage": {
+          "sLengthMenu": "Registros/PÃ¡gina _MENU_",
+          "sZeroRecords": "Nenhum registro encontrado",
+          "sInfo": "Mostrando _START_ / _END_ de _TOTAL_ registro(s)",
+          "sInfoEmpty": "Mostrando 0 / 0 de 0 registros",
+          "sInfoFiltered": "(filtrado de _MAX_ registros)",
+          "sSearch": "Pesquisar: ",
+          "oPaginate": {
+            // "sFirst": " Primeiro ",
+            "sPrevious": " Anterior ",
+            "sNext": " PrÃ³ximo ",
+            // "sLast": " Ãšltmo "
+          }
+        },
+        "aaSorting": [[0, 'desc']],
+        "aoColumnDefs": [ {"sType": "num-html", "aTargets": [0]} ]
+      });
+
+    });
+    </script>
+
   </head>
   <body>
 
@@ -45,16 +81,16 @@
 
     <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-home">Histórico de Membros da Empresa</h1>
-        <!-- Conteúdo -->
+        <h1 class="ls-title-intro ls-ico-ftp">HistÃ³rico de Membros da Empresa</h1>
+        <!-- ConteÃºdo -->
         
         <div id="membros">
-        	<table>
+        	<table class="ls-table ls-bg-header ls-table-striped ls-table-bordered display" cellspacing="0" cellpadding="0" border="0" id="tb1">
         		<thead>
         			<th>Membro</th>
-	        		<th>Admissão</th>
-	        		<th>Conclusão</th>
-	        		<th>Funções</th>
+	        		<th>AdmissÃ£o</th>
+	        		<th>ConclusÃ£o</th>
+	        		<th>FunÃ§Ãµes</th>
 	        		<th>Certificado</th>
         		</thead>
         		<tbody>
@@ -64,32 +100,21 @@
 								echo '<td>'.$m->getNomeMembro().'</td>';
 								echo '<td>'.Util::arrumaData($m->getAdmissao()).'</td>';
 								echo '<td>'.Util::arrumaData($m->getDemissao()).'</td>';
-								echo '<td><a href="funcoes.php?id='.$m->getCodMembro().'">Ver Funções</a></td>';
-								echo '<td><a href="certMembro.php?id='.$m->getCodMembro().'" target="_blank">Emitir</a></td>';
+								echo '<td><a href="funcoes.php?id='.$m->getCodMembro().'" class="ls-ico-eye ls-btn" title="Ver FunÃ§Ãµes"></a></td>';
+								echo '<td><a href="certMembro.php?id='.$m->getCodMembro().'" target="_blank" class="ls-ico-image ls-btn" title="Emitir"></a></td>';
 	        				echo '</tr>';		
         				}        			
         			?>
         		</tbody>        		
         	</table>
         </div>
-        <a href="membrosEmpresa.php">Voltar</a>
+
+        <br><br><br><br>
+        <a href="membrosEmpresa.php" class="ls-ico-circle-left ls-btn ls-btn-lg ls-text-uppercase col-lg-3 col-xs-11">Voltar</a>
         
-        <div id="edMembro" style="display: none;">
-        	<form method="post" action="histMembros.php">
-        		<input type="hidden" name="id" id="id">
-        		<label>Nome:</label>
-        		<input type="text" name="nome" id="nome"><br>
-        		<label>Função:</label>
-        		<input type="text" name="funcao" id="funcao"><br>
-        		<label>Admissão:</label>
-        		<input type="date" name="admissao" id="admissao"><br>
-        		<label>Demissão:</label>
-        		<input type="date" name="demissao" id="demissao"><br>
-        		<input type="submit" value="Salvar">
-        	</form>
-        </div>
         
-        <!-- Fim Conteúdo -->
+        
+        <!-- Fim ConteÃºdo -->
       </div>
       <?php require_once('footer.php');?>
     </main>
