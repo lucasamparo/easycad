@@ -41,30 +41,12 @@
 		}
 		//Carregando o layout
 		if($m->getCurso()->getLayout() == '1'){
-			//Trabalha com o layout1
-			//Inserindo Nome do Curso
-			$evento = utf8_decode($m->getCurso()->getNomeCurso()." - ".$m->getCurso()->getCargaHoraria()." h");
-			$pdf->SetFont('Arial','B',40);
-			$pdf->SetXY(0, 40);
-			$pdf->Cell(0,0,$evento,0,1,'C');
 			
 			//Inserindo nome do Participante
 			$nome = utf8_decode($m->getEntidade()->getNomeEntidade());
 			$pdf->SetFont('Arial','B',25);
-			$pdf->SetXY(0, 65);
+			$pdf->SetXY(0, 92);
 			$pdf->Cell(0,0,$nome,0,1,'C');
-		} else {
-			//Inserindo Nome do Participante
-			$nome = utf8_decode($m->getEntidade()->getNomeEntidade());
-			$pdf->SetFont('Arial','B',40);
-			$pdf->SetXY(0, 40);
-			$pdf->Cell(0,0,$nome,0,1,'C');
-			
-			//Inserindo nome do Curso
-			$evento = utf8_decode($m->getCurso()->getNomeCurso()." - ".$m->getCurso()->getCargaHoraria()." h");
-			$pdf->SetFont('Arial','B',25);
-			$pdf->SetXY(0, 65);
-			$pdf->Cell(0,0,$evento,0,1,'C');
 		}
 		//Inserindo codificação
 		$c = new Certificado();
@@ -97,10 +79,42 @@
 		}
 		$cod = date('Y')."-".$idc.$ct;
 		$pdf -> SetFont('Arial','',10);
-		$pdf->Text(255, 16, $cod);
+		$pdf->Text(9, 198, $cod);
 		
 		$pdf -> SetFont('Arial','',8);
-		$pdf -> Text(245,205,'Gerado eletronicamente por EasyCad');
+		$pdf -> Text(245,208,'Gerado eletronicamente por EasyCad');
+		
+		//Inserindo o verso
+		if($m->getCurso()->getVerso() == 'S'){			
+			$imgFundo = "imgCert/c_".$m->getCurso()->getIdCurso().md5($m->getCurso()->getNomeCurso())."_fundo.png";
+			if(file_exists($imgFundo)){
+				$pdf->Image($imgFundo,null,null,297,210);
+			} else {
+				Util::alert('Falha na configuração do certificado do curso '.$m->getCurso()->getNomeCurso());
+				return null;
+			}
+			
+			//Inserindo código
+			$pdf -> SetFont('Arial','',14);
+			$pdf->Text(15, 203, $cod);
+			
+			//Inserindo o conteúdo programático
+			$cont = explode(";",$m->getCurso()->getConteudo());
+			$i = 0;
+			
+			foreach($cont as $c){
+				if(($i % 2) == 0){
+					$pdf->Text(25, 80+($i*3), utf8_decode(trim($c)));
+				} else {
+					$pdf->Text(149, 80+(($i-1)*3), utf8_decode(trim($c)));
+				}
+				$i++;				
+			}
+
+			$pdf -> SetFont('Arial','',8);
+			$pdf -> Text(245,208,'Gerado eletronicamente por EasyCad');
+		}
+		
 				
 		$url = "cert/".$m->getCurso()->getIdCurso()."_".$m->getEntidade()->getIdEntidade().".pdf";
 		//$pdf->Output();

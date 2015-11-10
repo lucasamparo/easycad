@@ -112,6 +112,7 @@ abstract class BaseCurso extends Doctrine_Record
               1 => '2',
              ),
              'primary' => false,
+             'default' => '1',
              'notnull' => true,
              'autoincrement' => false,
              ));

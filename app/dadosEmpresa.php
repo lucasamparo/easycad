@@ -12,6 +12,39 @@
 		$e->setResponsavel(utf8_decode($_POST['responsavel']));
 		$e->setCnpj($_POST['cnpj']);
 		$e->alterarEmpresa();
+		
+		if(count($_FILES) > 0){
+			if($_FILES['frente']['name'] != ""){
+				//Salvando os fundos
+				$caminho = 'imgCert/';
+					
+				// Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
+				if ($_FILES['frente']['error'] != 0) {
+					die("Não foi possível fazer o upload.");
+					exit; // Para a execução do script
+				} else {
+					// Depois verifica se é possível mover o arquivo para a pasta escolhida
+					if (!move_uploaded_file($_FILES['frente']['tmp_name'], "imgCert/frente_membro.png")) {
+						echo "Não foi possível enviar o arquivo, tente novamente";
+					}
+		
+				}
+			}
+			if($_FILES['fundo']['name'] != ""){
+					
+				// Verifica se houve algum erro com o upload. Se sim, exibe a mensagem do erro
+				if ($_FILES['fundo']['error'] != 0) {
+					die("Não foi possível fazer o upload.");
+					exit; // Para a execução do script
+				} else {
+					// Depois verifica se é possível mover o arquivo para a pasta escolhida
+					if (!move_uploaded_file($_FILES['fundo']['tmp_name'], "imgCert/fundo_membro.png")) {
+						echo "Não foi possível enviar o arquivo, tente novamente";
+					}
+		
+				}
+			}
+		}
 
     $mensagem = "Dados atualizados com sucesso!";
 	}
@@ -51,7 +84,7 @@
         <!-- Conteúdo -->
                 
           <div class="col-lg-12 col-xs-12">
-            <form method="post" class="ls-form ls-form-horizontal row" action="dadosEmpresa.php">
+            <form method="post" class="ls-form ls-form-horizontal row" action="dadosEmpresa.php" enctype="multipart/form-data">
 
               <label class="ls-label col-lg-12 col-xs-12">
                   <b class="ls-label-text">Nome Fantasia:</b>
@@ -73,7 +106,17 @@
                   <b class="ls-label-text">Login:</b>
                   <input type="text" name="login" value="<?= $empresa->getLogin()?>" readonly class="ls-field" style="background-color:#e3e3e3;">
                 </label>
-                              
+                
+                <label class="ls-label col-lg-6 col-xs-12 contorno">
+	                <b class="ls-label-text">Frente do Certificado (PNG): | <a href="imgCert/frente_membro.png" target="_blank" class="link">Ver Atual</a></b>
+	                <input type="file" name="frente" id="frente" class="ls-field">
+	                
+	            </label>
+       	
+       			<label class="ls-label col-lg-6 col-xs-12 contorno">
+	                <b class="ls-label-text">Fundo do Certificado (PNG): | <a href="imgCert/fundo_membro.png" target="_blank" class="link">Ver Atual</a></b>
+	                <input type="file" name="fundo" id="fundo" class="ls-field">
+	            </label>                              
               <input type="submit" value= "Salvar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4" id="sub">    
                   
             </form>

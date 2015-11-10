@@ -39,6 +39,7 @@
            		<li><a href="listaPJ.php">Listagem de Pessoas Jurídicas</a></li>
            		<li><a href="listaPF.php">Listagem de Pessoas Físicas</a></li>
            		<li><a href="validaCert.php">Validar Certificados</a></li>
+           		<li><a href="membrosEmpresa.php">Membros da Empresa</a></li>
            	</ul>
            </li>
            <li>

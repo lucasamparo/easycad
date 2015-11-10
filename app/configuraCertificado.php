@@ -2,13 +2,13 @@
 	require_once 'gerencia_login.php';
 	
 	if(isset($_GET['id'])){
+		//print_r($_FILES);
 		switch($_GET['t']){
 			case 'e':
 				if(isset($_POST['cor'])){
 					$e = new Evento();
 					$e->setIdEvento($_GET['id']);
 					$e->setCorTexto($_POST['cor']);
-					$e->setLayout($_POST['layout']);
 					$e->setVerso($_POST['verso']);
 					$e->alterarEvento();
 				}
@@ -19,7 +19,6 @@
 				$idEvento = $evento->getIdEvento();
 				$titulo = $evento->getNomeEvento();
 				$corTexto = $evento->getCorTexto();
-				$layout = $evento->getLayout();
 				$verso = $evento->getVerso();
 				break;
 			case 'c':
@@ -27,7 +26,6 @@
 					$c = new Curso();
 					$c->setIdCurso($_GET['id']);
 					$c->setCorTexto($_POST['cor']);
-					$c->setLayout($_POST['layout']);
 					$c->setVerso($_POST['verso']);
 					$c->alterarCurso();
 				}
@@ -38,7 +36,6 @@
 				$idEvento = $curso->getEvento()->getIdEvento();
 				$titulo = $curso->getNomeCurso();
 				$corTexto = $curso->getCorTexto();
-				$layout = $curso->getLayout();
 				$verso = $curso->getVerso();
 				break;
 		}
@@ -80,6 +77,7 @@
 					// Depois verifica se é possível mover o arquivo para a pasta escolhida
 					if (move_uploaded_file($_FILES['fundo']['tmp_name'], $caminho . $nome_final)) {
 						$caminho_fundo = $nome_final;
+						//echo "Salvou! ".$caminho_fundo;
 					} else {
 						echo "Não foi possível enviar o arquivo, tente novamente";
 					}
@@ -156,29 +154,13 @@
 	                <input type="color" name="cor" id="cor" value="<?= $corTexto?>" class="ls-field" style="height:35px;">
 	            </label>
 
-	            <label class="ls-label col-lg-12 col-xs-12">
+	            <label class="ls-label col-lg-8 col-xs-12">
 	                <b class="ls-label-text">Cor do Texto (Exemplo):</b>
 	                <input type="text" style="background-color:#e3e3e3;" id="corsel" style="color: <?= $corTexto?>; font-weight: bold" width="20px" class="ls-field" value="Cor do Texto" readonly>
 	            </label>
 
-
-	            <div class="ls-label col-lg-6 col-xs-12 contorno">
-	              <strong><p style="font-size:14px;">Layout do Certificado:</p></strong>
-
-	              <label class="ls-label-text">
-	                <input type="radio" class="ls-field-radio" name="layout" value="1" id="l1" <?php if($layout == '1') echo 'checked'?>>
-	                Modelo 1
-	              </label>
-
-	              <label class="ls-label-text">
-	                <input type="radio" class="ls-field-radio" name="layout" value="2" id="l2" <?php if($layout == '2') echo 'checked'?>>
-	                Modelo 2
-	              </label>
-
-	            </div>
-
-	            <div class="ls-label col-lg-6 col-xs-12 contorno">
-	              <strong><p style="font-size:14px;">Possui verso?</p></strong>
+	            <div class="ls-label col-lg-4 col-xs-12 contorno">
+	              <b class="ls-label-text">Possui verso?</b>
 
 	              <label class="ls-label-text">
 	                <input type="radio" class="ls-field-radio" name="verso" value="S" id="versoS" <?php if($verso == 'S') echo 'checked'?>>
