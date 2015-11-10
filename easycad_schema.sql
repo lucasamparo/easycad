@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 14-Out-2015 às 10:41
+-- Generation Time: 10-Nov-2015 às 17:25
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `certificado` (
   PRIMARY KEY (`idCertificado`),
   UNIQUE KEY `codigo` (`codigo`),
   KEY `MatriculaCertificado` (`idMatricula`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
 
 -- --------------------------------------------------------
 
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `curso` (
   `valor` double DEFAULT NULL,
   `cargaHoraria` int(11) DEFAULT NULL,
   `corTexto` varchar(7) NOT NULL,
-  `layout` enum('1','2') NOT NULL,
+  `layout` enum('1','2') NOT NULL DEFAULT '1',
   `verso` enum('S','N') NOT NULL,
   `liberarCertificado` enum('S','N') NOT NULL,
   `ativo` enum('S','N') NOT NULL,
@@ -138,7 +138,37 @@ CREATE TABLE IF NOT EXISTS `matricula` (
   UNIQUE KEY `idEntidade` (`idEntidade`,`idCurso`),
   KEY `matriculaEntidade_idx` (`idEntidade`),
   KEY `matriculaCurso_idx` (`idCurso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `membros`
+--
+
+CREATE TABLE IF NOT EXISTS `membros` (
+  `codMembro` int(11) NOT NULL AUTO_INCREMENT,
+  `nomeMembro` varchar(255) NOT NULL,
+  `ativo` enum('S','N') NOT NULL DEFAULT 'S',
+  PRIMARY KEY (`codMembro`),
+  UNIQUE KEY `nomeMembro` (`nomeMembro`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vinculo`
+--
+
+CREATE TABLE IF NOT EXISTS `vinculo` (
+  `idVinculo` int(11) NOT NULL AUTO_INCREMENT,
+  `codMembro` int(11) NOT NULL,
+  `funcao` varchar(255) NOT NULL,
+  `dataAdmissao` date NOT NULL,
+  `dataDemissao` date DEFAULT NULL,
+  PRIMARY KEY (`idVinculo`),
+  KEY `codMembro` (`codMembro`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Constraints for dumped tables
@@ -162,6 +192,12 @@ ALTER TABLE `curso`
 ALTER TABLE `matricula`
   ADD CONSTRAINT `matriculaCurso` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `matriculaEntidade` FOREIGN KEY (`idEntidade`) REFERENCES `entidade` (`idEntidade`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `vinculo`
+--
+ALTER TABLE `vinculo`
+  ADD CONSTRAINT `vinculo_ibfk_1` FOREIGN KEY (`codMembro`) REFERENCES `membros` (`codMembro`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
