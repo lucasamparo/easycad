@@ -13,14 +13,9 @@
 			$e->setModalidade($_POST['modalidade']);
 			$e->setValor($_POST['valor']);
 			$e->setCargaHoraria($_POST['ch']);
-			$e->setGeraCertificado($_POST['geraCert']);
 			$e->alterarEvento();
-			header('Location: listaEvento.php');
-
-			
+			header('Location: listaEvento.php');			
 		}
-
-		
 	}
 ?>
 <!DOCTYPE html>
@@ -35,10 +30,6 @@
 
     <script type="text/javascript">
 		function carregarEdicao(id){
-			// $('#edEvento').css('display','inline');
-
-			// alert(id);
-
 			var req = $.ajax({
 			    url:    "wsEvento.php",
 			    type:   "get",
@@ -53,12 +44,7 @@
 				    $('#fim').val(data.fim);
 				    $('#modalidade').val(data.modalidade);
 				    $('#valor').val(data.valor);
-				    $('#ch').val(data.ch);
-				    /*if(data.geraCert == 'S'){
-						$('#geraS').attr('checked','');
-				    } else {
-				    	$('#geraN').attr('checked','');
-				    } */      
+				    $('#ch').val(data.ch);    
 			    },
 		        error: function(XMLHttpRequest, textStatus, errorThrown){
 		        	console.log(XMLHttpRequest.responseText);
@@ -71,9 +57,6 @@
 		$(document).ready(function() {
 
 			$('#tb1').dataTable({
-				// "bJQueryUI": true,
-				// "sPaginationType": "full_numbers",
-				// "sDom": '<"H"Tlfr>t<"F"ip>',
 				"oLanguage": {
 					"sLengthMenu": "Registros/Página _MENU_",
 					"sZeroRecords": "Nenhum registro encontrado",
@@ -82,10 +65,8 @@
 					"sInfoFiltered": "(filtrado de _MAX_ registros)",
 					"sSearch": "Pesquisar: ",
 					"oPaginate": {
-						// "sFirst": " Primeiro ",
 						"sPrevious": " Anterior ",
 						"sNext": " Próximo ",
-						// "sLast": " Último "
 					}
 				},
 				"aaSorting": [[0, 'desc']],
@@ -119,7 +100,6 @@
         		<th>Início</th>
         		<th>Fim</th>
         		<th>Cursos</th>
-        		<!-- <th>Certificado</th> -->
         		<th>Editar</th>
         	</thead>
         	<tbody>
@@ -136,11 +116,6 @@
         				} else {
         					echo '<td>Nenhum Curso Cadastrado</td>';
         				}
-        				/*if($e->getGeraCertificado() == 'S'){
-        					echo '<td><a href="configuraCertificado.php?id='.$e->getIdEvento().'&t=e" class="ls-ico-cog ls-btn" title="Configurar"></a></td>';
-        				} else {
-        					echo '<td>Sem Certificado</td>';
-        				}*/
         				echo '<td><a href="#" data-ls-module="modal" data-target="#edEvento" class="ls-ico-edit-admin ls-btn" title="Editar" onclick="carregarEdicao('."'".$e->getIdEvento()."'".')"></a></td>';      				       				
         			echo '</tr>';
         		}
@@ -180,7 +155,7 @@
 		            <label class="ls-label col-lg-12 col-xs-12">
 		              <b class="ls-label-text">Modalidade de Inscrição:</b>
 		              <div class="ls-custom-select">
-		                <select class="ls-custom" name="modalidade" required>
+		                <select class="ls-custom" name="modalidade" id="modalidade" required>
 		                    <option value="P">Presencial</option>
 		                    <option value="O">Online</option>
 		                    <option value="PO">Presencial + Online</option>
@@ -198,21 +173,7 @@
 		                <b class="ls-label-text">Carga Horária:</b>
 		                <input type="number" placeholder="Valor em Horas" min="0" name="ch" id="ch" class="ls-field">
 		            </label>
-  
-		          <!-- <div class="ls-label col-lg-12 col-xs-12">
-		              <strong><p>Gera Certificado?</p></strong>
-
-		              <label class="ls-label-text">
-		                <input type="radio" class="ls-field-radio" name="geraCert" value="S" id="geraS" checked>
-		                Sim
-		              </label> 
-
-		              <label class="ls-label-text">
-		                <input type="radio" class="ls-field-radio" name="geraCert" value="N" id="geraN">
-		                Não
-		              </label>
-
-		            </div>     -->          
+         
 
                 </div>
                 <div class="ls-modal-footer">

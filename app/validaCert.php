@@ -1,5 +1,6 @@
 ﻿<?php 
-	require_once 'gerencia_Login.php';
+	//require_once 'gerencia_login.php';
+	require_once('../models/bootstrap.php');
 	
 	if(isset($_POST['cod'])){
 		$c = new Certificado();
@@ -19,14 +20,11 @@
   
   </head>
   <body>
-
-    <?php require_once('header.php');?>
-
-    <?php require_once('aside.php');?>
-
-    <main class="ls-main ">
       <div class="container-fluid">
-        <h1 class="ls-title-intro ls-ico-ftp">Validação de Certificado</h1>
+      	<div class="col-lg-12 col-xs-12 ls-txt-center">
+			<img src="images/easycad.png" width="150" height="60" style="margin-right:20px;">
+			<img src="images/eambjr.png" width="150" height="60" style="margin-left:20px;">
+		</div>
         
         <div class="col-lg-12 col-xs-12">
           <form method="post" class="ls-form ls-form-horizontal row" action="validaCert.php">
@@ -56,11 +54,7 @@
         		}
         	}
         ?>
-      </div>
-      <?php require_once('footer.php');?>
-    </main>
-
-    
+      </div>    
     <?php require_once('assets-footer.php');?>
 
   </body>

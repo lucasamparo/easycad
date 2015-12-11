@@ -1,5 +1,5 @@
 ﻿<?php
-require_once 'gerencia_login.php';
+require_once('../models/bootstrap.php');
 
 $idEvento = $_GET['id'];
 

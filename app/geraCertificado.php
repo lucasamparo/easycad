@@ -22,7 +22,7 @@
 			Util::alert('Falha na configuração do certificado do curso '.$m->getCurso()->getNomeCurso());
 			return null;
 		}
-		if(is_null($m->getCurso()->getDataFim())){
+		/*if(is_null($m->getCurso()->getDataFim())){
 			//trabalha com data simples
 			//Inserindo data
 			$pdf -> SetFont('Arial','',20);
@@ -38,7 +38,7 @@
 			$data2 = explode("-",$d);
 			$txt = $data1[2]." de ".Util::retornaMes(intval($data1[1]))." de ".$data1[0].utf8_decode(" até ").$data2[2]." de ".Util::retornaMes(intval($data2[1]))." de ".$data2[0];
 			$pdf->Text(130, 171, $txt);
-		}
+		}*/
 		//Carregando o layout
 		if($m->getCurso()->getLayout() == '1'){
 			
@@ -95,8 +95,9 @@
 			}
 			
 			//Inserindo código
-			$pdf -> SetFont('Arial','',14);
-			$pdf->Text(15, 203, $cod);
+			$cod = date('Y')."-".$idc.$ct;
+			$pdf -> SetFont('Arial','',10);
+			$pdf->Text(9, 198, $cod);
 			
 			//Inserindo o conteúdo programático
 			$cont = explode(";",$m->getCurso()->getConteudo());

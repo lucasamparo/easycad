@@ -1,5 +1,6 @@
 ﻿<?php 
-	require_once 'gerencia_login.php';
+	//require_once 'gerencia_login.php';
+	require_once('../models/bootstrap.php');
 	
 	if(isset($_POST['nome'])){
 		$e = new Entidade();
@@ -38,7 +39,7 @@
 
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$('#evento').blur(function(){
+				$('#evento').change(function(){
 					id = $('#evento').val();
 					$.ajax({
 		                 url:    "wsCursos.php?id="+id,
@@ -46,11 +47,9 @@
 		                 dataType:"json",
 		                 async: false,
 		                 success: function(data){
-							//alert(data);
 							$('#cursos').html("");
 							for(i = 0; i < data.length; i++){
-
-								html = '<label class="ls-label-text"><input type="checkbox" name="cursos[]" id="curso'+data[i].id+'" value="'+data[i].id+'">'+data[i].nome+'</label><br>';
+								html = '<label class="ls-label-text col-md-3 col-xs-12"><input type="checkbox" name="cursos[]" id="curso'+data[i].id+'" value="'+data[i].id+'">'+data[i].nome+'</label>';
 								$('#cursos').append(html);
 							}
 		                 }
@@ -108,12 +107,8 @@
 		            </select>
 		          </div>
 		        </label>
-
 				<div id="cursos" class="ls-label col-lg-12 col-xs-12"></div>
-
-				<input type="submit" value= "Inscrever" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">
-
-			
+				<input type="submit" value= "Inscrever" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">			
 			</form>
 		</div>
 
