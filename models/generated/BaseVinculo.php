@@ -61,7 +61,7 @@ abstract class BaseVinculo extends Doctrine_Record
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => true,
+             'notnull' => false,
              'autoincrement' => false,
              ));
     }
@@ -72,5 +72,5 @@ abstract class BaseVinculo extends Doctrine_Record
         $this->hasOne('Membros', array(
              'local' => 'codMembro',
              'foreign' => 'codMembro'));
-    }	
+    }
 }

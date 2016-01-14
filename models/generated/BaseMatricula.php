@@ -62,6 +62,7 @@ abstract class BaseMatricula extends Doctrine_Record
               1 => 'A',
              ),
              'primary' => false,
+             'default' => 'A',
              'notnull' => true,
              'autoincrement' => false,
              ));

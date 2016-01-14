@@ -8,6 +8,8 @@
  * @property integer $codMembro
  * @property string $nomeMembro
  * @property enum $ativo
+ * @property string $validacaoCert
+ * @property date $emissaoCert
  * @property Doctrine_Collection $Vinculo
  * 
  * @package    ##PACKAGE##
@@ -49,6 +51,23 @@ abstract class BaseMembros extends Doctrine_Record
              ),
              'primary' => false,
              'default' => 'S',
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('validacaoCert', 'string', 20, array(
+             'type' => 'string',
+             'length' => 20,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('emissaoCert', 'date', null, array(
+             'type' => 'date',
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
              'notnull' => true,
              'autoincrement' => false,
              ));

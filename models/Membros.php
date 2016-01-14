@@ -33,6 +33,20 @@ class Membros extends BaseMembros
 		$this->ativo = $ativo;
 		return $this;
 	}
+	public function getValidacaoCert() {
+		return $this->validacaoCert;
+	}
+	public function setValidacaoCert($validacaoCert) {
+		$this->validacaoCert = $validacaoCert;
+		return $this;
+	}
+	public function getEmissaoCert() {
+		return $this->emissaoCert;
+	}
+	public function setEmissaoCert($emissaoCert) {
+		$this->emissaoCert = $emissaoCert;
+		return $this;
+	}
 	public function getVinculo() {
 		return $this->Vinculo;
 	}
@@ -108,6 +122,23 @@ class Membros extends BaseMembros
 												->limit('1')
 												->execute();
 			return $q[0]->getDataDemissao();
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
+	
+	public function emitirCert(){
+		try{
+			$tmp = $this->copy();
+			$m = Doctrine_Core::getTable('Membros')->findOneBy('codMembro', $this->getCodMembro());
+			if($m){
+				$m->setValidacaoCert($tmp->getValidacaoCert());
+				$m->setEmissaoCert($tmp->getEmissaoCert());
+				$m->save();
+				return true;
+			} else {
+				return false;
+			}
 		} catch (Doctrine_Exception $e){
 			echo $e->getMessage();
 		}
