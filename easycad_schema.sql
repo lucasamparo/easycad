@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 10-Nov-2015 às 17:25
+-- Generation Time: 11-Dez-2015 às 20:49
 -- Versão do servidor: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `easycad`
 --
-CREATE DATABASE IF NOT EXISTS `easycad` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `easycad`;
 
 -- --------------------------------------------------------
 
@@ -36,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `certificado` (
   PRIMARY KEY (`idCertificado`),
   UNIQUE KEY `codigo` (`codigo`),
   KEY `MatriculaCertificado` (`idMatricula`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=98 ;
 
 -- --------------------------------------------------------
 
@@ -96,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `entidade` (
   PRIMARY KEY (`idEntidade`),
   UNIQUE KEY `cnpj_cpf` (`cnpj_cpf`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 -- --------------------------------------------------------
 
@@ -131,14 +129,14 @@ CREATE TABLE IF NOT EXISTS `matricula` (
   `idMatricula` int(11) NOT NULL AUTO_INCREMENT,
   `idEntidade` int(11) DEFAULT NULL,
   `idCurso` int(11) DEFAULT NULL,
-  `presenca` enum('P','A') NOT NULL,
+  `presenca` enum('P','A') NOT NULL DEFAULT 'A',
   `tipo` enum('P','A','C') NOT NULL,
   `dataHoraMatricula` datetime DEFAULT NULL,
   PRIMARY KEY (`idMatricula`),
   UNIQUE KEY `idEntidade` (`idEntidade`,`idCurso`),
   KEY `matriculaEntidade_idx` (`idEntidade`),
   KEY `matriculaCurso_idx` (`idCurso`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 -- --------------------------------------------------------
 
@@ -168,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `vinculo` (
   `dataDemissao` date DEFAULT NULL,
   PRIMARY KEY (`idVinculo`),
   KEY `codMembro` (`codMembro`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Constraints for dumped tables

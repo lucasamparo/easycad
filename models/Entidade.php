@@ -116,4 +116,28 @@ class Entidade extends BaseEntidade
 			echo $e->getMessage();
 		}
 	}
+	
+	public function alterarEntidade(){
+		try{
+			$e = Doctrine_Core::getTable('Entidade')->findOneBy('idEntidade', $this->getIdEntidade());
+			if($e){
+				if(!is_null($this->getNomeEntidade())){
+					$e->setNomeEntidade($this->getNomeEntidade());
+				}
+				if(!is_null($this->getCnpjCpf())){
+					$e->setCnpjCpf($this->getCnpjCpf());
+				}
+				if(!is_null($this->getTelefone())){
+					$e->setTelefone($this->getTelefone());
+				}
+				if(!is_null($this->getEmail())){
+					$e->setEmail($this->getEmail());
+				}
+				$e->save();
+			}
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+		
+	}
 }
