@@ -5,6 +5,12 @@
 		$c = new Curso();
 		$c->setIdCurso($_GET['id']);
 		$curso = $c->retornarCursoPorId();
+		if(isset($_GET['m'])){
+			$m = new Matricula();
+			$m->setIdMatricula($_GET['m']);
+			$m->revogarMatricula();
+			header('Location: matriculas.php?id='.$_GET['id']);
+		}
 	} else {
 		header('Location: listaEvento.php');
 	}
@@ -144,7 +150,7 @@
 		        			foreach($m_p as $m){
 		        				echo '<tr>';
 		        					$a = $m->getEntidade();
-		        					echo '<td>'.$a->getNomeEntidade().'</td>';
+		        					echo '<td>'.$a->getNomeEntidade().' (<a href="?id='.$curso->getIdCurso().'&m='.$m->getIdMatricula().'">Revogar</a>)</td>';
 		        					echo '<td>'.$a->getTelefone().'</td>';
 		        					echo '<td>'.$a->getCnpjCpf().'</td>';
 		        				echo '</tr>';

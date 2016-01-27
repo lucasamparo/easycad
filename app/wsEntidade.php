@@ -13,8 +13,15 @@ if(isset($_GET['c'])){
 	$ent = $e->retornarEntidadePorCnpjCpf();
 }
 
-$array['nome'] = utf8_encode($ent->getNomeEntidade());
-$array['id'] = $ent->getIdEntidade();
+if(count($ent) > 1){
+	$array['nome'] = utf8_encode($ent->getNomeEntidade());
+	$array['id'] = $ent->getIdEntidade();
+	$array['telefone'] = $ent->getTelefone();
+	$array['email'] = $ent->getEmail();
+	$array['flag'] = true;
+} else {
+	$array['flag'] = false;
+}
 
 ob_end_clean();
 echo json_encode($array);

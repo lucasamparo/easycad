@@ -122,4 +122,15 @@ class Matricula extends BaseMatricula
 			echo $e->getMessage();
 		}
 	}
+	
+	public function revogarMatricula(){
+		try{
+			$m = $this->getTable()->findOneBy('idMatricula', $this->getIdMatricula());
+			if($m){
+				$m->delete();
+			}
+		} catch (Doctrine_Exception $e){
+			echo $e->getMessage();
+		}
+	}
 }

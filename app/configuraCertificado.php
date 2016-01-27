@@ -144,7 +144,7 @@
 
         <h1 class="ls-title-intro ls-ico-cog">Configuração do Certificado</h1>
 
-        <legend style="color:#1AB551; width:100%; font-size:20px; margin-bottom:20px;" class="ls-txt-center">Certificado: <?= utf8_encode($titulo)?></legend>
+        <legend style="color:#1AB551; width:100%; font-size:20px; margin-bottom:20px;" class="ls-txt-center">Certificado: <?= $titulo?></legend>
 
         <div class="col-lg-12 col-xs-12">
         	<form method="post" enctype="multipart/form-data" class="ls-form ls-form-horizontal row" action="configuraCertificado.php?id=<?= $_GET['id']?>&t=<?= $_GET['t']?>">

@@ -8,7 +8,7 @@
 		$empresa = $e->retornarEmpresa();
 		if($_POST['login'] == $empresa->getLogin()){
 			if(md5($_POST['senha']) == $empresa->getSenha()){
-				$_SESSION['logado'] = true;
+				$_SESSION['easycad']['logado'] = true;
 				header('Location: inicio.php');
 			} else { 
 				$mensagem = "Usuário ou Senha inválidos!"; 
@@ -71,8 +71,6 @@
     </fieldset>
   </form>
 </div>
-
-<div class="ls-login-adv"><img title="Empresa Júnior de Engenharia Ambiental" src="images/eambjr.png" width="296" height="127" /></div>
 
     </div>
   </div>

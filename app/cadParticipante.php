@@ -145,7 +145,7 @@
 				  </div>
 				</div>
 
-	        	<input type="submit" value= "Cadastrar" class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">
+	        	<input type="submit" value="Cadastrar" disabled class="ls-btn-primary ls-btn-lg ls-text-uppercase col-lg-4 col-xs-11 col-lg-push-4">
         	</form>
         </div>
         

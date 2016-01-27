@@ -8,7 +8,6 @@
 -- PHP Version: 5.5.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,8 +18,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `easycad`
 --
-CREATE DATABASE IF NOT EXISTS `easycad` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `easycad`;
 
 -- --------------------------------------------------------
 

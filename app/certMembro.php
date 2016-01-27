@@ -21,36 +21,30 @@
 	//Inserindo o nome
 	$nome = $membro->getNomeMembro();
 	$pdf->SetFont('Arial','B',25);
-	$pdf->SetXY(0, 92);
+	$pdf->SetXY(0, 75);
 	$pdf->Cell(0,0,$nome,0,1,'C');
 	
 	$pdf->SetFont('Arial','B',16);
 	//Inserindo data de Admissão
 	$data = explode("-",$membro->getAdmissao());
-	$pdf->Text(54,123, $data[2]);
-	$pdf->Text(68,123, $data[1]);
-	$pdf->Text(84,123, $data[0]);
+	$pdf->Text(167,95, $data[2]);
+	$pdf->Text(178,95, $data[1]);
+	$pdf->Text(189,95, $data[0]);
 	$inicio = mktime(0,0,0, $data[1],$data[2],$data[0]);
 	
 	//Inserindo data de Demissão
 	$data = explode("-",$membro->getDemissao());
-	$pdf->Text(111,123, $data[2]);
-	$pdf->Text(126,123, $data[1]);
-	$pdf->Text(142,123, $data[0]);
+	$pdf->Text(211,95, $data[2]);
+	$pdf->Text(222,95, $data[1]);
+	$pdf->Text(233,95, $data[0]);
 	$final = mktime(0,0,0, $data[1],$data[2],$data[0]);
-	
-	//Data de Emissão
-	$data = explode("-",date('Y-m-d'));
-	$pdf->Text(141,152, $data[2]);
-	$pdf->Text(165,152, Util::retornaMes($data[1]));
-	$pdf->Text(220,152, $data[0]);
 	
 	//Calculando dias trabalhados
 	$diff = $final - $inicio;
 	$dias = (int)floor( $diff / (60 * 60 * 24));
 	$fator = $dias / 180;
 	$horas = floor(60 * $fator);
-	$pdf->Text(233,123, $horas);
+	$pdf->Text(60,105, $horas);
 	
 	//Código de Validação
 	switch(strlen($membro->getCodMembro())){
@@ -66,11 +60,11 @@
 	}
 	$cod = date('Y').$id;
 	$pdf->SetFont('Arial','',16);
-	$pdf->Text(35,197, $cod);
+	$pdf->Text(15,189, $cod);
 	
 	//Marca D'água
 	$pdf -> SetFont('Arial','',8);
-	$pdf -> Text(245,208,'Gerado eletronicamente por EasyCad');
+	$pdf -> Text(230,191,'Gerado eletronicamente por EasyCad');
 	
 	//Fundo
 	$imgFrente = "imgCert/fundo_membro.png";
@@ -84,18 +78,17 @@
 	$vinculos = $membro->getVinculo();
 	$i = 0;
 	foreach($vinculos as $v){
-		$pdf -> SetFont('Arial','',20);
-		$pdf->Text(25,76+($i*8), $v->getFuncao()." - Entre ".Util::arrumaData($v->getDataAdmissao())." e ".Util::arrumaData($v->getDataDemissao()));
+		$pdf -> SetFont('Arial','',18);
+		$pdf->Text(55,95+($i*8), $v->getFuncao()." - Entre ".Util::arrumaData($v->getDataAdmissao())." e ".Util::arrumaData($v->getDataDemissao()));
 		$i++;
 	}
 	
-	//Código no fundo
 	$pdf->SetFont('Arial','',16);
-	$pdf->Text(35,197, $cod);
+	$pdf->Text(15,189, $cod);
 	
 	//Marca D'água
 	$pdf -> SetFont('Arial','',8);
-	$pdf -> Text(245,208,'Gerado eletronicamente por EasyCad');
+	$pdf -> Text(230,191,'Gerado eletronicamente por EasyCad');
 	
 	//Atualizando no BD
 	$membro->setValidacaoCert($cod);
