@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once 'gerencia_login.php';
 
 $e = new Entidade();

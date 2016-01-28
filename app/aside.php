@@ -1,4 +1,4 @@
-﻿<aside class="ls-sidebar">
+<aside class="ls-sidebar">
     <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
         <?php 
         require_once 'gerencia_login.php';

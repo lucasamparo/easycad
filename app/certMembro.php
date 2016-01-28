@@ -14,7 +14,7 @@
 	if(file_exists($imgFrente)){
 		$pdf->Image($imgFrente,null,null,297,210);
 	} else {
-		Util::alert('Falha na configuração do certificado de Membros');
+		Util::alert('Falha na configuraÃ§Ã£o do certificado de Membros');
 		return null;
 	}
 	
@@ -71,7 +71,7 @@
 	if(file_exists($imgFrente)){
 		$pdf->Image($imgFrente,null,null,297,210);
 	} else {
-		Util::alert('Falha na configuração do certificado de Membros');
+		Util::alert('Falha na configuraÃ§Ã£o do certificado de Membros');
 		return null;
 	}
 	

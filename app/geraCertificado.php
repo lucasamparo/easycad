@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require_once('../models/bootstrap.php');
 	require_once('../libs/fpdf/fpdf.php');
 	
@@ -168,21 +168,33 @@
 		$u = new Entidade();
 		$u->setCnpjCpf($_POST['cpf']);
 		$ent = $u->retornarEntidadePorCnpjCpf();
-		if($ent){
+	if($ent){
 			//print_r($ent->toArray());
 			$m->setIdEntidade($ent->getIdEntidade());
 			$mat = $m->retornarMatriculaPorIdParticipante();
+			echo count($mat);
 			if(count($mat) > 0){
 				//print_r($mat->toArray());
+				$retido = true;
 				foreach($mat as $m){
 					if($m->getCurso()->getLiberarCertificado() == 'S'){
+						$retido = false;
 						if($m->getPresenca() == 'P'){
 							$r = constroiPdf($m);								
 							echo '<div class="ls-txt-center">';
 								echo '<p>'.$m->getCurso()->getNomeCurso().' | <a href="'.$r.'" target="_blank">Certificado</a><br></p>';
 							echo '</div>';
+						} else {
+							echo '<div class="ls-txt-center">';
+								echo '<p>Participante Ausente!</p>';
+							echo '</div>';
 						}
 					}
+				}
+				if($retido){
+					echo '<div class="ls-txt-center">';
+						echo '<p>Certificados ainda não liberados</p>';
+					echo '</div>';
 				}
 			} else {
 				echo '<div class="ls-txt-center">';

@@ -1,1 +1,1 @@
-﻿<script src="js/locastyle.js" type="text/javascript"></script>
+<script src="js/locastyle.js" type="text/javascript"></script>

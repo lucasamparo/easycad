@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //require_once('gerencia_login.php');
 require_once('../models/bootstrap.php');
 require_once('../libs/fpdf/fpdf.php');

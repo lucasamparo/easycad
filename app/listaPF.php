@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="ls-theme-green">
   <head>
     <title>EasyCad</title>
