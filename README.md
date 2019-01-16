@@ -6,7 +6,7 @@ O Easycad tem como objetivo simplificar os processos de gestão de um evento, de
 ## Prerequisitos
 * PHP 5+
 * MySQL
-Para instalações locais, recomendo o EasyPHP.
+* Para instalações locais, recomendo o EasyPHP.
 
 ## Instalação
 
@@ -23,18 +23,8 @@ TODO
 
 ## Histórico de lançamentos
 
-* 0.2.1
-    * MUDANÇA: Atualização de docs (código do módulo permanece inalterado)
-* 0.2.0
-    * MUDANÇA: Remove `setDefaultXYZ()`
-    * ADD: Adiciona `init()`
-* 0.1.1
-    * CONSERTADO: Crash quando chama `baz()` (Obrigado @NomeDoContribuidorGeneroso!)
-* 0.1.0
-    * O primeiro lançamento adequado
-    * MUDANÇA: Renomeia `foo()` para `bar()`
-* 0.0.1
-    * Trabalho em andamento
+* 2.1.0
+   * Lançamento da Versão Opensource do Easycad
 
 ## Meta
 
