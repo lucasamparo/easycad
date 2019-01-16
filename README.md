@@ -4,8 +4,8 @@
 O Easycad tem como objetivo simplificar os processos de gestão de um evento, desde as inscrições até a emissão dos certificados, de forma digital (PDF).
 
 ## Prerequisitos
-> PHP 5+
-> MySQL
+* PHP 5+
+* MySQL
 Para instalações locais, recomendo o EasyPHP.
 
 ## Instalação
