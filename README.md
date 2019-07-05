@@ -6,7 +6,7 @@ O Easycad tem como objetivo simplificar os processos de gestão de um evento, de
 ## Prerequisitos
 * PHP 5+
 * MySQL
-* Para instalações locais, recomendo o EasyPHP.
+* Para instalações locais, recomendo o (EasyPHP)[https://www.easyphp.org/].
 
 ## Instalação
 
@@ -17,9 +17,14 @@ O Easycad tem como objetivo simplificar os processos de gestão de um evento, de
 
 ## Exemplo de uso
 
-TODO
+(Live Demo)[https://easycaddemo.000webhostapp.com/app]
+
+Tutoriais em produção...
 
 ## Configuração para Desenvolvimento
+
+* Crie um banco de dados MySQL;
+* Importe os dados do (modelo de base)[easycad_schema.sql];
 
 ## Histórico de lançamentos
 
