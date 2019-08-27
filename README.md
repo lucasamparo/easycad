@@ -18,6 +18,8 @@ O Easycad tem como objetivo simplificar os processos de gestão de um evento, de
 ## Exemplo de uso
 
 [Live Demo](https://easycaddemo.000webhostapp.com/app)
+Usuário: admin
+Senha: admin
 
 Tutoriais em produção...
 
